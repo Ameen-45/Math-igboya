@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGBOYA - Mathematics Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase App (core SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body class="light-mode">
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="logo">
+                <h1 id="welcome-text"></h1>
+                <p>Mathematics Learning Platform</p>
+            </div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Login/Signup Page -->
+    <div id="auth-container" class="hidden">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="app-logo">
+                    <svg width="50" height="50" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="var(--primary-color)" />
+                        <path d="M20,15 L30,15 L35,25 L30,35 L20,35 L15,25 Z" fill="#fff" />
+                        <text x="25" y="28" font-size="10" text-anchor="middle" fill="var(--primary-color)">I</text>
+                    </svg>
+                    <h2>IGBOYA</h2>
+                </div>
+                <p>Your journey to mastering mathematics starts here</p>
+            </div>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            <div class="auth-forms">
+                <form id="login-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                    <p class="auth-error" id="login-error"></p>
+                </form>
+                <form id="signup-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign Up</button>
+                    <p class="auth-error" id="signup-error"></p>
+                </form>
+                <div class="resend-verification">
+                <p>Didn't receive verification email? <a href="#" id="resend-verification-link">Resend</a></p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Layout (Initially Hidden) -->
+    <div id="app-container" class="hidden">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <svg width="40" height="40" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="var(--primary-color)" />
+                        <path d="M20,15 L30,15 L35,25 L30,35 L20,35 L15,25 Z" fill="#fff" />
+                        <text x="25" y="28" font-size="10" text-anchor="middle" fill="var(--primary-color)">I</text>
+                    </svg>
+                    <h2>IGBOYA</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#topics" class="nav-link">Topics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#community" class="nav-link">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resources" class="nav-link">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile" class="nav-link">Profile</a>
+                    </li>
+                </ul>
+                <div class="nav-user">
+                    <span id="user-name">User</span>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Sections -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <div class="hero-banner">
+                    <h1>Master Mathematics with IGBOYA</h1>
+                    <p>Interactive lessons, practice problems, and community support to help you excel in math</p>
+                    <button class="cta-button">Start Learning</button>
+                </div>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Comprehensive Topics</h3>
+                        <p>From basic arithmetic to advanced calculus, we've got you covered.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Interactive Practice</h3>
+                        <p>Reinforce your learning with our interactive problem sets.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Progress Tracking</h3>
+                        <p>Monitor your improvement with detailed progress reports.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Topics Section -->
+            <section id="topics" class="content-section">
+                <h2>Mathematics Topics</h2>
+                <p class="section-subtitle">Explore our comprehensive mathematics curriculum</p>
+                <div class="topics-grid">
+                    <a href="algebra.html" class="topic-card">
+                        <div class="topic-icon">𝑥𝑦</div>
+                        <h3>Algebra</h3>
+                        <p>Equations, functions, polynomials, and more</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                            <span>65% Complete</span>
+                        </div>
+                    </a>
+                    <a href="geometry.html" class="topic-card">
+                        <div class="topic-icon">△□</div>
+                        <h3>Geometry</h3>
+                        <p>Shapes, angles, theorems, and proofs</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 40%"></div>
+                            </div>
+                            <span>40% Complete</span>
+                        </div>
+                    </a>
+                    <a href="calculus.html" class="topic-card">
+                        <div class="topic-icon">∫</div>
+                        <h3>Calculus</h3>
+                        <p>Derivatives, integrals, and limits</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 20%"></div>
+                            </div>
+                            <span>20% Complete</span>
+                        </div>
+                    </a>
+                    <a href="matrices.html" class="topic-card">
+                        <div class="topic-icon">[ ]</div>
+                        <h3>Matrices</h3>
+                        <p>Matrix operations, determinants, and applications</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 30%"></div>
+                            </div>
+                            <span>30% Complete</span>
+                        </div>
+                    </a>
+                    <a href="trigonometry.html" class="topic-card">
+                        <div class="topic-icon">θ</div>
+                        <h3>Trigonometry</h3>
+                        <p>Triangles, identities, and trigonometric functions</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 50%"></div>
+                            </div>
+                            <span>50% Complete</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Community Section -->
+            <section id="community" class="content-section">
+                <h2>Community</h2>
+                <p class="section-subtitle">Connect with other learners, ask questions, and share knowledge.</p>
+                <div class="community-content">
+                    <div class="forum-preview">
+                        <h3>Recent Discussions</h3>
+                        <div class="discussion-item">
+                            <h4>Help with quadratic equations</h4>
+                            <p>Posted by: User123 • 2 hours ago</p>
+                        </div>
+                        <div class="discussion-item">
+                            <h4>Best way to study for calculus exam?</h4>
+                            <p>Posted by: MathLearner • 1 day ago</p>
+                        </div>
+                        <div class="discussion-item">
+                            <h4>Geometry theorem proof help</h4>
+                            <p>Posted by: GeometryFan • 3 days ago</p>
+                        </div>
+                        <button class="view-all-btn">View All Discussions</button>
+                    </div>
+                    <div class="community-stats">
+                        <div class="stat-card">
+                            <h4>1,245</h4>
+                            <p>Active Learners</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>567</h4>
+                            <p>Questions Answered</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>32</h4>
+                            <p>Expert Tutors</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section id="resources" class="content-section">
+                <h2>Learning Resources</h2>
+                <p class="section-subtitle">Supplement your learning with our comprehensive resources</p>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">🎥</div>
+                        <h3>Video Lessons</h3>
+                        <p>Watch detailed explanations of mathematical concepts.</p>
+                        <button class="resource-btn">Explore Videos</button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">📝</div>
+                        <h3>Practice Worksheets</h3>
+                        <p>Download worksheets to practice your skills.</p>
+                        <button class="resource-btn">Download</button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">📋</div>
+                        <h3>Formula Sheets</h3>
+                        <p>Quick reference guides for important formulas.</p>
+                        <button class="resource-btn">View Formulas</button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">🛠️</div>
+                        <h3>Interactive Tools</h3>
+                        <p>Graphing calculators and other helpful tools.</p>
+                        <button class="resource-btn">Use Tools</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <h2>Your Profile</h2>
+                <p class="section-subtitle">Manage your account and track your progress</p>
+                <div class="profile-content">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <span id="avatar-initials">U</span>
+                            </div>
+                            <div class="profile-info">
+                                <h3 id="profile-name">User Name</h3>
+                                <p id="profile-email">user@example.com</p>
+                            </div>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <h4>Topics Completed</h4>
+                                <p id="topics-completed">3</p>
+                            </div>
+                            <div class="profile-stat">
+                                <h4>Total Points</h4>
+                                <p id="total-points">1,250</p>
+                            </div>
+                            <div class="profile-stat">
+                                <h4>Learning Streak</h4>
+                                <p id="learning-streak">5 days</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-item">
+                            <p>Completed Algebra: Quadratic Equations</p>
+                            <span>2 hours ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <p>Earned 50 points in Geometry</p>
+                            <span>Yesterday</span>
+                        </div>
+                        <div class="activity-item">
+                            <p>Started Calculus: Derivatives</p>
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
