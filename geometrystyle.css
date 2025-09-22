@@ -1,0 +1,870 @@
+/* geometrystyle.css */
+
+/* ===== Global Styles ===== */
+:root {
+  --primary-color: #4CAF50;       /* Green theme for geometry */
+  --secondary-color: #607D8B;     /* Blue gray */
+  --accent-color: #FFC107;        /* Amber */
+  --light-color: #f8f9fa;
+  --dark-color: #212121;
+  --success-color: #4CAF50;
+  --warning-color: #FFC107;
+  --danger-color: #F44336;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+  background-color: #f5f7f5;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+}
+
+/* ===== Navigation ===== */
+.side-nav {
+  margin-bottom: 2rem;
+}
+
+.btn-red {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--danger-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.btn-red:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+.btn-red i {
+  margin-right: 0.5rem;
+}
+
+/* ===== Typography ===== */
+.geometry-title {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.geometry-section-title {
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+  margin: 2rem 0 1rem;
+}
+
+.geometry-subtitle {
+  font-size: 1.4rem;
+  color: var(--secondary-color);
+  margin: 1.5rem 0 1rem;
+}
+
+.geometry-subsection-title {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  margin: 1.2rem 0 0.8rem;
+}
+
+.geometry-description,
+.geometry-text,
+.geometry-card-text,
+.geometry-concept-desc,
+.geometry-angle-range,
+.geometry-formula {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* ===== Content Sections ===== */
+.geometry-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.geometry-history-box {
+  background-color: #e8f5e9;
+  border-left: 4px solid var(--success-color);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.geometry-applications {
+  background-color: #f0f7ff;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: 1.5rem 0;
+}
+
+.geometry-list {
+  list-style-type: none;
+}
+
+.geometry-list li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.geometry-list li i {
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+/* ===== Card Grids ===== */
+.geometry-branch-grid,
+.geometry-fundamentals-grid,
+.geometry-angle-types,
+.geometry-triangle-grid,
+.geometry-quad-grid,
+.geometry-area-grid,
+.geometry-video-grid,
+.solid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.geometry-branch-card,
+.geometry-concept-card,
+.geometry-angle-card,
+.geometry-triangle-card,
+.geometry-quad-card,
+.geometry-area-card,
+.geometry-video-card,
+.solid-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
+
+.geometry-branch-card:hover,
+.geometry-concept-card:hover,
+.geometry-angle-card:hover,
+.geometry-triangle-card:hover,
+.geometry-quad-card:hover,
+.geometry-area-card:hover,
+.geometry-video-card:hover,
+.solid-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.geometry-card-title,
+.geometry-concept-title,
+.geometry-angle-name,
+.geometry-triangle-type,
+.geometry-quad-name,
+.geometry-area-method {
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+/* ===== Visual Elements ===== */
+.geometry-point-visual,
+.geometry-line-visual,
+.geometry-plane-visual,
+.geometry-acute-angle,
+.geometry-right-angle,
+.geometry-obtuse-angle,
+.geometry-equilateral,
+.geometry-isosceles,
+.geometry-scalene,
+.geometry-square-visual,
+.geometry-rectangle-visual,
+.circle-visual,
+.cube-visual,
+.sphere-visual {
+  margin: 1rem auto;
+  background-color: #f5f5f5;
+  border-radius: var(--border-radius);
+}
+
+.geometry-point-visual {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.geometry-line-visual {
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.geometry-plane-visual {
+  width: 100px;
+  height: 60px;
+  border: 2px solid var(--primary-color);
+  position: relative;
+}
+
+.geometry-right-angle {
+  width: 60px;
+  height: 60px;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.geometry-right-angle::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-color);
+  top: 10px;
+  left: 10px;
+}
+
+.geometry-right-angle::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background-color: var(--primary-color);
+  top: 10px;
+  left: 10px;
+}
+
+.geometry-equilateral,
+.geometry-isosceles,
+.geometry-scalene {
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 60px solid var(--primary-color);
+}
+
+.geometry-isosceles {
+  border-left: 20px solid transparent;
+  border-right: 40px solid transparent;
+}
+
+.geometry-scalene {
+  border-left: 15px solid transparent;
+  border-right: 45px solid transparent;
+}
+
+.geometry-square-visual,
+.geometry-rectangle-visual {
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary-color);
+  opacity: 0.7;
+}
+
+.geometry-rectangle-visual {
+  width: 100px;
+  height: 60px;
+}
+
+.circle-visual {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  position: relative;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.radius {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+  width: 50px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.radius::after {
+  content: "r";
+  position: absolute;
+  right: -15px;
+  top: -10px;
+}
+
+.cube-visual {
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  opacity: 0.7;
+  position: relative;
+  transform: rotate(15deg);
+}
+
+.sphere-visual {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--primary-color), #2E7D32);
+}
+
+/* ===== Circle Diagram ===== */
+.circle-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.circle-terms {
+  flex: 1;
+  min-width: 250px;
+}
+
+.circle-terms ul {
+  list-style-type: none;
+}
+
+.circle-terms li {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Exercises Section ===== */
+.geometry-exercise-section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.geometry-exercise-section ol {
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.geometry-exercise-section li {
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+/* ===== Quiz Section ===== */
+#quiz-form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.quiz-question {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.quiz-question:last-child {
+  border-bottom: none;
+}
+
+.quiz-question p {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-question label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.quiz-question label:hover {
+  background-color: #f0f7f0;
+}
+
+.quiz-question input[type="radio"] {
+  margin-right: 0.75rem;
+}
+
+button[type="geometry-submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  display: block;
+  margin: 1.5rem auto 0;
+}
+
+button[type="geometry-submit"]:hover {
+  background-color: #3d8b40;
+  transform: translateY(-2px);
+}
+
+#quiz-results {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f8f9f8;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.quiz-result-box {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quiz-result-box h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.feedback {
+  margin: 1rem 0;
+}
+
+.feedback i {
+  margin-right: 0.5rem;
+}
+
+.retry-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+
+.retry-btn:hover {
+  background-color: #546e7a;
+}
+
+/* ===== Video Section ===== */
+.geometry-video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  background-color: #000;
+}
+
+.geometry-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.geometry-video-title {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.geometry-video-description {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.geometry-video-duration {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.geometry-encouragement {
+  background-color: #e8f5e9;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+}
+
+/* ===== Forum Section ===== */
+.forum-section {
+  margin-top: 2rem;
+}
+
+.forum-header {
+  margin-bottom: 1.5rem;
+}
+
+.forum-form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-submit {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.form-submit:hover {
+  background-color: #3d8b40;
+}
+
+.forum-posts-container {
+  margin-top: 1.5rem;
+}
+
+.forum-post {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.post-header h4 {
+  color: var(--primary-color);
+}
+
+.post-time {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.post-content {
+  margin-top: 0.5rem;
+}
+
+.new-post-indicator {
+  background-color: var(--accent-color);
+  color: var(--dark-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* ===== Progress Tracking ===== */
+.progress-tracker {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  z-index: 100;
+}
+
+.progress-title {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.progress-steps {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.progress-step {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  position: relative;
+}
+
+.progress-step.completed {
+  background-color: var(--success-color);
+}
+
+.progress-step.active {
+  background-color: var(--primary-color);
+}
+
+.topic-progress {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-top: 0.5rem;
+}
+
+/* ===== Modal System ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+
+.modal-title {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.modal-btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.modal-btn-primary:hover {
+  background-color: #3d8b40;
+}
+
+.modal-btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.modal-btn-secondary:hover {
+  background-color: #546e7a;
+}
+
+/* ===== Next Section Button ===== */
+.next-btn-container {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.next-section-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.next-section-btn:hover {
+  background-color: #3d8b40;
+  transform: translateY(-2px);
+}
+
+.next-section-btn i {
+  font-size: 0.9rem;
+}
+
+/* ===== Notifications ===== */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+.notification-success {
+  background-color: var(--success-color);
+}
+
+.notification-info {
+  background-color: var(--primary-color);
+}
+
+.notification-warning {
+  background-color: var(--warning-color);
+  color: var(--dark-color);
+}
+
+.notification-error {
+  background-color: var(--danger-color);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .geometry-branch-grid,
+  .geometry-fundamentals-grid,
+  .geometry-angle-types,
+  .geometry-triangle-grid,
+  .geometry-quad-grid,
+  .geometry-area-grid,
+  .geometry-video-grid,
+  .solid-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .geometry-title {
+    font-size: 1.8rem;
+  }
+  
+  .geometry-section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 15px;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+  
+  .modal-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .modal-btn {
+    width: 100%;
+  }
+}

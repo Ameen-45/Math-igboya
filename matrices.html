@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices - IGBOYA</title>
+    <link rel="stylesheet" href="matricesstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Button Only -->
+        <div class="top-nav">
+            <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+        </div>
+        <div class="matrices-content">
+            <!-- Introduction Section -->
+            <section id="introduction" class="matrices-header">
+                <h1><i class="fas fa-th-large"></i>Introduction</h1>
+                <p class="intro-text">A matrix is a rectangular array of numbers, symbols, or expressions arranged in rows and columns and enclosed within brackets. Matrices are fundamental in mathematics and are widely used in various disciplines, including physics, engineering, economics, and computer science.</p>
+                
+                <!-- Matrix Example -->
+                <div class="matrix-example">
+                    <h3><i class="fas fa-table"></i> Matrix Example</h3>
+                    <div class="matrix-container">
+                        <div class="matrix-brackets">[</div>
+                        <div class="matrix-grid">
+                            <div class="matrix-row">
+                                <span>1</span>
+                                <span>2</span>
+                                <span>3</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span>4</span>
+                                <span>5</span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                        <div class="matrix-brackets">]</div>
+                    </div>
+                    <p class="matrix-description">This is a 2×3 matrix (2 rows and 3 columns)</p>
+                </div>
+
+                <!-- Encouragement Section -->
+                <div class="encouragement-box">
+                    <p><i class="fas fa-thumbs-up"></i> You're on the right track! Stay focused, and let's dive into the world of matrices!</p>
+                </div>
+
+                <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
+                <ul class="key-concepts">
+                    <li><strong>Dimensions:</strong> An m × n matrix has m rows and n columns.</li>
+                    <li><strong>Elements:</strong> The individual numbers in a matrix are called elements or entries.</li>
+                    <li><strong>Notation:</strong> Matrices are typically denoted by capital letters (A, B, C).</li>
+                    <li><strong>Order:</strong> The order of a matrix is written as rows × columns.</li>
+                    <li><strong>Indexing:</strong> The element in the i-th row and j-th column is denoted as a<sub>ij</sub>.</li>
+                </ul>
+
+                <!-- Matrix Notation Section -->
+                <div class="matrix-notation">
+                    <h3><i class="fas fa-pen-fancy"></i> General Matrix Notation</h3>
+                    <p>A general m × n matrix A can be written as:</p>
+                    <div class="matrix-container">
+                        <div class="matrix-brackets">[</div>
+                        <div class="matrix-grid">
+                            <div class="matrix-row">
+                                <span>a<sub>11</sub></span>
+                                <span>a<sub>12</sub></span>
+                                <span>...</span>
+                                <span>a<sub>1n</sub></span>
+                            </div>
+                            <div class="matrix-row">
+                                <span>a<sub>21</sub></span>
+                                <span>a<sub>22</sub></span>
+                                <span>...</span>
+                                <span>a<sub>2n</sub></span>
+                            </div>
+                            <div class="matrix-row">
+                                <span>...</span>
+                                <span>...</span>
+                                <span>...</span>
+                                <span>...</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span>a<sub>m1</sub></span>
+                                <span>a<sub>m2</sub></span>
+                                <span>...</span>
+                                <span>a<sub>mn</sub></span>
+                            </div>
+                        </div>
+                        <div class="matrix-brackets">]</div>
+                    </div>
+                </div>
+            </section>
+            <section id="types">
+                <h2><i class="fas fa-layer-group"></i> Types of Matrices</h2>
+                <div class="matrix-types">
+                    <!-- Row Matrix -->
+                    <div class="type-card">
+                        <h4>Row Matrix</h4>
+                        <p>A matrix with only one row.</p>
+                        <pre>Example: [3 5 7]</pre>
+                    </div>
+            
+                    <!-- Column Matrix -->
+                    <div class="type-card">
+                        <h4>Column Matrix</h4>
+                        <p>A matrix with only one column.</p>
+                        <pre>Example: 
+            | 2 |
+            | 4 |</pre>
+                    </div>
+            
+                    <!-- Square Matrix -->
+                    <div class="type-card">
+                        <h4>Square Matrix</h4>
+                        <p>A matrix where the number of rows equals the number of columns.</p>
+                        <pre>Example: 
+            | 1 2 |
+            | 3 4 |</pre>
+                    </div>
+            
+                    <!-- Diagonal Matrix -->
+                    <div class="type-card">
+                        <h4>Diagonal Matrix</h4>
+                        <p>A square matrix where the non-diagonal elements are all zero.</p>
+                        <pre>Example: 
+            | 1 0 |
+            | 0 2 |</pre>
+                    </div>
+            
+                    <!-- Zero Matrix -->
+                    <div class="type-card">
+                        <h4>Zero Matrix</h4>
+                        <p>A matrix where all elements are zero.</p>
+                        <pre>Example: 
+            | 0 0 |
+            | 0 0 |</pre>
+                    </div>
+            
+                    <!-- Symmetric Matrix -->
+                    <div class="type-card">
+                        <h4>Symmetric Matrix</h4>
+                        <p>A square matrix where A<sup>T</sup> = A (the matrix is equal to its transpose).</p>
+                        <pre>Example: 
+            | 1 2 |
+            | 2 3 |</pre>
+                    </div>
+            
+                    <!-- Skew-Symmetric Matrix -->
+                    <div class="type-card">
+                        <h4>Skew-Symmetric Matrix</h4>
+                        <p>A square matrix where A<sup>T</sup> = -A (the matrix is the negative of its transpose).</p>
+                        <pre>Example: 
+            | 0 -1 |
+            | 1  0 |</pre>
+                    </div>
+            
+                    <!-- Identity Matrix -->
+                    <div class="type-card">
+                        <h4>Identity Matrix</h4>
+                        <p>A square matrix with 1s on the diagonal and 0s elsewhere. It is denoted by I.</p>
+                        <pre>Example: 
+            | 1 0 |
+            | 0 1 |</pre>
+                    </div>
+            
+                    <!-- Upper Triangular Matrix -->
+                    <div class="type-card">
+                        <h4>Upper Triangular Matrix</h4>
+                        <p>A square matrix where all the elements below the main diagonal are zero.</p>
+                        <pre>Example: 
+            | 1 2 3 |
+            | 0 4 5 |
+            | 0 0 6 |</pre>
+                    </div>
+            
+                    <!-- Lower Triangular Matrix -->
+                    <div class="type-card">
+                        <h4>Lower Triangular Matrix</h4>
+                        <p>A square matrix where all the elements above the main diagonal are zero.</p>
+                        <pre>Example: 
+            | 1 0 0 |
+            | 2 3 0 |
+            | 4 5 6 |</pre>
+                    </div>
+            
+                    <!-- Scalar Matrix -->
+                    <div class="type-card">
+                        <h4>Scalar Matrix</h4>
+                        <p>A diagonal matrix where all the diagonal elements are the same.</p>
+                        <pre>Example: 
+            | 3 0 0 |
+            | 0 3 0 |
+            | 0 0 3 |</pre>
+                    </div>
+            
+                    <!-- Orthogonal Matrix -->
+                    <div class="type-card">
+                        <h4>Orthogonal Matrix</h4>
+                        <p>A square matrix where the rows and columns are orthogonal unit vectors. That is, <code>A<sup>T</sup> * A = I</code>.</p>
+                        <pre>Example: 
+            | 1 0 |
+            | 0 -1 |</pre>
+                    </div>
+                </div>
+            </section>            
+            <section id="operations">
+                <h2><i class="fas fa-calculator"></i> Matrix Operations</h2>
+                <div class="operations-content">
+                    <!-- Matrix Addition -->
+                    <div class="operation-card">
+                        <h4>Matrix Addition</h4>
+                        <p>Matrix addition involves adding corresponding elements of two matrices of the same order. The sum of two matrices A and B is a matrix C, where each element is the sum of the corresponding elements of A and B.</p>
+                        <pre>Example: 
+            A = | 1 2 |   B = | 4 5 |   C = A + B = | 1+4 2+5 | = | 5 7 |
+                | 3 4 |       | 6 7 |               | 3+6 4+7 |   | 9 11 |</pre>
+                    </div>
+            
+                    <!-- Matrix Subtraction -->
+                    <div class="operation-card">
+                        <h4>Matrix Subtraction</h4>
+                        <p>Matrix subtraction is similar to addition, except that corresponding elements are subtracted instead of added. Matrices A and B must have the same order for subtraction to be defined.</p>
+                        <pre>Example: 
+            A = | 5 7 |   B = | 1 2 |   C = A - B = | 5-1 7-2 | = | 4 5 |
+                | 9 11 |       | 3 4 |               | 9-3 11-4 |   | 6 7 |</pre>
+                    </div>
+            
+                    <!-- Scalar Multiplication -->
+                    <div class="operation-card">
+                        <h4>Scalar Multiplication</h4>
+                        <p>Scalar multiplication involves multiplying every element of a matrix by a scalar (a constant). For a matrix A and scalar k, the result is a new matrix where each element of A is multiplied by k.</p>
+                        <pre>Example: 
+            A = | 1 2 |   k = 3   C = kA = | 3*1 3*2 | = | 3 6 |
+                | 3 4 |               | 3*3 3*4 |   | 9 12 |</pre>
+                    </div>
+            
+                    <!-- Matrix Multiplication -->
+                    <div class="operation-card">
+                        <h4>Matrix Multiplication</h4>
+                        <p>Matrix multiplication involves multiplying the rows of the first matrix by the columns of the second matrix. The number of columns in the first matrix must be equal to the number of rows in the second matrix.</p>
+                        <pre>Example: 
+            A = | 1 2 |   B = | 4 5 |   C = AB = | (1*4 + 2*6) (1*5 + 2*7) | = | 16 19 |
+                | 3 4 |       | 6 7 |               | (3*4 + 4*6) (3*5 + 4*7) |   | 39 43 |</pre>
+                    </div>
+            
+                    <!-- Transpose of a Matrix -->
+                    <div class="operation-card">
+                        <h4>Transpose of a Matrix</h4>
+                        <p>The transpose of a matrix is obtained by flipping the matrix over its diagonal. The rows become columns and the columns become rows.</p>
+                        <pre>Example: 
+            A = | 1 2 |   A<sup>T</sup> = | 1 3 |
+                | 3 4 |               | 2 4 |</pre>
+                    </div>
+            
+                    <!-- Determinant of a Matrix -->
+                    <div class="operation-card">
+                        <h4>Determinant of a Matrix</h4>
+                        <p>The determinant is a scalar value that can be computed from the elements of a square matrix. The determinant of a 2x2 matrix is calculated as follows: <code>det(A) = ad - bc</code> for matrix A = | a b |</p>
+                        <pre>Example: 
+            A = | 1 2 |
+                | 3 4 |
+            det(A) = (1*4) - (2*3) = 4 - 6 = -2</pre>
+                    </div>
+            
+                    <!-- Inverse of a Matrix -->
+                    <div class="operation-card">
+                        <h4>Inverse of a Matrix</h4>
+                        <p>The inverse of a matrix A is another matrix, denoted A<sup>-1</sup>, such that when A is multiplied by its inverse, the result is the identity matrix. Not all matrices have an inverse, only square matrices with a non-zero determinant.</p>
+                        <pre>Example: 
+            A = | 1 2 |   det(A) = -2   A<sup>-1</sup> = (1/det(A)) * adj(A)
+                | 3 4 |</pre>
+                    </div>
+            
+                    <!-- Identity Matrix Operation -->
+                    <div class="operation-card">
+                        <h4>Identity Matrix Operation</h4>
+                        <p>Multiplying any matrix by the identity matrix results in the original matrix. If A is a matrix, then A × I = A, where I is the identity matrix.</p>
+                        <pre>Example: 
+            A = | 1 2 |   I = | 1 0 |
+                | 3 4 |         | 0 1 |
+            
+            A × I = A, so the result is the same matrix:
+            | 1 2 |
+            | 3 4 |</pre>
+                    </div>
+            
+                    <!-- Adjoint of a Matrix -->
+                    <div class="operation-card">
+                        <h4>Adjoint of a Matrix</h4>
+                        <p>The adjoint (or adjugate) of a matrix is the transpose of its cofactor matrix. It is used to find the inverse of a matrix.</p>
+                        <pre>Example: 
+            A = | 1 2 |
+                | 3 4 |
+            
+            Cofactor matrix = | 4 -3 |
+                             | -2 1 |
+            
+            Adj(A) = | 4 -3 |
+                     | -2 1 |</pre>
+                    </div>
+            
+                    <!-- Matrix Rank -->
+                    <div class="operation-card">
+                        <h4>Rank of a Matrix</h4>
+                        <p>The rank of a matrix is the maximum number of linearly independent rows or columns. It indicates the dimension of the row or column space of the matrix.</p>
+                        <pre>Example: 
+            A = | 1 2 |
+                | 3 4 |
+            
+            Rank(A) = 2 (since there are 2 linearly independent rows/columns)</pre>
+                    </div>
+            
+                    <!-- Eigenvalues and Eigenvectors -->
+                    <div class="operation-card">
+                        <h4>Eigenvalues and Eigenvectors</h4>
+                        <p>Eigenvalues and eigenvectors are used in linear algebra to analyze the properties of matrices. The eigenvalue equation is: <code>Av = λv</code>, where A is a matrix, v is an eigenvector, and λ is the eigenvalue.</p>
+                        <pre>Example: 
+            A = | 4 1 |
+                | 2 3 |
+            
+            Eigenvalues λ are solutions to the characteristic equation <code>det(A - λI) = 0</code>.</pre>
+                    </div>
+                </div>
+            </section>            
+        
+            <section id="exercises">
+                <h2><i class="fas fa-pencil-alt"></i> Interactive Exercises</h2>
+                
+                <!-- Matrix Addition Exercises -->
+                <div class="matrices-exercise">
+                    <h3>Matrix Addition</h3>
+                    <ol>
+                        <li>Add these matrices: A = | 2 3 |, B = | 4 1 |</li>
+                        <li>Add these matrices: C = | -1 5 |, D = | 3 -2 |</li>
+                        <li>Add these 3×3 matrices: E = | 1 0 2 |, F = | 0 1 3 |</li>
+                        <li>Add these matrices: G = | 7 8 |, H = | 4 2 |</li>
+                        <li>Add these 2×2 matrices: I = | 6 1 |, J = | 2 5 |</li>
+                    </ol>
+                </div>
+            
+                <!-- Matrix Multiplication Exercises -->
+                <div class="matrices-exercise">
+                    <h3>Matrix Multiplication</h3>
+                    <ol start="6">
+                        <li>Multiply: A = | 1 2 |, B = | 2 3 |</li>
+                        <li>Multiply: C = | 3 0 |, D = | 0 3 |</li>
+                        <li>Multiply: E = | 2 1 |, F = | 1 2 |</li>
+                        <li>Multiply: G = | 1 2 3 |, H = | 1 0 |</li>
+                        <li>Multiply: I = | 4 5 |, J = | 6 7 |</li>
+                    </ol>
+                </div>
+            
+                <!-- Determinant Exercises -->
+                <div class="matrices-exercise">
+                    <h3>Determinants</h3>
+                    <ol start="11">
+                        <li>Find the determinant of A = | 5 6 |, B = | 7 8 |</li>
+                        <li>Find the determinant of C = | 1 2 3 |, D = | 0 1 2 |</li>
+                        <li>Find the determinant of E = | 1 2 |, F = | 3 4 |</li>
+                        <li>Find the determinant of G = | 3 5 |, H = | 1 4 |</li>
+                        <li>Find the determinant of I = | 1 2 3 |, J = | 1 2 4 |</li>
+                    </ol>
+                </div>
+            
+                <!-- Inverse and Transpose Exercises -->
+                <div class="matrices-exercise">
+                    <h3>Inverse and Transpose</h3>
+                    <ol start="16">
+                        <li>Find the inverse of A = | 2 1 |, B = | 3 4 |</li>
+                        <li>Find the transpose of B = | 1 2 3 |</li>
+                        <li>Solve for X in AX = B where A = | 1 2 |, B = | 5 |</li>
+                        <li>Find the inverse of C = | 4 5 |, D = | 6 7 |</li>
+                        <li>Find the transpose of E = | 2 3 |, F = | 4 5 |</li>
+                    </ol>
+                </div>
+            
+                <!-- Advanced Matrix Problems -->
+                <div class="matrices-exercise">
+                    <h3>Advanced Problems</h3>
+                    <ol start="21">
+                        <li>Find the eigenvalues of matrix A = | 1 2 |, B = | 2 1 |</li>
+                        <li>Find the eigenvectors of matrix C = | 3 4 |, D = | 2 3 |</li>
+                        <li>Find the rank of matrix E = | 5 6 |, F = | 1 4 |</li>
+                        <li>Determine if matrix G = | 2 3 |, H = | 4 5 | is invertible</li>
+                        <li>Find the adjoint of matrix I = | 7 8 |, J = | 1 3 |</li>
+                    </ol>
+                </div>
+            
+                <!-- Word Problem Exercises -->
+                <div class="matrices-exercise">
+                    <h3>Word Problems</h3>
+                    <ol start="26">
+                        <li>A store sells two products. Matrix A shows Monday's sales (rows: product 1, product 2; columns: morning, afternoon). Matrix B shows Tuesday's sales. Add them to find total sales.</li>
+                        <li>Matrix C shows costs (rows: material, labor; columns: product X, product Y). Matrix D shows quantities produced. Multiply to find total costs.</li>
+                        <li>Matrix A = | 2 4 | represents two types of products. Matrix B = | 1 3 | shows the quantity of each type sold. Find the total revenue.</li>
+                        <li>A business uses Matrix A = | 3 4 | to show costs of operations. Matrix B = | 2 1 | shows profit margins. Multiply to find the overall profit.</li>
+                        <li>Matrix A shows weekly hours worked by employees in a company. Matrix B shows hourly wages. Multiply to find the total payroll for the week.</li>
+                    </ol>
+                </div>
+            
+            </section>            
+        
+            <section id="quiz">
+                <h2><i class="fas fa-question-circle"></i> Matrix Quiz</h2>
+                <form id="quiz-form">
+                    <!-- Question 1 -->
+                    <div class="quiz-question">
+                        <p>1. What is the result of A + B if A = | 1 2 | and B = | 3 4 |?</p>
+                        <label><input type="radio" name="q1" value="A"> | 4 6 |</label>
+                        <label><input type="radio" name="q1" value="B"> | 1 2 |</label>
+                        <label><input type="radio" name="q1" value="C"> | 2 4 |</label>
+                    </div>
+            
+                    <!-- Question 2 -->
+                    <div class="quiz-question">
+                        <p>2. What is the determinant of matrix A = | 1 2 |, B = | 3 4 |?</p>
+                        <label><input type="radio" name="q2" value="A"> -2</label>
+                        <label><input type="radio" name="q2" value="B"> 2</label>
+                        <label><input type="radio" name="q2" value="C"> 1</label>
+                    </div>
+            
+                    <!-- Question 3 -->
+                    <div class="quiz-question">
+                        <p>3. What is required for matrix multiplication AB to be possible?</p>
+                        <label><input type="radio" name="q3" value="A"> Same dimensions</label>
+                        <label><input type="radio" name="q3" value="B"> Columns of A = Rows of B</label>
+                        <label><input type="radio" name="q3" value="C"> Rows of A = Columns of B</label>
+                    </div>
+            
+                    <!-- Question 4 -->
+                    <div class="quiz-question">
+                        <p>4. What is the identity matrix for 2×2 matrices?</p>
+                        <label><input type="radio" name="q4" value="A"> | 0 0 |</label>
+                        <label><input type="radio" name="q4" value="B"> | 1 1 |</label>
+                        <label><input type="radio" name="q4" value="C"> | 1 0 |</label>
+                    </div>
+            
+                    <!-- Question 5 -->
+                    <div class="quiz-question">
+                        <p>5. What is the transpose of | 1 2 3 |?</p>
+                        <label><input type="radio" name="q5" value="A"> | 3 2 1 |</label>
+                        <label><input type="radio" name="q5" value="B"> | 1 |, | 2 |, | 3 |</label>
+                        <label><input type="radio" name="q5" value="C"> | 1 2 3 |</label>
+                    </div>
+            
+                    <!-- Question 6 -->
+                    <div class="quiz-question">
+                        <p>6. Which matrix operation is not commutative?</p>
+                        <label><input type="radio" name="q6" value="A"> Addition</label>
+                        <label><input type="radio" name="q6" value="B"> Multiplication</label>
+                        <label><input type="radio" name="q6" value="C"> Scalar multiplication</label>
+                    </div>
+            
+                    <!-- Question 7 -->
+                    <div class="quiz-question">
+                        <p>7. What is the inverse of A = | 1 0 |, B = | 0 1 |?</p>
+                        <label><input type="radio" name="q7" value="A"> | 0 1 |</label>
+                        <label><input type="radio" name="q7" value="B"> | 1 0 |</label>
+                        <label><input type="radio" name="q7" value="C"> It's its own inverse</label>
+                    </div>
+            
+                    <!-- Question 8 -->
+                    <div class="quiz-question">
+                        <p>8. Which is NOT a type of matrix?</p>
+                        <label><input type="radio" name="q8" value="A"> Diagonal</label>
+                        <label><input type="radio" name="q8" value="B"> Symmetric</label>
+                        <label><input type="radio" name="q8" value="C"> Circular</label>
+                    </div>
+            
+                    <!-- Question 9 -->
+                    <div class="quiz-question">
+                        <p>9. What is the determinant of the matrix A = | 2 3 |, B = | 1 4 |?</p>
+                        <label><input type="radio" name="q9" value="A"> 5</label>
+                        <label><input type="radio" name="q9" value="B"> 6</label>
+                        <label><input type="radio" name="q9" value="C"> 11</label>
+                    </div>
+            
+                    <!-- Question 10 -->
+                    <div class="quiz-question">
+                        <p>10. If A = | 1 2 | and B = | 0 1 |, what is A + B?</p>
+                        <label><input type="radio" name="q10" value="A"> | 1 3 |</label>
+                        <label><input type="radio" name="q10" value="B"> | 1 1 |</label>
+                        <label><input type="radio" name="q10" value="C"> | 1 2 |</label>
+                    </div>
+            
+                    <!-- Question 11 -->
+                    <div class="quiz-question">
+                        <p>11. What is the rank of the zero matrix?</p>
+                        <label><input type="radio" name="q11" value="A"> 0</label>
+                        <label><input type="radio" name="q11" value="B"> 1</label>
+                        <label><input type="radio" name="q11" value="C"> Undefined</label>
+                    </div>
+            
+                    <!-- Question 12 -->
+                    <div class="quiz-question">
+                        <p>12. What is the trace of a matrix?</p>
+                        <label><input type="radio" name="q12" value="A"> The sum of all elements</label>
+                        <label><input type="radio" name="q12" value="B"> The sum of the diagonal elements</label>
+                        <label><input type="radio" name="q12" value="C"> The product of the diagonal elements</label>
+                    </div>
+            
+                    <!-- Question 13 -->
+                    <div class="quiz-question">
+                        <p>13. Which matrix is not square?</p>
+                        <label><input type="radio" name="q13" value="A"> Identity matrix</label>
+                        <label><input type="radio" name="q13" value="B"> Zero matrix</label>
+                        <label><input type="radio" name="q13" value="C"> Rectangular matrix</label>
+                    </div>
+            
+                    <!-- Question 14 -->
+                    <div class="quiz-question">
+                        <p>14. What does the determinant of a matrix tell us?</p>
+                        <label><input type="radio" name="q14" value="A"> Whether the matrix is invertible</label>
+                        <label><input type="radio" name="q14" value="B"> The rank of the matrix</label>
+                        <label><input type="radio" name="q14" value="C"> The dimension of the matrix</label>
+                    </div>
+            
+                    <!-- Question 15 -->
+                    <div class="quiz-question">
+                        <p>15. Which operation is used to compute the inverse of a matrix?</p>
+                        <label><input type="radio" name="q15" value="A"> Transpose</label>
+                        <label><input type="radio" name="q15" value="B"> Row reduction</label>
+                        <label><input type="radio" name="q15" value="C"> Addition</label>
+                    </div>
+            
+                    <!-- Question 16 -->
+                    <div class="quiz-question">
+                        <p>16. What is a diagonal matrix?</p>
+                        <label><input type="radio" name="q16" value="A"> A matrix with non-zero elements only on the diagonal</label>
+                        <label><input type="radio" name="q16" value="B"> A matrix with all elements as zero</label>
+                        <label><input type="radio" name="q16" value="C"> A matrix with identical rows</label>
+                    </div>
+            
+                    <!-- Question 17 -->
+                    <div class="quiz-question">
+                        <p>17. What is the rank of a matrix?</p>
+                        <label><input type="radio" name="q17" value="A"> The number of non-zero rows</label>
+                        <label><input type="radio" name="q17" value="B"> The number of columns</label>
+                        <label><input type="radio" name="q17" value="C"> The determinant of the matrix</label>
+                    </div>
+            
+                    <!-- Question 18 -->
+                    <div class="quiz-question">
+                        <p>18. What is an orthogonal matrix?</p>
+                        <label><input type="radio" name="q18" value="A"> A matrix with all elements equal</label>
+                        <label><input type="radio" name="q18" value="B"> A matrix whose rows and columns are orthogonal</label>
+                        <label><input type="radio" name="q18" value="C"> A matrix with zero diagonal elements</label>
+                    </div>
+            
+                    <!-- Question 19 -->
+                    <div class="quiz-question">
+                        <p>19. What is the adjoint of a matrix?</p>
+                        <label><input type="radio" name="q19" value="A"> The transpose of the cofactor matrix</label>
+                        <label><input type="radio" name="q19" value="B"> The inverse of the matrix</label>
+                        <label><input type="radio" name="q19" value="C"> The determinant of the matrix</label>
+                    </div>
+            
+                    <!-- Question 20 -->
+                    <div class="quiz-question">
+                        <p>20. What is a singular matrix?</p>
+                        <label><input type="radio" name="q20" value="A"> A matrix with a zero determinant</label>
+                        <label><input type="radio" name="q20" value="B"> A matrix with all diagonal elements equal</label>
+                        <label><input type="radio" name="q20" value="C"> A matrix with non-zero determinant</label>
+                    </div>
+            
+                    <!-- Submit Button -->
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="quiz-result"></div>
+            </section>
+              
+            <script>
+                // Answer Key for the Quiz (20 questions)
+                const answerKey = {
+                    q1: "A",
+                    q2: "B",
+                    q3: "B",
+                    q4: "C",
+                    q5: "A",
+                    q6: "B",
+                    q7: "C",
+                    q8: "C",
+                    q9: "B",
+                    q10: "A",
+                    q11: "A",
+                    q12: "B",
+                    q13: "C",
+                    q14: "A",
+                    q15: "B",
+                    q16: "A",
+                    q17: "A",
+                    q18: "B",
+                    q19: "A",
+                    q20: "A"
+                };
+            
+                // Handle the quiz submission
+                document.getElementById('quiz-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+            
+                    let score = 0;
+                    const totalQuestions = Object.keys(answerKey).length;
+            
+                    // Loop through each question and check if the selected answer is correct
+                    for (let i = 1; i <= totalQuestions; i++) {
+                        const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                        if (selectedAnswer && selectedAnswer.value === answerKey[`q${i}`]) {
+                            score++;
+                        }
+                    }
+            
+                    // Display the result
+                    const result = document.getElementById('quiz-result');
+                    result.innerHTML = `<h3>Your Score: ${score} / ${totalQuestions}</h3>`;
+                });
+            </script>
+         <section id="videos">
+  <h2><i class="fas fa-video"></i> Video Tutorials</h2>
+  <div class="video-grid">
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/Ag1arLzxy2k"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+      <h3>Introduction to Matrices</h3>
+      <p>Learn the basics of matrices including notation and dimensions.</p>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/p48uw2vFWQs"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+      <h3>Matrix Operations</h3>
+      <p>Step‑by‑step guide to matrix addition, subtraction and multiplication.</p>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/sT9IgHjjhiY"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+      <h3>Determinants and Inverses</h3>
+      <p>How to calculate determinants and find inverse matrices.</p>
+    </div>
+  </div>
+</section>
+
+        <section id="forum">
+            <h2><i class="fas fa-comments"></i> Discussion Forum</h2>
+            <p>Have questions or want to discuss this topic? Join the forum below:</p>
+        
+            <!-- Forum Post Form -->
+            <form id="forumForm">
+                <label for="userName">Your Name:</label>
+                <input type="text" id="userName" name="userName" required>
+        
+                <label for="userPost">Your Post:</label>
+                <textarea id="userPost" name="userPost" rows="5" required></textarea>
+        
+                <a href="https://chat.whatsapp.com/LPoXBwl6Y9ZDkyYPcHvKbx?mode=ac_c" target="_blank">
+            <button type="button">Join Group</button>
+        </a>
+         </form>
+        
+            <!-- Recent Posts -->
+            <h3>Recent Discussions</h3>
+            <div id="forumPosts">
+                <!-- Posts will be dynamically loaded here -->
+            </div>
+        </section>
+        
+        <script src="matricesapp.js"></script>
+        <script src="matricesscript.js"></script>
+        <script>
+            // Load posts from localStorage on page load
+            function loadPosts() {
+                const forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+                const forumPostsDiv = document.getElementById('forumPosts');
+                forumPostsDiv.innerHTML = '';  // Clear any existing posts
+        
+                forumPosts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.classList.add('forumPost');
+                    postDiv.innerHTML = `<h4>${post.userName}</h4><p>${post.userPost}</p>`;
+                    forumPostsDiv.appendChild(postDiv);
+                });
+            }
+        
+            // Add a new post to localStorage
+            document.getElementById('forumForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const userName = document.getElementById('userName').value;
+                const userPost = document.getElementById('userPost').value;
+        
+                // Get existing posts from localStorage
+                const forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+                
+                // Create new post object
+                const newPost = { userName, userPost };
+                
+                // Add new post to the list
+                forumPosts.push(newPost);
+        
+                // Save the updated posts array to localStorage
+                localStorage.setItem('forumPosts', JSON.stringify(forumPosts));
+        
+                // Reload posts to display the new one
+                loadPosts();
+        
+                // Clear form fields
+                document.getElementById('userName').value = '';
+                document.getElementById('userPost').value = '';
+            });
+        
+            // Initially load posts when the page loads
+            window.onload = loadPosts;
+        </script>
+
+            <!-- Resources Section -->
+            <section class="math-section" id="resources">
+                <div class="section-header">
+                    <h1><i class="fas fa-book-open"></i> Learning Resources</h1>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Video Tutorials</h3>
+                        <p>Watch step-by-step explanations of matrix operations</p>
+                        <a href="#" class="resource-link">View Videos</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>PDF Guides</h3>
+                        <p>Download comprehensive matrix reference sheets</p>
+                        <a href="#" class="resource-link">Download PDFs</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Live Help</h3>
+                        <p>Get personalized assistance from math tutors</p>
+                        <a href="#" class="resource-link">Join Session</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="math-footer">
+            <div class="footer-content">
+                <div class="footer-logo">IGBOYA</div>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 IGBOYA Mathematics. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script src="matricesapp.js"></script>
+</body>
+</html>

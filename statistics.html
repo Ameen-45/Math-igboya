@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - IGBOYA</title>
+    <link rel="stylesheet" href="statisticsstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="side-nav-content">
+                <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            </div>
+        </nav>
+        <div class="main-content">
+            <section id="introduction">
+                <h1><i class="fas fa-chart-pie"></i> Introduction to Statistics</h1>
+                <p>Statistics is the science of collecting, analyzing, interpreting, presenting, and organizing data. It enables us to make informed decisions in the face of uncertainty. It plays a crucial role in various fields, such as economics, social sciences, medicine, and engineering, by allowing us to draw meaningful conclusions from data.</p>
+                
+                <p>By understanding and applying statistical methods, one can assess risks, forecast trends, and even uncover hidden patterns within large datasets. Whether predicting stock market behavior, analyzing medical test results, or studying population demographics, statistics provides the tools to make data-driven decisions.</p>
+        
+                <div class="history-box">
+                    <h3><i class="fas fa-history"></i> Historical Context</h3>
+                    <p>Modern statistics originated in the 18th century with work by mathematicians like Carl Friedrich Gauss and Pierre-Simon Laplace, who developed key methods for analyzing data. In the early 20th century, the contributions of Ronald Fisher, Karl Pearson, and others helped establish foundational statistical techniques still used today.</p>
+                    <p>As the demand for analyzing complex data grew in fields like agriculture, economics, and social sciences, statistics continued to evolve. Today, it plays an essential role in data science, machine learning, and artificial intelligence.</p>
+                </div>
+        
+                <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h4>Descriptive</h4>
+                        <p>Descriptive statistics is the process of summarizing and describing data in a meaningful way. It includes measures such as the mean, median, mode, variance, and standard deviation, which help to understand the central tendency and spread of the data.</p>
+                        <p>Visualizations like bar charts, histograms, and pie charts are commonly used to present descriptive statistics, making the data easier to interpret.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Inferential</h4>
+                        <p>Inferential statistics is used to draw conclusions about a population based on a sample. Techniques like hypothesis testing, confidence intervals, and regression analysis allow statisticians to make predictions and assess the likelihood of certain outcomes.</p>
+                        <p>Inferential methods help quantify uncertainty, giving a level of confidence in the findings drawn from a sample rather than the entire population.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Probability</h4>
+                        <p>Probability is a mathematical framework that quantifies uncertainty. It provides a way to model random events and predict the likelihood of their occurrence based on known information.</p>
+                        <p>Common probability concepts include random variables, probability distributions (e.g., binomial, normal distribution), and conditional probability, all of which are essential for building models in statistics.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Bayesian</h4>
+                        <p>Bayesian statistics is a probabilistic approach that updates the probability for a hypothesis based on new evidence or data. Unlike frequentist statistics, which relies on fixed data, Bayesian methods incorporate prior knowledge and adjust beliefs as new information becomes available.</p>
+                        <p>This approach is particularly useful in dynamic environments where knowledge is continually updated, such as in real-time data analysis or machine learning applications.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="statistics-data-types">
+                <h2><i class="fas fa-database"></i> Data Types & Collection</h2>
+            
+                <div class="statistics-data-types">
+                    <div class="statistics-type-card">
+                        <h3>Qualitative (Categorical)</h3>
+                        <p>Qualitative data, also known as categorical data, refers to non-numeric data that can be used to categorize or label variables. It describes qualities or characteristics of the subjects being measured.</p>
+                        <ul>
+                            <li>Non-numerical descriptions</li>
+                            <li>Examples: Colors, brands, yes/no responses, types of fruits</li>
+                            <li>Subtypes:
+                                <ul>
+                                    <li><strong>Nominal</strong> (no order: categories without any intrinsic ranking, such as male/female, types of fruits, or zip codes)</li>
+                                    <li><strong>Ordinal</strong> (ordered: categories with a defined order, such as survey ratings, education levels, or rankings)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>Qualitative data is often used in categorical analysis to group similar observations together and identify patterns within different categories.</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Quantitative (Numerical)</h3>
+                        <p>Quantitative data represents measurable quantities that can be expressed numerically. This type of data is often used for statistical analysis where the aim is to measure the magnitude or amount of something.</p>
+                        <ul>
+                            <li>Measurable numerical values</li>
+                            <li>Examples: Height, temperature, sales, income, age</li>
+                            <li>Subtypes:
+                                <ul>
+                                    <li><strong>Discrete</strong> (countable: data that can only take certain distinct values, such as the number of students in a class, cars in a parking lot, or employees in an office)</li>
+                                    <li><strong>Continuous</strong> (measurable: data that can take any value within a range, such as height, weight, or time)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>Quantitative data allows for more detailed and precise analysis, including various statistical operations such as mean, median, and standard deviation.</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Collection Methods</h3>
+                        <p>The way data is collected can significantly affect the quality and accuracy of the statistical analysis. Here are the most common methods:</p>
+                        <ul>
+                            <li><strong>Surveys</strong>: Questionnaires designed to gather responses from a sample group. Useful for collecting data on opinions, behaviors, or preferences.</li>
+                            <li><strong>Experiments</strong>: Controlled tests that manipulate one or more variables to determine their effect on other variables.</li>
+                            <li><strong>Observational</strong>: Data is collected by observing and recording behavior or phenomena without intervening or manipulating the environment.</li>
+                            <li><strong>Secondary</strong>: Using existing datasets collected for other purposes. These can be obtained from sources like government databases, research studies, or online platforms.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+
+            <section id="statistics-central-tendency">
+                <h2><i class="fas fa-chart-bar"></i> Central Tendency</h2>
+            
+                <div class="statistics-measure-types">
+                    <div class="statistics-type-card">
+                        <h3>Mean</h3>
+                        <p class="statistics-formula">μ = (Σx)/N</p>
+                        <p>Average value of dataset</p>
+                        <p>Example: Mean of 4,7,2,9,7,5,7 is 5.86</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Median</h3>
+                        <p>Middle value in ordered data</p>
+                        <p>Example: Median of 2,4,5,7,7,7,9 is 7</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Mode</h3>
+                        <p>Most frequent value</p>
+                        <p>Example: Mode of dataset is 7</p>
+                    </div>
+                </div>
+            
+                <div class="statistics-comparison-box">
+                    <h3>When to Use Each Measure</h3>
+                    <table>
+                        <tr>
+                            <th>Measure</th>
+                            <th>Best For</th>
+                            <th>Limitations</th>
+                        </tr>
+                        <tr>
+                            <td>Mean</td>
+                            <td>Normally distributed data</td>
+                            <td>Affected by outliers</td>
+                        </tr>
+                        <tr>
+                            <td>Median</td>
+                            <td>Skewed distributions</td>
+                            <td>Ignores magnitude of other values</td>
+                        </tr>
+                        <tr>
+                            <td>Mode</td>
+                            <td>Categorical data</td>
+                            <td>May not be unique</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            
+
+            <section id="statistics-dispersion">
+                <h2><i class="fas fa-chart-line"></i> Measures of Dispersion</h2>
+            
+                <div class="statistics-dispersion-types">
+                    <div class="statistics-type-card">
+                        <h3>Range</h3>
+                        <p class="statistics-formula">Max - Min</p>
+                        <p>Simple measure of spread</p>
+                        <p>Example: Range of 5, 10, 15, 20, 25 is 25 - 5 = 20</p>
+                        <p>Another Example: Range of 3, 7, 9, 5, 10 is 10 - 3 = 7</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Variance</h3>
+                        <p class="statistics-formula">σ² = Σ(x - μ)² / N</p>
+                        <p>Average squared deviation from the mean</p>
+                        <p>Example: Variance of dataset [5, 10, 15, 20, 25] is 50</p>
+                        <p>Another Example: Variance of dataset [3, 5, 7, 8] is 3.25</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Standard Deviation</h3>
+                        <p class="statistics-formula">σ = √σ²</p>
+                        <p>In original units, tells how spread out the data is</p>
+                        <p>Example: Standard Deviation of dataset [5, 10, 15, 20, 25] is approximately 7.07</p>
+                        <p>Another Example: Standard Deviation of dataset [3, 5, 7, 8] is approximately 1.80</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>IQR (Interquartile Range)</h3>
+                        <p class="statistics-formula">Q3 - Q1 (middle 50%)</p>
+                        <p>Robust to outliers, shows the range of the middle 50% of the data</p>
+                        <p>Example: IQR of [3, 5, 7, 8, 10, 12] is Q3 (10) - Q1 (5) = 5</p>
+                        <p>Another Example: IQR of [1, 2, 4, 5, 6, 8, 10, 12] is Q3 (8) - Q1 (3.5) = 4.5</p>
+                    </div>
+                </div>
+            
+                <div class="statistics-calculation-example">
+                    <h3>Calculating Standard Deviation</h3>
+                    <p>Dataset: [5, 10, 15, 20, 25]</p>
+                    <ol>
+                        <li>Mean (μ) = 15</li>
+                        <li>Deviations: -10, -5, 0, 5, 10</li>
+                        <li>Squared deviations: 100, 25, 0, 25, 100</li>
+                        <li>Variance = (100 + 25 + 0 + 25 + 100) / 5 = 50</li>
+                        <li>Standard Deviation = √50 ≈ 7.07</li>
+                    </ol>
+                </div>
+            </section>
+            
+
+            <section id="statistics-probability">
+                <h2><i class="fas fa-dice"></i> Probability</h2>
+            
+                <div class="statistics-probability-types">
+                    <div class="statistics-type-card">
+                        <h3>Basic Rules</h3>
+                        <p class="statistics-formula">P(E) = (# favorable) / (# possible)</p>
+                        <ul>
+                            <li>Addition: P(A∪B) = P(A) + P(B) - P(A∩B)</li>
+                            <li>Multiplication: P(A∩B) = P(A) × P(B|A)</li>
+                            <li>Complement: P(A') = 1 - P(A)</li>
+                        </ul>
+                        <p>Example 1: If P(A) = 0.5 and P(B) = 0.4, and A and B are mutually exclusive, P(A∪B) = 0.5 + 0.4 = 0.9</p>
+                        <p>Example 2: If P(A) = 0.6 and P(B|A) = 0.5, then P(A∩B) = 0.6 × 0.5 = 0.3</p>
+                        <p>Example 3: If P(A) = 0.3, then P(A') = 1 - 0.3 = 0.7</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Distributions</h3>
+                        <ul>
+                            <li>Discrete: Binomial, Poisson</li>
+                            <li>Continuous: Normal, Uniform</li>
+                            <li>Parameters: Mean, variance, shape</li>
+                        </ul>
+                        <p>Example 1: In a binomial distribution with n = 5 and p = 0.4, P(X = 2) can be calculated using the binomial formula.</p>
+                        <p>Example 2: For a normal distribution, the probability of a value falling within one standard deviation of the mean is approximately 68%.</p>
+                        <p>Example 3: For a uniform distribution, every value within a specified range has the same probability of occurring.</p>
+                    </div>
+            
+                    <div class="statistics-type-card">
+                        <h3>Conditional Probability</h3>
+                        <p class="statistics-formula">P(A|B) = P(A∩B) / P(B)</p>
+                        <p>Probability of A given B has occurred.</p>
+                        <p>Example 1: If P(A∩B) = 0.2 and P(B) = 0.4, then P(A|B) = 0.2 / 0.4 = 0.5</p>
+                        <p>Example 2: If a deck of cards is shuffled, the probability of drawing a king (A) given that the card drawn is a face card (B) is P(A|B) = 4/12 = 1/3</p>
+                    </div>
+                </div>
+            
+                <div class="statistics-probability-example">
+                    <h3>Dice Probability Example</h3>
+                    <p>P(rolling 4 on die) = 1/6 ≈ 16.67%</p>
+                    <p>P(rolling even number) = 3/6 = 0.5</p>
+                    <p>P(rolling ≥5) = 2/6 ≈ 33.33%</p>
+                    <p>Example: If you roll two dice, the probability of getting a sum of 7 is P(sum = 7) = 6/36 = 0.1667</p>
+                    <p>Example: P(rolling a double 6 on two dice) = 1/36 ≈ 2.78%</p>
+                </div>
+            </section>
+            
+
+            <section id="statistics-distributions">
+                <h2><i class="fas fa-bell"></i> Statistical Distributions</h2>
+                
+                <div class="statistics-distribution-types">
+                    <div class="statistics-type-card">
+                        <h3>Normal Distribution</h3>
+                        <ul>
+                            <li>Bell-shaped curve</li>
+                            <li>Symmetrical about mean</li>
+                            <li>68-95-99.7 rule</li>
+                            <li>Parameters: μ (mean), σ (std dev)</li>
+                        </ul>
+                        <p>Example 1: In a normal distribution with μ = 0 and σ = 1, about 68% of the values fall within the range of -1 to 1.</p>
+                        <p>Example 2: In a height distribution of adult women with μ = 160 cm and σ = 10 cm, approximately 95% of women will have a height between 140 cm and 180 cm.</p>
+                    </div>
+                    
+                    <div class="statistics-type-card">
+                        <h3>Binomial Distribution</h3>
+                        <ul>
+                            <li>Fixed number of trials (n)</li>
+                            <li>Independent trials</li>
+                            <li>Constant success probability (p)</li>
+                        </ul>
+                        <p>Example 1: In a coin toss experiment (n = 10 tosses, p = 0.5 for heads), the binomial distribution can be used to calculate the probability of getting exactly 4 heads.</p>
+                        <p>Example 2: If you are testing a drug's effectiveness and have 20 trials with a success rate of 0.7, the binomial distribution can calculate the probability of having exactly 15 successful treatments.</p>
+                    </div>
+                    
+                    <div class="statistics-type-card">
+                        <h3>Poisson Distribution</h3>
+                        <ul>
+                            <li>Counts rare events</li>
+                            <li>Fixed time/space interval</li>
+                            <li>Parameter: λ (rate)</li>
+                        </ul>
+                        <p>Example 1: If the average number of cars passing a checkpoint in an hour is 10, the Poisson distribution can be used to find the probability of exactly 8 cars passing in a given hour.</p>
+                        <p>Example 2: If a call center receives an average of 2 calls per minute, you can use the Poisson distribution to determine the probability of receiving exactly 5 calls in the next minute.</p>
+                    </div>
+                </div>
+                
+                <div class="statistics-distribution-visual">
+                    <h3>Normal Distribution Properties</h3>
+                    <ul>
+                        <li>≈68% within 1σ of μ</li>
+                        <li>≈95% within 2σ of μ</li>
+                        <li>≈99.7% within 3σ of μ</li>
+                        <li>Z-scores standardize values</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="statistics-inference">
+                <h2><i class="fas fa-project-diagram"></i> Statistical Inference</h2>
+                
+                <div class="statistics-inference-types">
+                    <div class="statistics-type-card">
+                        <h3>Confidence Intervals</h3>
+                        <p>Range of plausible values for a parameter</p>
+                        <p class="statistics-formula">CI = x̄ ± z*(σ/√n)</p>
+                        <p>Example 1: A sample mean of 50 with a standard deviation of 5 and a sample size of 25 gives a 95% confidence interval for the population mean of [48.0, 52.0].</p>
+                        <p>Example 2: A 99% confidence interval for the average time spent in a store (x̄ = 10 minutes, σ = 2 minutes, n = 100) would be calculated as [9.61, 10.39] minutes.</p>
+                    </div>
+                    
+                    <div class="statistics-type-card">
+                        <h3>Hypothesis Testing</h3>
+                        <ol>
+                            <li>State null (H₀) and alternative (H₁)</li>
+                            <li>Choose significance level (α)</li>
+                            <li>Calculate test statistic</li>
+                            <li>Compare to critical value</li>
+                            <li>Make decision (reject/fail to reject H₀)</li>
+                        </ol>
+                        <p>Example 1: In a study to determine if a drug affects blood pressure, the null hypothesis might be H₀: "The drug has no effect," and the alternative hypothesis would be H₁: "The drug affects blood pressure." The p-value is then compared to α = 0.05 to decide whether to reject or fail to reject H₀.</p>
+                        <p>Example 2: A factory produces lightbulbs with a lifetime of 1200 hours. Testing if the lifetime differs from 1200 hours could involve calculating the test statistic and comparing it to the critical value to make a decision.</p>
+                    </div>
+                </div>
+                
+                <div class="statistics-test-types">
+                    <div class="statistics-type-card">
+                        <h3>Common Tests</h3>
+                        <ul>
+                            <li>t-test: Compare means</li>
+                            <li>χ² test: Test independence</li>
+                            <li>ANOVA: Compare >2 means</li>
+                            <li>Regression: Model relationships</li>
+                        </ul>
+                        <p>Example 1: A t-test can be used to determine if the average height of two groups of students differs significantly.</p>
+                        <p>Example 2: A χ² test might be used to determine if there is an association between gender and voting preference.</p>
+                        <p>Example 3: ANOVA is used when comparing the mean scores of three or more different groups, such as testing the effect of different teaching methods on student performance.</p>
+                        <p>Example 4: Regression analysis could model the relationship between advertising expenditure and sales volume.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="statistics-regression">
+                <h2><i class="fas fa-chart-line"></i> Correlation & Regression</h2>
+                
+                <div class="statistics-regression-types">
+                    <div class="statistics-type-card">
+                        <h3>Correlation</h3>
+                        <p class="statistics-formula">r = Σ[(x - x̄)(y - ȳ)] / [(n - 1)sₓsᵧ]</p>
+                        <ul>
+                            <li>Measures linear relationship (-1 to 1)</li>
+                            <li>Does not imply causation</li>
+                            <li>r > 0: Positive correlation</li>
+                            <li>r < 0: Negative correlation</li>
+                            <li>r = 0: No linear relationship</li>
+                        </ul>
+                        <p>Example 1: A correlation coefficient of r = 0.8 indicates a strong positive linear relationship between two variables (e.g., study hours and exam scores).</p>
+                        <p>Example 2: A correlation coefficient of r = -0.6 indicates a moderate negative linear relationship between two variables (e.g., hours of TV watched and exam scores).</p>
+                    </div>
+                    
+                    <div class="statistics-type-card">
+                        <h3>Linear Regression</h3>
+                        <p class="statistics-formula">ŷ = b₀ + b₁x</p>
+                        <ul>
+                            <li>Predicts dependent variable (ŷ)</li>
+                            <li>b₁ = slope, b₀ = y-intercept</li>
+                            <li>R² measures goodness of fit (0 to 1)</li>
+                            <li>R² = 1: Perfect fit; R² = 0: No fit</li>
+                        </ul>
+                        <p>Example 1: A linear regression equation ŷ = 10 + 3x suggests that for every unit increase in x, the predicted value of y increases by 3.</p>
+                        <p>Example 2: A high R² value (e.g., R² = 0.9) indicates that the model explains 90% of the variability in the dependent variable.</p>
+                    </div>
+                </div>
+                
+                <div class="statistics-regression-example">
+                    <h3>Study Time vs Exam Score</h3>
+                    <p>Hypothetical regression equation:</p>
+                    <p class="statistics-formula">Score = 50 + 5 × (Study Hours)</p>
+                    <p>Interpretation: Each additional hour of study predicts a 5-point increase in the exam score.</p>
+                    <p>Example: If a student studies for 4 hours, the predicted exam score would be:</p>
+                    <p>Score = 50 + 5 × 4 = 70</p>
+                    <p>Thus, the student is expected to score 70 on the exam.</p>
+                </div>
+            </section>
+            
+
+            <section id="statistics-applications">
+                <h2><i class="fas fa-rocket"></i> Real-World Applications</h2>
+                
+                <div class="statistics-application-grid">
+                    <div class="statistics-app-card">
+                        <h3><i class="fas fa-briefcase"></i> Business</h3>
+                        <ul>
+                            <li>Market research analysis</li>
+                            <li>Quality control in manufacturing</li>
+                            <li>Risk assessment and management</li>
+                            <li>Sales forecasting and demand prediction</li>
+                            <li>Customer segmentation using clustering techniques</li>
+                            <li>Financial modeling and portfolio optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="statistics-app-card">
+                        <h3><i class="fas fa-heartbeat"></i> Healthcare</h3>
+                        <ul>
+                            <li>Clinical trial data analysis for drug efficacy</li>
+                            <li>Epidemiology studies to track disease outbreaks</li>
+                            <li>Evaluation of treatment effectiveness through statistical tests</li>
+                            <li>Public health planning and resource allocation</li>
+                            <li>Genetic data analysis for precision medicine</li>
+                            <li>Healthcare cost modeling and optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="statistics-app-card">
+                        <h3><i class="fas fa-flask"></i> Science</h3>
+                        <ul>
+                            <li>Experimental design and hypothesis testing</li>
+                            <li>Data interpretation and statistical significance</li>
+                            <li>Research validation and reproducibility analysis</li>
+                            <li>Peer review analysis and statistical transparency</li>
+                            <li>Environmental data analysis and climate modeling</li>
+                            <li>Astrophysics data modeling and simulation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="statistics-app-card">
+                        <h3><i class="fas fa-baseball-ball"></i> Sports</h3>
+                        <ul>
+                            <li>Player performance metrics and analytics</li>
+                            <li>Game strategy optimization based on statistical models</li>
+                            <li>Talent scouting using predictive analysis</li>
+                            <li>Injury prediction and prevention models</li>
+                            <li>Team performance evaluation and comparison</li>
+                            <li>Fan engagement and marketing strategy analysis</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="statistics-real-world-example">
+                    <h3><i class="fas fa-chart-bar"></i> Real-World Example: A/B Testing</h3>
+                    <p>Website wants to test if a new design (B) has a higher conversion rate than the original (A):</p>
+                    <ol>
+                        <li>Randomly assign users to A or B</li>
+                        <li>Collect conversion data (e.g., 5% for A, 7% for B)</li>
+                        <li>Perform hypothesis test (e.g., two-proportion z-test)</li>
+                        <li>If p-value < 0.05, conclude B performs significantly better</li>
+                    </ol>
+                </div>
+            </section>
+            <div class="calculator">
+                <input type="text" id="calculator-display" class="calculator-display" disabled />
+                <div class="calculator-buttons">
+                    <button class="calculator-btn">1</button>
+                    <button class="calculator-btn">2</button>
+                    <button class="calculator-btn">3</button>
+                    <button class="calculator-btn">+</button>
+                    <button class="calculator-btn">4</button>
+                    <button class="calculator-btn">5</button>
+                    <button class="calculator-btn">6</button>
+                    <button class="calculator-btn">-</button>
+                    <button class="calculator-btn">7</button>
+                    <button class="calculator-btn">8</button>
+                    <button class="calculator-btn">9</button>
+                    <button class="calculator-btn">*</button>
+                    <button class="calculator-btn">C</button>
+                    <button class="calculator-btn">0</button>
+                    <button class="calculator-btn">=</button>
+                    <button class="calculator-btn">/</button>
+                </div>
+            </div>
+            
+            <section id="statistics-exercises">
+                <h2><i class="fas fa-pencil-alt"></i> Practice Exercises</h2>
+                
+                <div class="statistics-exercise-section">
+                    <h3>Descriptive Statistics</h3>
+                    <ol>
+                        <li>Calculate the mean, median, and mode for the dataset [8, 3, 9, 2, 5, 9, 1]</li>
+                        <li>Find the range, variance, and standard deviation for the dataset [12, 15, 18, 22, 23]</li>
+                        <li>For the dataset [10, 15, 20, 25, 30], find the interquartile range (IQR).</li>
+                        <li>Given a dataset [5, 5, 7, 9, 12, 12, 12], determine the mode and the frequency of the mode.</li>
+                        <li>Calculate the mean, variance, and standard deviation for the following ages: [22, 25, 29, 30, 35, 35, 40, 50]</li>
+                        <li>Given the heights of 10 students [150, 160, 165, 170, 175, 180, 185, 190, 195, 200], find the median height.</li>
+                        <li>Find the range and standard deviation for the following set of temperatures over a week: [23, 28, 30, 32, 33, 35, 40]</li>
+                        <li>For the dataset [45, 60, 65, 70, 75, 80, 85], calculate the 90th percentile.</li>
+                    </ol>
+                </div>
+            
+                <div class="statistics-exercise-section">
+                    <h3>Probability</h3>
+                    <ol start="9">
+                        <li>P(drawing an ace from a deck of 52 cards) = ?</li>
+                        <li>If P(A) = 0.3, P(B) = 0.4, and P(A∩B) = 0.1, find P(A∪B).</li>
+                        <li>What is the probability of rolling a sum of 7 with two fair dice?</li>
+                        <li>If the probability of rain tomorrow is 0.6, what is the probability that it will not rain?</li>
+                        <li>In a group of 10 people, what is the probability that at least two people share the same birthday? (Use the complement rule)</li>
+                        <li>If a coin is flipped three times, what is the probability of getting exactly two heads?</li>
+                        <li>What is the probability of drawing two red balls consecutively without replacement from a jar with 5 red balls and 3 green balls?</li>
+                        <li>If you draw a card from a standard deck of 52 cards, what is the probability that the card is either a king or a queen?</li>
+                    </ol>
+                </div>
+            
+                <div class="statistics-exercise-section">
+                    <h3>Inference</h3>
+                    <ol start="17">
+                        <li>For H₀: μ = 50 vs H₁: μ > 50, sample mean = 55, n = 30, σ = 10, find the z-score and conclusion (α = 0.05).</li>
+                        <li>Calculate the 95% confidence interval for the mean if x̄ = 100, σ = 15, n = 50.</li>
+                        <li>Given a sample mean of 75, population mean = 70, sample size = 25, and population standard deviation = 5, calculate the z-score.</li>
+                        <li>If the test statistic for a hypothesis test is 2.5, and the critical value is 2.0 at α = 0.05, what is your conclusion?</li>
+                        <li>Calculate the 99% confidence interval for the mean if x̄ = 120, σ = 20, and n = 100.</li>
+                        <li>For a two-tailed hypothesis test with α = 0.01, if the p-value is 0.008, what is the conclusion?</li>
+                        <li>Given the data sample [10, 12, 14, 16, 18], calculate the standard error of the mean.</li>
+                        <li>Perform a hypothesis test to determine if the mean weight of apples in a batch is significantly different from 200 grams (α = 0.05). The sample mean is 210 grams, n = 15, and σ = 15 grams.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="quiz">
+                <h2><i class="fas fa-question-circle"></i> Statistics Quiz</h2>
+                <form id="quiz-form">
+                    <div class="quiz-question">
+                        <p>1. Which measure is most affected by outliers?</p>
+                        <label><input type="radio" name="q1" value="A"> Mean</label>
+                        <label><input type="radio" name="q1" value="B"> Median</label>
+                        <label><input type="radio" name="q1" value="C"> Mode</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>2. For normal distribution, what % is within 2σ of μ?</p>
+                        <label><input type="radio" name="q2" value="A"> 68%</label>
+                        <label><input type="radio" name="q2" value="B"> 95%</label>
+                        <label><input type="radio" name="q2" value="C"> 99.7%</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>3. If P(A)=0.4, P(B)=0.5, and A, B are independent, P(A∩B)=?</p>
+                        <label><input type="radio" name="q3" value="A"> 0.2</label>
+                        <label><input type="radio" name="q3" value="B"> 0.9</label>
+                        <label><input type="radio" name="q3" value="C"> 0.1</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>4. In regression, what does R² represent?</p>
+                        <label><input type="radio" name="q4" value="A"> Correlation coefficient</label>
+                        <label><input type="radio" name="q4" value="B"> Proportion of variance explained</label>
+                        <label><input type="radio" name="q4" value="C"> Significance level</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>5. The probability of drawing a red card from a standard deck of cards is?</p>
+                        <label><input type="radio" name="q5" value="A"> 1/4</label>
+                        <label><input type="radio" name="q5" value="B"> 1/2</label>
+                        <label><input type="radio" name="q5" value="C"> 1/3</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>6. What is the z-score formula?</p>
+                        <label><input type="radio" name="q6" value="A"> (X - μ) / σ</label>
+                        <label><input type="radio" name="q6" value="B"> (X - μ) / n</label>
+                        <label><input type="radio" name="q6" value="C"> μ / σ</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>7. What does the p-value represent in hypothesis testing?</p>
+                        <label><input type="radio" name="q7" value="A"> The probability of rejecting the null hypothesis when it is true</label>
+                        <label><input type="radio" name="q7" value="B"> The probability that the null hypothesis is true</label>
+                        <label><input type="radio" name="q7" value="C"> The probability that the sample mean equals the population mean</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>8. What type of correlation does R = -0.8 represent?</p>
+                        <label><input type="radio" name="q8" value="A"> Weak positive correlation</label>
+                        <label><input type="radio" name="q8" value="B"> Strong negative correlation</label>
+                        <label><input type="radio" name="q8" value="C"> Weak negative correlation</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>9. What is the definition of variance?</p>
+                        <label><input type="radio" name="q9" value="A"> The square root of the standard deviation</label>
+                        <label><input type="radio" name="q9" value="B"> The average squared deviation from the mean</label>
+                        <label><input type="radio" name="q9" value="C"> The average value of a dataset</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>10. In probability, if events A and B are mutually exclusive, what is P(A∩B)?</p>
+                        <label><input type="radio" name="q10" value="A"> 1</label>
+                        <label><input type="radio" name="q10" value="B"> 0</label>
+                        <label><input type="radio" name="q10" value="C"> P(A) * P(B)</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>11. In a t-distribution, as the sample size increases, the distribution approaches?</p>
+                        <label><input type="radio" name="q11" value="A"> A normal distribution</label>
+                        <label><input type="radio" name="q11" value="B"> A uniform distribution</label>
+                        <label><input type="radio" name="q11" value="C"> A chi-squared distribution</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>12. Which of the following is a measure of central tendency?</p>
+                        <label><input type="radio" name="q12" value="A"> Range</label>
+                        <label><input type="radio" name="q12" value="B"> Variance</label>
+                        <label><input type="radio" name="q12" value="C"> Mean</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>13. Which of the following is a probability distribution?</p>
+                        <label><input type="radio" name="q13" value="A"> Binomial distribution</label>
+                        <label><input type="radio" name="q13" value="B"> Normal distribution</label>
+                        <label><input type="radio" name="q13" value="C"> All of the above</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>14. What is the main purpose of hypothesis testing?</p>
+                        <label><input type="radio" name="q14" value="A"> To prove a theory</label>
+                        <label><input type="radio" name="q14" value="B"> To test the validity of a hypothesis</label>
+                        <label><input type="radio" name="q14" value="C"> To calculate confidence intervals</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>15. What is the most common probability distribution used for random events?</p>
+                        <label><input type="radio" name="q15" value="A"> Binomial distribution</label>
+                        <label><input type="radio" name="q15" value="B"> Normal distribution</label>
+                        <label><input type="radio" name="q15" value="C"> Poisson distribution</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>16. The standard deviation is used to measure?</p>
+                        <label><input type="radio" name="q16" value="A"> Variability or spread of a dataset</label>
+                        <label><input type="radio" name="q16" value="B"> The mean of the dataset</label>
+                        <label><input type="radio" name="q16" value="C"> The middle value of the dataset</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>17. In a hypothesis test, if the p-value is less than α, what is the conclusion?</p>
+                        <label><input type="radio" name="q17" value="A"> Reject the null hypothesis</label>
+                        <label><input type="radio" name="q17" value="B"> Fail to reject the null hypothesis</label>
+                        <label><input type="radio" name="q17" value="C"> Accept the alternative hypothesis</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>18. Which of the following is true about the normal distribution?</p>
+                        <label><input type="radio" name="q18" value="A"> It is symmetric</label>
+                        <label><input type="radio" name="q18" value="B"> It has two peaks</label>
+                        <label><input type="radio" name="q18" value="C"> It is skewed to the right</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>19. What does a p-value less than 0.05 indicate in hypothesis testing?</p>
+                        <label><input type="radio" name="q19" value="A"> Strong evidence against the null hypothesis</label>
+                        <label><input type="radio" name="q19" value="B"> Strong evidence in favor of the null hypothesis</label>
+                        <label><input type="radio" name="q19" value="C"> No evidence against the null hypothesis</label>
+                    </div>
+            
+                    <div class="quiz-question">
+                        <p>20. What is the purpose of using a confidence interval?</p>
+                        <label><input type="radio" name="q20" value="A"> To estimate the population parameter</label>
+                        <label><input type="radio" name="q20" value="B"> To calculate the sample mean</label>
+                        <label><input type="radio" name="q20" value="C"> To calculate the sample size</label>
+                    </div>
+                <button type="submit">Submit</button>
+                </form>
+                <div id="quiz-results"></div>
+            </section>
+
+            <script>
+                // Answer Key for the Statistics Quiz (20 questions)
+                const statisticsAnswerKey = {
+                    q1: "A", q2: "A", q3: "C", q4: "B", q5: "B",
+                    q6: "A", q7: "B", q8: "A", q9: "C", q10: "B",
+                    q11: "B", q12: "C", q13: "A", q14: "B", q15: "A",
+                    q16: "C", q17: "A", q18: "B", q19: "A", q20: "C"
+                };
+            
+                // Wait for DOM to be fully loaded
+                document.addEventListener('DOMContentLoaded', function() {
+                    const quizForm = document.getElementById('quiz-form');
+                    const resultDiv = document.getElementById('quiz-results');
+            
+                    // Debugging: Check if elements exist
+                    if (!quizForm) {
+                        console.error('Quiz form not found! Check the ID "quiz-form"');
+                        return;
+                    }
+                    if (!resultDiv) {
+                        console.error('Result div not found! Check the ID "quiz-results"');
+                        return;
+                    }
+            
+                    // Add submit event listener
+                    quizForm.addEventListener('submit', function(event) {
+                        // Prevent default form submission
+                        event.preventDefault();
+                        console.log('Form submission intercepted'); // Debugging
+            
+                        let score = 0;
+                        const totalQuestions = Object.keys(statisticsAnswerKey).length;
+                        const unanswered = [];
+            
+                        // Check each answer
+                        for (let i = 1; i <= totalQuestions; i++) {
+                            const questionName = `q${i}`;
+                            const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+            
+                            if (!selectedAnswer) {
+                                unanswered.push(i);
+                                continue;
+                            }
+            
+                            if (selectedAnswer.value === statisticsAnswerKey[questionName]) {
+                                score++;
+                            }
+                        }
+            
+                        // Calculate percentage
+                        const percentage = (score / totalQuestions * 100).toFixed(1);
+            
+                        // Create feedback message
+                        let feedbackMessage;
+                        if (unanswered.length > 0) {
+                            feedbackMessage = `<p><i class="fas fa-exclamation-circle"></i> You didn't answer questions: ${unanswered.join(', ')}</p>`;
+                        } else if (percentage >= 80) {
+                            feedbackMessage = '<p><i class="fas fa-check-circle"></i> Excellent! You have mastered statistics.</p>';
+                        } else if (percentage >= 50) {
+                            feedbackMessage = '<p><i class="fas fa-thumbs-up"></i> Good job! Review your missed questions.</p>';
+                        } else {
+                            feedbackMessage = '<p><i class="fas fa-book"></i> Keep practicing! Statistics take time to master.</p>';
+                        }
+            
+                        // Display results
+                        resultDiv.innerHTML = `
+                            <div class="quiz-result-box">
+                                <h3>Your Score: ${score}/${totalQuestions} (${percentage}%)</h3>
+                                <div class="feedback">${feedbackMessage}</div>
+                                <div class="breakdown">
+                                    <p>Topic Performance:</p>
+                                    <ul>
+                                        <li>Measures of Central Tendency: ${score >= 5 ? '✓' : '✗'}</li>
+                                        <li>Probability: ${score >= 6 ? '✓' : '✗'}</li>
+                                        <li>Regression & Correlation: ${score >= 7 ? '✓' : '✗'}</li>
+                                        <li>Distributions: ${score >= 8 ? '✓' : '✗'}</li>
+                                    </ul>
+                                </div>
+                                <button class="retry-btn">Try Again</button>
+                            </div>
+                        `;
+            
+                        // Add retry button functionality
+                        resultDiv.querySelector('.retry-btn').addEventListener('click', function() {
+                            quizForm.reset();
+                            resultDiv.innerHTML = '';
+                        });
+            
+                        // Scroll to results
+                        resultDiv.scrollIntoView({ behavior: 'smooth' });
+                    });
+                });
+            </script>
+            
+            <section id="statistics-videos" class="statistics-section">
+                <h2 class="statistics-heading"><i class="fas fa-video"></i> Statistics Video Tutorials</h2>
+                
+                <div class="statistics-encouragement">
+                    <p><i class="fas fa-lightbulb"></i> Visual learning helps! These curated videos explain key statistical concepts with clear examples and demonstrations.</p>
+                </div>
+            
+                <div class="statistics-video-grid">
+                    <div class="statistics-video-card">
+                        <div class="statistics-video-container">
+                            <iframe src="https://www.youtube.com/watch?v=stat_video1" 
+                                   frameborder="0" 
+                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                   allowfullscreen></iframe>
+                        </div>
+                        <h3 class="statistics-video-title">Statistics Fundamentals</h3>
+                        <p class="statistics-video-description">Introduction to key statistical concepts.</p>
+                        <div class="statistics-video-duration"><i class="fas fa-clock"></i> 15:30</div>
+                    </div>
+            
+                    <div class="statistics-video-card">
+                        <div class="statistics-video-container">
+                            <iframe src="https://www.youtube.com/watch?v=stat_video2" 
+                                   frameborder="0" 
+                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                   allowfullscreen></iframe>
+                        </div>
+                        <h3 class="statistics-video-title">Probability Explained</h3>
+                        <p class="statistics-video-description">Understanding probability rules and distributions.</p>
+                        <div class="statistics-video-duration"><i class="fas fa-clock"></i> 18:45</div>
+                    </div>
+                </div>
+            </section>
+            
+
+            <section id="statistics-forum" class="statistics-forum-section">
+                <div class="statistics-forum-header">
+                    <h2>Statistics Discussion Forum</h2>
+                    <p>Have questions or want to discuss statistical concepts? Get help from our community!</p>
+                </div>
+                    
+                <form id="statistics-forum-form" class="statistics-forum-form">
+                    <div class="statistics-form-row">
+                        <div class="statistics-form-group">
+                            <label for="statistics-userName" class="statistics-form-label">Your Name</label>
+                            <input type="text" id="statistics-userName" class="statistics-form-input" required>
+                        </div>
+                        <div class="statistics-form-group">
+                            <label for="statistics-topic" class="statistics-form-label">Topic</label>
+                            <select id="statistics-topic" class="statistics-form-select" required>
+                                <option value="" disabled selected>Select topic</option>
+                                <option value="probability">Probability</option>
+                                <option value="hypothesis-testing">Hypothesis Testing</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="statistics-form-group">
+                        <label for="statistics-userPost" class="statistics-form-label">Your Question</label>
+                        <textarea id="statistics-userPost" class="statistics-form-textarea" required></textarea>
+                    </div>
+                    <form action="https://wa.me/yourwhatsapplink?text=Statistics%20Question" method="get" target="_blank">
+                        <button type="submit" class="statistics-form-submit">Post Question</button>
+                    </form>
+                
+                <div class="statistics-forum-posts-container">
+                    <h3>Recent Discussions</h3>
+                    <div id="statistics-forum-posts">
+                        <!-- Dynamic posts will appear here -->
+                    </div>
+                </div>
+            </section>
+            
+            <script src="statisticsapp.js"></script>
+            <script src="statisticscript.js"></script>
+            <script>
+                // Load posts from localStorage on page load
+                function loadPosts() {
+                    const forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+                    const forumPostsDiv = document.getElementById('word.problem-forumPosts');
+                    forumPostsDiv.innerHTML = '';  // Clear any existing posts
+            
+                    forumPosts.forEach(post => {
+                        const postDiv = document.createElement('div');
+                        postDiv.classList.add('word.problem-forumPost');
+                        postDiv.innerHTML = `<h4>${post.userName}</h4><p>${post.userPost}</p>`;
+                        forumPostsDiv.appendChild(postDiv);
+                    });
+                }
+            
+                // Add a new post to localStorage
+                document.getElementById('word.problem-forumForm').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const userName = document.getElementById('userName').value;
+                    const userPost = document.getElementById('userPost').value;
+            
+                    // Get existing posts from localStorage
+                    const forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+                    
+                    // Create new post object
+                    const newPost = { userName, userPost };
+                    
+                    // Add new post to the list
+                    forumPosts.push(newPost);
+            
+                    // Save the updated posts array to localStorage
+                    localStorage.setItem('forumPosts', JSON.stringify(forumPosts));
+            
+                    // Reload posts to display the new one
+                    loadPosts();
+            
+                    // Clear form fields
+                    document.getElementById('userName').value = '';
+                    document.getElementById('userPost').value = '';
+                });
+            
+                // Function to clear all posts from localStorage
+                function clearPosts() {
+                    localStorage.removeItem('forumPosts');
+                    loadPosts();  // Reload posts after clearing
+                }
+            
+                // Initially load posts when the page loads
+                window.onload = loadPosts;
+            
+                // Optionally add a button to clear posts
+                const clearButton = document.createElement('button');
+                clearButton.innerText = 'Clear All Posts';
+                clearButton.addEventListener('click', clearPosts);
+                document.body.appendChild(clearButton); // Add the button to the page
+            </script>
+            
+            </body>
+            </html>
+            

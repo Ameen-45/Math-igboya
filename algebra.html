@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra - IGBOYA</title>
+    <link rel="stylesheet" href="algebrastyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nerdamer/1.1.12/nerdamer.core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nerdamer/1.1.12/Algebra.js"></script>
+
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Button Only (matching the matrices structure) -->
+        <div class="top-nav">
+            <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+        </div>
+
+        <div class="algebra-content">
+            <!-- Introduction Section -->
+            <section id="introduction" class="algebra-header">
+                <h1><i class="fas fa-square-root-alt"></i>Algebra</h1>
+                <p class="intro-text">Algebra is the branch of mathematics that uses symbols and letters to represent numbers and quantities in formulas and equations. It provides the foundation for advanced mathematical concepts and real-world problem solving.</p>
+                
+                <!-- Algebra Example -->
+                <div class="algebra-example">
+                    <h3><i class="fas fa-function"></i> Algebraic Equation Example</h3>
+                    <div class="equation-container">
+                        <div class="equation">2x + 5 = 15</div>
+                    </div>
+                    <p class="equation-description">This is a simple linear equation with one variable (x)</p>
+                </div>
+
+                <!-- Encouragement Section -->
+                <div class="encouragement-box">
+                    <p><i class="fas fa-thumbs-up"></i> You're doing great! Algebra is a powerful tool that will help you solve complex problems.</p>
+                </div>
+
+                <h3><i class="fas fa-lightbulb"></i> Key Algebraic Concepts</h3>
+                <ul class="key-concepts">
+                    <li><strong>Variables:</strong> Symbols (like x, y) that represent unknown values</li>
+                    <li><strong>Expressions:</strong> Combinations of variables, numbers and operations</li>
+                    <li><strong>Equations:</strong> Statements that show the equality of two expressions</li>
+                    <li><strong>Functions:</strong> Relationships between inputs and outputs</li>
+                    <li><strong>Polynomials:</strong> Expressions with variables raised to whole number exponents</li>
+                </ul>
+
+                <!-- General Form Section -->
+                <div class="algebra-notation">
+                    <h3><i class="fas fa-pen-fancy"></i> General Linear Equation Form</h3>
+                    <p>A linear equation in one variable can be written as:</p>
+                    <div class="general-form">
+                        ax + b = 0
+                    </div>
+                    <p>Where:
+                        <br>• a and b are constants
+                        <br>• x is the variable
+                        <br>• a ≠ 0
+                    </p>
+                </div>
+            </section>
+
+            <section id="types">
+                <h2><i class="fas fa-layer-group"></i> Types of Algebraic Equations</h2>
+                <div class="equation-types">
+                    <!-- Linear Equations -->
+                    <div class="type-card">
+                        <h4>Linear Equations</h4>
+                        <p>First-degree equations that form straight lines when graphed.</p>
+                        <div class="equation-example">
+                            <p>y = 2x + 3</p>
+                            <p>3x - 5 = 10</p>
+                        </div>
+                    </div>
+            
+                    <!-- Quadratic Equations -->
+                    <div class="type-card">
+                        <h4>Quadratic Equations</h4>
+                        <p>Second-degree equations that form parabolas when graphed.</p>
+                        <div class="equation-example">
+                            <p>y = x² - 4x + 4</p>
+                            <p>2x² + 3x - 5 = 0</p>
+                        </div>
+                    </div>
+            
+                    <!-- Polynomial Equations -->
+                    <div class="type-card">
+                        <h4>Polynomial Equations</h4>
+                        <p>Equations with terms of different degrees.</p>
+                        <div class="equation-example">
+                            <p>y = x³ - 2x² + x - 5</p>
+                            <p>4x⁴ - 16 = 0</p>
+                        </div>
+                    </div>
+            
+                    <!-- Rational Equations -->
+                    <div class="type-card">
+                        <h4>Rational Equations</h4>
+                        <p>Equations containing fractions with polynomials.</p>
+                        <div class="equation-example">
+                            <p>(x + 1)/(x - 2) = 3</p>
+                            <p>1/x + 1/(x + 1) = 5/6</p>
+                        </div>
+                    </div>
+            
+                    <!-- Systems of Equations -->
+                    <div class="type-card">
+                        <h4>Systems of Equations</h4>
+                        <p>Multiple equations with multiple variables.</p>
+                        <div class="equation-example">
+                            <p>2x + y = 7</p>
+                            <p>3x - y = 3</p>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+
+            <section id="operations">
+                <h2><i class="fas fa-calculator"></i> Algebraic Operations</h2>
+                <div class="operations-content">
+                    <!-- Solving Equations -->
+                    <div class="operation-card">
+                        <h4>Solving Linear Equations</h4>
+                        <p>Find the value of the variable that makes the equation true.</p>
+                        <div class="solution-steps">
+                            <p>Example: Solve 3x - 7 = 14</p>
+                            <p>1. Add 7 to both sides: 3x = 21</p>
+                            <p>2. Divide both sides by 3: x = 7</p>
+                        </div>
+                    </div>
+            
+                    <!-- Factoring -->
+                    <div class="operation-card">
+                        <h4>Factoring Quadratics</h4>
+                        <p>Express a quadratic equation as a product of binomials.</p>
+                        <div class="solution-steps">
+                            <p>Example: Factor x² - 5x + 6</p>
+                            <p>Find two numbers that multiply to 6 and add to -5</p>
+                            <p>Solution: (x - 2)(x - 3) = 0</p>
+                        </div>
+                    </div>
+            
+                    <!-- Quadratic Formula -->
+                    <div class="operation-card">
+                        <h4>Quadratic Formula</h4>
+                        <p>Solution to any quadratic equation ax² + bx + c = 0:</p>
+                        <div class="quadratic-formula">
+                            x = [-b ± √(b² - 4ac)] / 2a
+                        </div>
+                        <div class="solution-steps">
+                            <p>Example: Solve 2x² - 4x - 6 = 0</p>
+                            <p>a = 2, b = -4, c = -6</p>
+                            <p>Solutions: x = 3 and x = -1</p>
+                        </div>
+                    </div>
+            
+                    <!-- Simplifying Expressions -->
+                    <div class="operation-card">
+                        <h4>Simplifying Expressions</h4>
+                        <p>Combine like terms and perform operations.</p>
+                        <div class="solution-steps">
+                            <p>Example: Simplify 3(x + 2) - 2x + 5</p>
+                            <p>1. Distribute: 3x + 6 - 2x + 5</p>
+                            <p>2. Combine like terms: x + 11</p>
+                        </div>
+                    </div>
+            
+                    <!-- Solving Systems -->
+                    <div class="operation-card">
+                        <h4>Solving Systems of Equations</h4>
+                        <p>Find values that satisfy all equations simultaneously.</p>
+                        <div class="solution-steps">
+                            <p>Example: Solve the system</p>
+                            <p>2x + y = 7</p>
+                            <p>x - y = -1</p>
+                            <p>Solution: x = 2, y = 3</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="algebra-calculator" class="calculator-section">
+                <h2>Algebra Equation Solver</h2>
+                <form id="algebraCalcForm" class="calculator-form">
+                    <input type="text" id="equationInput" placeholder="Enter equation (e.g., 2x + 3 = 7)" required />
+                    <button type="submit">Solve</button>
+                </form>
+                <div id="algebraResult" class="calculator-result"></div>
+            </section>
+            
+            <section id="algebra-graphs" class="algebra-section">
+                <h2><i class="fas fa-chart-line"></i> Algebraic Graphs</h2>
+                
+                <div class="algebra-graph-types">
+                    <div class="algebra-type-card">
+                        <h3><i class="fas fa-line-chart"></i> Linear Graphs</h3>
+                        <div class="algebra-graph-example">
+                            <p>Equation Form: y = mx + b</p>
+                            <div class="algebra-formula">
+                                <p>m = slope</p>
+                                <p>b = y-intercept</p>
+                            </div>
+                            <div class="algebra-graph-characteristics">
+                                <p>• Straight line graph</p>
+                                <p>• Constant rate of change</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="algebra-type-card">
+                        <h3><i class="fas fa-chart-curve"></i> Quadratic Graphs</h3>
+                        <div class="algebra-graph-example">
+                            <p>Equation Form: y = ax² + bx + c</p>
+                            <div class="algebra-formula">
+                                <p>a ≠ 0</p>
+                                <p>Vertex form: y = a(x-h)² + k</p>
+                            </div>
+                            <div class="algebra-graph-characteristics">
+                                <p>• Parabolic shape</p>
+                                <p>• Axis of symmetry</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="algebra-type-card">
+                        <h3><i class="fas fa-absolute-value"></i> Absolute Value</h3>
+                        <div class="algebra-graph-example">
+                            <p>Equation Form: y = a|x - h| + k</p>
+                            <div class="algebra-formula">
+                                <p>Vertex at (h, k)</p>
+                                <p>V-shaped graph</p>
+                            </div>
+                            <div class="algebra-graph-characteristics">
+                                <p>• Always non-negative</p>
+                                <p>• Sharp turning point</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="algebra-applications" class="algebra-section">
+                <h2><i class="fas fa-rocket"></i> Algebraic Applications</h2>
+                
+                <div class="algebra-application-grid">
+                    <div class="algebra-app-card">
+                        <h3><i class="fas fa-money-bill-wave"></i> Financial Algebra</h3>
+                        <ul class="algebra-app-list">
+                            <li>Compound interest formulas</li>
+                            <li>Loan amortization calculations</li>
+                            <li>Investment portfolio analysis</li>
+                            <li>Budget optimization models</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="algebra-app-card">
+                        <h3><i class="fas fa-flask"></i> Scientific Algebra</h3>
+                        <ul class="algebra-app-list">
+                            <li>Kinematic equations in physics</li>
+                            <li>Chemical equilibrium calculations</li>
+                            <li>Population growth models</li>
+                            <li>Thermodynamic equations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="algebra-app-card">
+                        <h3><i class="fas fa-robot"></i> Technological Algebra</h3>
+                        <ul class="algebra-app-list">
+                            <li>Computer graphics transformations</li>
+                            <li>Machine learning algorithms</li>
+                            <li>Cryptographic systems</li>
+                            <li>Network optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="algebra-app-card">
+                        <h3><i class="fas fa-building"></i> Engineering Algebra</h3>
+                        <ul class="algebra-app-list">
+                            <li>Structural analysis equations</li>
+                            <li>Circuit analysis formulas</li>
+                            <li>Control system design</li>
+                            <li>Fluid dynamics calculations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="algebra-real-world">
+                    <h3><i class="fas fa-car"></i> Real-World Algebra: Car Loan Calculation</h3>
+                    <div class="algebra-real-world-content">
+                        <p>Monthly Payment Formula:</p>
+                        <div class="algebra-real-world-formula">
+                            P = [rPV]/[1-(1+r)<sup>-n</sup>]
+                        </div>
+                        <div class="algebra-real-world-variables">
+                            <p><strong>Where:</strong></p>
+                            <p>P = Monthly Payment ($471.78)</p>
+                            <p>PV = Loan Amount ($25,000)</p>
+                            <p>r = Monthly Rate (5% APR = 0.05/12)</p>
+                            <p>n = Number of Payments (60 months)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="algebra-exercises" class="algebra-section">
+                <h2><i class="fas fa-pencil-alt"></i> Algebraic Practice Problems</h2>
+            
+                <div class="algebra-exercise-category">
+                    <h3><i class="fas fa-calculator"></i> Basic Algebraic Manipulation</h3>
+                    <ol class="algebra-exercise-list">
+                        <li>Simplify the expression: 4(2x - 3) + 5x</li>
+                        <li>Evaluate 3x² - 2x + 1 when x = -2</li>
+                        <li>Expand and simplify: (x + 3)(x - 5)</li>
+                        <li>Factor completely: x² - 9x + 20</li>
+                        <li>Simplify: (2x² - 3x + 4) - (x² + 2x - 5)</li>
+                    </ol>
+                </div>
+            
+                <div class="algebra-exercise-category">
+                    <h3><i class="fas fa-equals"></i> Equation Solving</h3>
+                    <ol class="algebra-exercise-list" start="6">
+                        <li>Solve for x: 5x - 8 = 3x + 4</li>
+                        <li>Find all real solutions: x² + 5x - 14 = 0</li>
+                        <li>Solve: 2(x - 1) = 3(x + 4)</li>
+                        <li>Solve the quadratic equation: x² - 4x - 21 = 0</li>
+                        <li>Solve for x: (x - 2)(x + 6) = 0</li>
+                    </ol>
+                </div>
+            
+                <div class="algebra-exercise-category">
+                    <h3><i class="fas fa-question"></i> Word Problems</h3>
+                    <ol class="algebra-exercise-list" start="11">
+                        <li>The sum of three consecutive integers is 72. Find the integers.</li>
+                        <li>A rectangle has a length that is 3cm more than twice its width. If the perimeter is 54cm, find the dimensions.</li>
+                        <li>A number increased by 6 is equal to 3 times the number. Find the number.</li>
+                        <li>The difference of the squares of two consecutive integers is 15. Find the integers.</li>
+                        <li>If 4 pencils and 3 pens cost $3.50, and 2 pencils and 1 pen cost $1.50, find the cost of one pencil and one pen.</li>
+                    </ol>
+                </div>
+            
+                <div class="algebra-exercise-category">
+                    <h3><i class="fas fa-project-diagram"></i> Systems of Equations</h3>
+                    <ol class="algebra-exercise-list" start="16">
+                        <li>Solve the system: 
+                            <div class="algebra-system">
+                                <p>2x + y = 7</p>
+                                <p>x - y = -1</p>
+                            </div>
+                        </li>
+                        <li>Solve the system: 
+                            <div class="algebra-system">
+                                <p>x + 2y = 8</p>
+                                <p>3x - y = 5</p>
+                            </div>
+                        </li>
+                        <li>Solve the system by substitution: 
+                            <div class="algebra-system">
+                                <p>y = 2x + 1</p>
+                                <p>3x + y = 10</p>
+                            </div>
+                        </li>
+                        <li>Solve using elimination: 
+                            <div class="algebra-system">
+                                <p>4x - 3y = 5</p>
+                                <p>2x + y = 7</p>
+                            </div>
+                        </li>
+                        <li>Solve the system:
+                            <div class="algebra-system">
+                                <p>x + y + z = 6</p>
+                                <p>2x - y + z = 3</p>
+                                <p>x - 2y + 3z = 14</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>            
+            
+            <section id="algebra-quiz" class="algebra-section">
+                <h2><i class="fas fa-question-circle"></i> Algebraic Concepts Quiz</h2>
+                <form id="algebra-quiz-form">
+                    <!-- Question 1 -->
+                    <div class="quiz-question">
+                        <p>1. What is the solution to the equation 3x - 7 = 14?</p>
+                        <label><input type="radio" name="q1" value="A"> x = 7</label>
+                        <label><input type="radio" name="q1" value="B"> x = 9</label>
+                        <label><input type="radio" name="q1" value="C"> x = 21</label>
+                    </div>
+            
+                    <!-- Question 2 -->
+                    <div class="quiz-question">
+                        <p>2. Which is the correct factored form of x² - 9?</p>
+                        <label><input type="radio" name="q2" value="A"> (x-3)(x-3)</label>
+                        <label><input type="radio" name="q2" value="B"> (x+3)(x-3)</label>
+                        <label><input type="radio" name="q2" value="C"> (x+9)(x-1)</label>
+                    </div>
+            
+                    <!-- Question 3 -->
+                    <div class="quiz-question">
+                        <p>3. What is the slope of the line y = -2x + 5?</p>
+                        <label><input type="radio" name="q3" value="A"> 5</label>
+                        <label><input type="radio" name="q3" value="B"> -2</label>
+                        <label><input type="radio" name="q3" value="C"> 2</label>
+                    </div>
+            
+                    <!-- Question 4 -->
+                    <div class="quiz-question">
+                        <p>4. Solve the inequality: -3x ≤ 12</p>
+                        <label><input type="radio" name="q4" value="A"> x ≤ -4</label>
+                        <label><input type="radio" name="q4" value="B"> x ≥ -4</label>
+                        <label><input type="radio" name="q4" value="C"> x ≥ 4</label>
+                    </div>
+            
+                    <!-- Question 5 -->
+                    <div class="quiz-question">
+                        <p>5. What is the solution to the system: 
+                           <br>2x + y = 7
+                           <br>x - y = -1?
+                        </p>
+                        <label><input type="radio" name="q5" value="A"> x=2, y=3</label>
+                        <label><input type="radio" name="q5" value="B"> x=3, y=1</label>
+                        <label><input type="radio" name="q5" value="C"> x=1, y=5</label>
+                    </div>
+            
+                    <!-- Question 6 -->
+                    <div class="quiz-question">
+                        <p>6. Simplify: (3x² - 2x + 5) + (x² + 4x - 3)</p>
+                        <label><input type="radio" name="q6" value="A"> 4x² + 2x + 2</label>
+                        <label><input type="radio" name="q6" value="B"> 3x² + 6x + 8</label>
+                        <label><input type="radio" name="q6" value="C"> 2x² - 6x + 8</label>
+                    </div>
+            
+                    <!-- Question 7 -->
+                    <div class="quiz-question">
+                        <p>7. What is the y-intercept of y = ½x - 4?</p>
+                        <label><input type="radio" name="q7" value="A"> (0, ½)</label>
+                        <label><input type="radio" name="q7" value="B"> (0, -4)</label>
+                        <label><input type="radio" name="q7" value="C"> (0, 4)</label>
+                    </div>
+            
+                    <!-- Question 8 -->
+                    <div class="quiz-question">
+                        <p>8. Factor completely: x² - 5x - 14</p>
+                        <label><input type="radio" name="q8" value="A"> (x-7)(x+2)</label>
+                        <label><input type="radio" name="q8" value="B"> (x-14)(x+1)</label>
+                        <label><input type="radio" name="q8" value="C"> (x-2)(x+7)</label>
+                    </div>
+            
+                    <!-- Question 9 -->
+                    <div class="quiz-question">
+                        <p>9. Solve for x: 2(x - 3) = 4x + 6</p>
+                        <label><input type="radio" name="q9" value="A"> x = -6</label>
+                        <label><input type="radio" name="q9" value="B"> x = 0</label>
+                        <label><input type="radio" name="q9" value="C"> x = 6</label>
+                    </div>
+            
+                    <!-- Question 10 -->
+                    <div class="quiz-question">
+                        <p>10. What is the vertex of the parabola y = x² - 6x + 5?</p>
+                        <label><input type="radio" name="q10" value="A"> (3, -4)</label>
+                        <label><input type="radio" name="q10" value="B"> (-3, 32)</label>
+                        <label><input type="radio" name="q10" value="C"> (6, 5)</label>
+                    </div>
+            
+                    <!-- Question 11 -->
+                    <div class="quiz-question">
+                        <p>11. Which equation represents a vertical line?</p>
+                        <label><input type="radio" name="q11" value="A"> y = 3</label>
+                        <label><input type="radio" name="q11" value="B"> x = -2</label>
+                        <label><input type="radio" name="q11" value="C"> y = x + 1</label>
+                    </div>
+            
+                    <!-- Question 12 -->
+                    <div class="quiz-question">
+                        <p>12. Simplify: (2x³)⁴</p>
+                        <label><input type="radio" name="q12" value="A"> 2x⁷</label>
+                        <label><input type="radio" name="q12" value="B"> 8x¹²</label>
+                        <label><input type="radio" name="q12" value="C"> 16x¹²</label>
+                    </div>
+            
+                    <!-- Question 13 -->
+                    <div class="quiz-question">
+                        <p>13. What is the domain of f(x) = √(x - 4)?</p>
+                        <label><input type="radio" name="q13" value="A"> x ≥ 0</label>
+                        <label><input type="radio" name="q13" value="B"> x ≥ 4</label>
+                        <label><input type="radio" name="q13" value="C"> All real numbers</label>
+                    </div>
+            
+                    <!-- Question 14 -->
+                    <div class="quiz-question">
+                        <p>14. Solve: |2x - 5| = 11</p>
+                        <label><input type="radio" name="q14" value="A"> x = 8</label>
+                        <label><input type="radio" name="q14" value="B"> x = -3 or x = 8</label>
+                        <label><input type="radio" name="q14" value="C"> x = -3</label>
+                    </div>
+            
+                    <!-- Question 15 -->
+                    <div class="quiz-question">
+                        <p>15. Which is the equation of a line with slope -3 passing through (2, 5)?</p>
+                        <label><input type="radio" name="q15" value="A"> y = -3x + 11</label>
+                        <label><input type="radio" name="q15" value="B"> y = -3x - 1</label>
+                        <label><input type="radio" name="q15" value="C"> y = -3x + 1</label>
+                    </div>
+            
+                    <!-- Question 16 -->
+                    <div class="quiz-question">
+                        <p>16. What is the discriminant of x² + 5x + 6 = 0?</p>
+                        <label><input type="radio" name="q16" value="A"> 1</label>
+                        <label><input type="radio" name="q16" value="B"> -1</label>
+                        <label><input type="radio" name="q16" value="C"> 49</label>
+                    </div>
+            
+                    <!-- Question 17 -->
+                    <div class="quiz-question">
+                        <p>17. Solve the proportion: 3/5 = x/15</p>
+                        <label><input type="radio" name="q17" value="A"> x = 9</label>
+                        <label><input type="radio" name="q17" value="B"> x = 25</label>
+                        <label><input type="radio" name="q17" value="C"> x = 6</label>
+                    </div>
+            
+                    <!-- Question 18 -->
+                    <div class="quiz-question">
+                        <p>18. Expand: (x + 3)²</p>
+                        <label><input type="radio" name="q18" value="A"> x² + 9</label>
+                        <label><input type="radio" name="q18" value="B"> x² + 3x + 9</label>
+                        <label><input type="radio" name="q18" value="C"> x² + 6x + 9</label>
+                    </div>
+            
+                    <!-- Question 19 -->
+                    <div class="quiz-question">
+                        <p>19. Which expression is equivalent to 2x⁻³?</p>
+                        <label><input type="radio" name="q19" value="A"> 1/(2x³)</label>
+                        <label><input type="radio" name="q19" value="B"> 2/x³</label>
+                        <label><input type="radio" name="q19" value="C"> -6x²</label>
+                    </div>
+            
+                    <!-- Question 20 -->
+                    <div class="quiz-question">
+                        <p>20. What is the range of f(x) = x² + 2?</p>
+                        <label><input type="radio" name="q20" value="A"> y ≥ 0</label>
+                        <label><input type="radio" name="q20" value="B"> y ≥ 2</label>
+                        <label><input type="radio" name="q20" value="C"> All real numbers</label>
+                    </div>
+            
+                    <!-- Submit Button -->
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="algebra-quiz-result"></div>
+            </section>
+              
+            <script>
+                // Answer Key for the Algebra Quiz (20 questions)
+                const algebraAnswerKey = {
+                    q1: "A",  // x = 7
+                    q2: "B",  // (x+3)(x-3)
+                    q3: "B",  // -2
+                    q4: "B",  // x ≥ -4
+                    q5: "A",  // x=2, y=3
+                    q6: "A",  // 4x² + 2x + 2
+                    q7: "B",  // (0, -4)
+                    q8: "A",  // (x-7)(x+2)
+                    q9: "A",  // x = -6
+                    q10: "A", // (3, -4)
+                    q11: "B", // x = -2
+                    q12: "C", // 16x¹²
+                    q13: "B", // x ≥ 4
+                    q14: "B", // x = -3 or x = 8
+                    q15: "A", // y = -3x + 11
+                    q16: "A", // 1
+                    q17: "A", // x = 9
+                    q18: "C", // x² + 6x + 9
+                    q19: "B", // 2/x³
+                    q20: "B"  // y ≥ 2
+                };
+            
+                // Handle the algebra quiz submission
+                document.getElementById('algebra-quiz-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+            
+                    let score = 0;
+                    const totalQuestions = Object.keys(algebraAnswerKey).length;
+            
+                    // Loop through each question and check if the selected answer is correct
+                    for (let i = 1; i <= totalQuestions; i++) {
+                        const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                        if (selectedAnswer && selectedAnswer.value === algebraAnswerKey[`q${i}`]) {
+                            score++;
+                        }
+                    }
+            
+                    // Display the result
+                    const result = document.getElementById('algebra-quiz-result');
+                    const percentage = (score / totalQuestions * 100).toFixed(1);
+                    
+                    // Create a result message with styling
+                    result.innerHTML = `
+                        <div class="quiz-result-box">
+                            <h3>Your Score: ${score} / ${totalQuestions} (${percentage}%)</h3>
+                            <div class="quiz-feedback">
+                                ${score >= 15 ? 
+                                  '<p><i class="fas fa-check-circle"></i> Excellent work! You have a strong understanding of algebra.</p>' :
+                                  score >= 10 ?
+                                  '<p><i class="fas fa-thumbs-up"></i> Good job! Review the questions you missed to improve.</p>' :
+                                  '<p><i class="fas fa-book"></i> Keep practicing! Review the algebra concepts and try again.</p>'
+                                }
+                            </div>
+                        </div>
+                    `;
+                });
+            </script>
+            
+            <section id="videos" class="algebra-section">
+                <h2><i class="fas fa-video"></i> Algebra Video Tutorials</h2>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <iframe src="https://www.youtube.com/watch?v=NybHckSEQBI" 
+                               frameborder="0" 
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                               allowfullscreen></iframe>
+                        <h3>Algebra Basics</h3>
+                        <p>Learn the fundamentals of algebra including variables and expressions.</p>
+                    </div>
+                    <div class="video-card">
+                        <iframe src="https://www.youtube.com/watch?v=l3XzepN03KQ" 
+                               frameborder="0" 
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                               allowfullscreen></iframe>
+                        <h3>Solving Equations</h3>
+                        <p>Master techniques for solving linear and quadratic equations.</p>
+                    </div>
+                    <div class="video-card">
+                        <iframe src=" https://www.youtube.com/watch?v=MFzDaBzBlL0" 
+                               frameborder="0" 
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                               allowfullscreen></iframe>
+                        <h3>Graphing Functions</h3>
+                        <p>Understand how to graph linear, quadratic, and polynomial functions.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="forum" class="algebra-section">
+                <h2><i class="fas fa-comments"></i> Algebra Discussion Forum</h2>
+                <p>Have questions about algebraic concepts? Join the discussion with other learners:</p>
+            
+                <!-- Forum Post Form -->
+                <form id="forumForm">
+                    <label for="userName">Your Name:</label>
+                    <input type="text" id="userName" name="userName" required>
+            
+                    <label for="userPost">Your Question or Comment:</label>
+                    <textarea id="userPost" name="userPost" rows="5" required></textarea>
+            
+                    <button type="submit">Post</button>
+                </form>
+            
+                <!-- Recent Posts -->
+                <h3>Recent Discussions</h3>
+                <div id="forumPosts">
+                    <!-- Posts will be dynamically loaded here -->
+                </div>
+            </section>
+            <script src="algebraapp.js"></script>
+            <script src="algebrascript.js"></script>
+            <script>
+                // Algebra Forum Functionality
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Load posts from localStorage on page load
+                    function loadAlgebraPosts() {
+                        const forumPosts = JSON.parse(localStorage.getItem('algebraForumPosts')) || [];
+                        const forumPostsDiv = document.getElementById('forumPosts');
+                        forumPostsDiv.innerHTML = '';  // Clear any existing posts
+            
+                        // Display posts in reverse order (newest first)
+                        forumPosts.reverse().forEach((post, index) => {
+                            const postDiv = document.createElement('div');
+                            postDiv.classList.add('forumPost');
+                            postDiv.innerHTML = `
+                                <div class="forum-post-header">
+                                    <h4>${post.userName}</h4>
+                                    <span class="post-time">${new Date(post.timestamp).toLocaleString()}</span>
+                                </div>
+                                <div class="forum-post-content">${post.userPost}</div>
+                                ${index === 0 ? '<div class="new-post-indicator">New</div>' : ''}
+                            `;
+                            forumPostsDiv.appendChild(postDiv);
+                        });
+                    }
+            
+                    // Add a new post to localStorage
+                    document.getElementById('forumForm').addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        
+                        const userName = document.getElementById('userName').value.trim();
+                        const userPost = document.getElementById('userPost').value.trim();
+            
+            
+                        // Get existing posts from localStorage
+                        const forumPosts = JSON.parse(localStorage.getItem('algebraForumPosts')) || [];
+                        
+                        // Create new post object with timestamp
+                        const newPost = { 
+                            userName, 
+                            userPost,
+                            timestamp: new Date().toISOString()
+                        };
+                        
+                        // Add new post to the list
+                        forumPosts.push(newPost);
+            
+                        // Save the updated posts array to localStorage
+                        localStorage.setItem('algebraForumPosts', JSON.stringify(forumPosts));
+            
+                        // Reload posts to display the new one
+                        loadAlgebraPosts();
+            
+                        // Clear form fields
+                        document.getElementById('userName').value = '';
+                        document.getElementById('userPost').value = '';
+                        
+                        // Scroll to the new post
+                        window.scrollTo(0, document.getElementById('forumPosts').offsetTop);
+                    });
+            
+                    // Initially load posts when the page loads
+                    loadAlgebraPosts();
+                });
+            </script>
+
+     </body>
+            </html>

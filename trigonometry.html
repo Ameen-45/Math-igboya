@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometry - IGBOYA</title>
+    <link rel="stylesheet" href="trigonometrystyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="side-nav-content">
+                <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <section id="trigonometry-introduction">
+                <h1><i class="fas fa-triangle"></i>Trigonometry</h1>
+                <p>Trigonometry is a branch of mathematics that studies relationships between the angles and sides of triangles. Derived from Greek words "trigonon" (triangle) and "metron" (measure), it is fundamental in STEM fields and beyond.</p>
+                
+                <div class="history-box">
+                    <h3><i class="fas fa-history"></i> Historical Context</h3>
+                    <p>First developed by ancient Greek, Indian, and Arab mathematicians for astronomy and navigation. Hipparchus (c. 190-120 BCE) created the first trigonometric tables.</p>
+                </div>
+        
+                <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h4>Right Triangles</h4>
+                        <p>The foundation of basic trigonometry with one 90° angle</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Angle Measurement</h4>
+                        <p>Degrees (°) and radians (rad) - π rad = 180°</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Periodicity</h4>
+                        <p>Trig functions repeat every 360° (2π rad)</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Triangular Solving</h4>
+                        <p>Find missing sides/angles using ratios</p>
+                    </div>
+                </div>
+            </section>
+        
+            <section id="trigonometry-functions">
+                <h2><i class="fas fa-superscript"></i> Core Trigonometric Functions</h2>
+                
+                <div class="function-grid">
+                    <div class="function-card">
+                        <h3>Sine (sin)</h3>
+                        <p class="formula">sin(θ) = Opposite / Hypotenuse</p>
+                        <div class="trigonometry-triangle-diagram">
+                            <div class="triangle"></div>
+                            <span class="opposite">Opposite</span>
+                            <span class="hypotenuse">Hypotenuse</span>
+                            <span class="theta">θ</span>
+                        </div>
+                        <p>Represents the vertical component in the unit circle.</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <h3>Cosine (cos)</h3>
+                        <p class="formula">cos(θ) = Adjacent / Hypotenuse</p>
+                        <div class="trigonometry-triangle-diagram">
+                            <div class="triangle"></div>
+                            <span class="adjacent">Adjacent</span>
+                            <span class="hypotenuse">Hypotenuse</span>
+                            <span class="theta">θ</span>
+                        </div>
+                        <p>Represents the horizontal component in the unit circle.</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <h3>Tangent (tan)</h3>
+                        <p class="formula">tan(θ) = Opposite / Adjacent</p>
+                        <div class="trigonometry-triangle-diagram">
+                            <div class="triangle"></div>
+                            <span class="opposite">Opposite</span>
+                            <span class="adjacent">Adjacent</span>
+                            <span class="theta">θ</span>
+                        </div>
+                        <p>Represents the slope of the terminal side in the unit circle.</p>
+                    </div>
+                </div>
+                
+                <h3>Reciprocal Functions</h3>
+                <div class="reciprocal-grid">
+                    <div class="reciprocal-card">
+                        <h4>Cosecant (csc)</h4>
+                        <p class="formula">csc(θ) = 1/sin(θ)</p>
+                    </div>
+                    <div class="reciprocal-card">
+                        <h4>Secant (sec)</h4>
+                        <p class="formula">sec(θ) = 1/cos(θ)</p>
+                    </div>
+                    <div class="reciprocal-card">
+                        <h4>Cotangent (cot)</h4>
+                        <p class="formula">cot(θ) = 1/tan(θ)</p>
+                    </div>
+                </div>
+            </section>        
+
+            <section id="trigonometry-ratios">
+                <h2><i class="fas fa-percentage"></i> Trigonometric Ratios</h2>
+                
+                <div class="trigonometry-ratio-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Angle (θ)</th>
+                                <th>sin(θ)</th>
+                                <th>cos(θ)</th>
+                                <th>tan(θ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0°</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>30° (π/6)</td>
+                                <td>1/2</td>
+                                <td>√3/2</td>
+                                <td>√3/3</td>
+                            </tr>
+                            <tr>
+                                <td>45° (π/4)</td>
+                                <td>√2/2</td>
+                                <td>√2/2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>60° (π/3)</td>
+                                <td>√3/2</td>
+                                <td>1/2</td>
+                                <td>√3</td>
+                            </tr>
+                            <tr>
+                                <td>90° (π/2)</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>∞</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+                <h3>Special Right Triangles</h3>
+                <div class="trigonometry-special-triangles">
+                    <div class="trigonometry-triangle-card">
+                        <h4>30-60-90 Triangle</h4>
+                        <div class="trigonometry-triangle-30-60-90">
+                            <div class="triangle-30"></div>
+                            <div class="triangle-60"></div>
+                            <div class="triangle-hypotenuse"></div>
+                        </div>
+                        <p>Ratio of sides: 1 : √3 : 2. This is a special right triangle where the angle between the legs is 60°, and the other angle is 30°. The hypotenuse is always twice the length of the shorter leg, and the longer leg is √3 times the shorter leg.</p>
+                    </div>
+                    <div class="trigonometry-triangle-card">
+                        <h4>45-45-90 Triangle</h4>
+                        <div class="trigonometry-triangle-45-45-90">
+                            <div class="triangle-45"></div>
+                            <div class="triangle-45"></div>
+                            <div class="triangle-hypotenuse"></div>
+                        </div>
+                        <p>Ratio of sides: 1 : 1 : √2. This is an isosceles right triangle where both angles are 45°. The two legs are equal in length, and the hypotenuse is √2 times the length of each leg.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="trigonometry-identities">
+                <h2><i class="fas fa-equals"></i> Trigonometric Identities</h2>
+                
+                <!-- Pythagorean Identities Section -->
+                <div class="trigonometry-identity-section">
+                    <h3>Pythagorean Identities</h3>
+                    <p class="identity-explanation">The Pythagorean identities are fundamental equations in trigonometry derived from the Pythagorean theorem. These identities relate the sine, cosine, and tangent functions to one another.</p>
+                    <div class="trigonometry-identity-grid">
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">sin²θ + cos²θ = 1</p>
+                            <div class="identity-diagram pythagorean-diagram">
+                                <!-- Diagram Placeholder for sin²θ + cos²θ = 1 -->
+                                <div class="triangle"></div>
+                                <span>sin²θ + cos²θ</span>
+                                <span>= 1</span>
+                            </div>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">1 + tan²θ = sec²θ</p>
+                            <div class="identity-diagram pythagorean-diagram">
+                                <!-- Diagram Placeholder for 1 + tan²θ = sec²θ -->
+                                <div class="triangle"></div>
+                                <span>1 + tan²θ</span>
+                                <span>= sec²θ</span>
+                            </div>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">1 + cot²θ = csc²θ</p>
+                            <div class="identity-diagram pythagorean-diagram">
+                                <!-- Diagram Placeholder for 1 + cot²θ = csc²θ -->
+                                <div class="triangle"></div>
+                                <span>1 + cot²θ</span>
+                                <span>= csc²θ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Angle Sum and Difference Section -->
+                <div class="trigonometry-identity-section">
+                    <h3>Angle Sum and Difference</h3>
+                    <p class="identity-explanation">These identities allow us to simplify the trigonometric functions of sums or differences of angles. They are used extensively in solving trigonometric equations.</p>
+                    <div class="trigonometry-identity-grid">
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">sin(A±B) = sinAcosB ± cosAsinB</p>
+                            <div class="identity-diagram angle-diagram">
+                                <!-- Diagram Placeholder for sin(A±B) -->
+                                <div class="angle-sum-diagram"></div>
+                                <span>sin(A±B)</span>
+                            </div>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">cos(A±B) = cosAcosB ∓ sinAsinB</p>
+                            <div class="identity-diagram angle-diagram">
+                                <!-- Diagram Placeholder for cos(A±B) -->
+                                <div class="angle-difference-diagram"></div>
+                                <span>cos(A±B)</span>
+                            </div>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">tan(A±B) = (tanA ± tanB)/(1 ∓ tanAtanB)</p>
+                            <div class="identity-diagram angle-diagram">
+                                <!-- Diagram Placeholder for tan(A±B) -->
+                                <div class="angle-sum-diagram"></div>
+                                <span>tan(A±B)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Double Angle Formulas Section -->
+                <div class="trigonometry-identity-section">
+                    <h3>Double Angle Formulas</h3>
+                    <p class="identity-explanation">The double angle formulas are used to express trigonometric functions of double angles. These identities are useful in simplifying complex trigonometric expressions.</p>
+                    <div class="trigonometry-identity-grid">
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">sin(2θ) = 2sinθcosθ</p>
+                            <div class="identity-diagram double-angle-diagram">
+                                <!-- Diagram Placeholder for sin(2θ) -->
+                                <div class="double-angle-diagram"></div>
+                                <span>sin(2θ)</span>
+                            </div>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">cos(2θ) = cos²θ - sin²θ</p>
+                            <div class="identity-diagram double-angle-diagram">
+                                <!-- Diagram Placeholder for cos(2θ) -->
+                                <div class="double-angle-diagram"></div>
+                                <span>cos(2θ)</span>
+                            </div>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <p class="formula">tan(2θ) = 2tanθ/(1 - tan²θ)</p>
+                            <div class="identity-diagram double-angle-diagram">
+                                <!-- Diagram Placeholder for tan(2θ) -->
+                                <div class="double-angle-diagram"></div>
+                                <span>tan(2θ)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+
+        <!-- Encouragement Section -->
+<section id="encouragement">
+    <h2><i class="fas fa-lightbulb"></i> Keep Going, You're Doing Great!</h2>
+    <p>
+        Trigonometry can seem challenging at first, but with every step you take, you’re getting closer to mastering it! 
+        Remember, the unit circle is a powerful tool in understanding how angles and trigonometric functions work together.
+        Keep going, stay curious, and trust that with practice, the concepts will start to make sense. You’ve got this!
+    </p>
+    <p>
+        Stay positive, keep practicing, and take it one angle at a time. The journey might be long, but every small step counts towards mastering these concepts.
+    </p>
+    <div class="motivational-quote">
+        <p><em>"The harder you work for something, the greater you'll feel when you achieve it."</em></p>
+        <p><strong>Keep pushing forward!</strong></p>
+    </div>
+</section>
+
+<!-- Unit Circle Trigonometry Section -->
+        <section id="unit-circle">
+            <h2><i class="fas fa-circle"></i> Unit Circle Trigonometry</h2>
+        <div class="unit-circle-properties">
+            <h3>Key Properties</h3>
+            <p class="unit-circle-description">
+                The unit circle is a circle with a radius of 1 centered at the origin of the coordinate plane.
+                Trigonometric functions can be defined based on this circle. It plays a fundamental role in 
+                connecting algebraic and geometric aspects of trigonometry.
+            </p>
+            <ul>
+                <li>Radius = 1 unit</li>
+                <li>Coordinates of any point on the circle: (cosθ, sinθ)</li>
+                <li>Quadrant signs (based on angle θ):
+                    <ul>
+                        <li>Q1: All functions positive (sin, cos, tan)</li>
+                        <li>Q2: sin positive, cos and tan negative</li>
+                        <li>Q3: tan positive, sin and cos negative</li>
+                        <li>Q4: cos positive, sin and tan negative</li>
+                    </ul>
+                </li>
+                <li>Reference angles: Any angle can be reduced to an equivalent angle in the first quadrant (Q1)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <h3>Radians and Degrees</h3>
+    <div class="conversion-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Degrees</th>
+                    <th>Radians</th>
+                    <th>Exact Coordinates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0°</td>
+                    <td>0</td>
+                    <td>(1, 0)</td>
+                </tr>
+                <tr>
+                    <td>30°</td>
+                    <td>π/6</td>
+                    <td>(√3/2, 1/2)</td>
+                </tr>
+                <tr>
+                    <td>45°</td>
+                    <td>π/4</td>
+                    <td>(√2/2, √2/2)</td>
+                </tr>
+                <tr>
+                    <td>60°</td>
+                    <td>π/3</td>
+                    <td>(1/2, √3/2)</td>
+                </tr>
+                <tr>
+                    <td>90°</td>
+                    <td>π/2</td>
+                    <td>(0, 1)</td>
+                </tr>
+                <tr>
+                    <td>120°</td>
+                    <td>2π/3</td>
+                    <td>(-1/2, √3/2)</td>
+                </tr>
+                <tr>
+                    <td>135°</td>
+                    <td>3π/4</td>
+                    <td>(-√2/2, √2/2)</td>
+                </tr>
+                <tr>
+                    <td>150°</td>
+                    <td>5π/6</td>
+                    <td>(-√3/2, 1/2)</td>
+                </tr>
+                <tr>
+                    <td>180°</td>
+                    <td>π</td>
+                    <td>(-1, 0)</td>
+                </tr>
+                <tr>
+                    <td>270°</td>
+                    <td>3π/2</td>
+                    <td>(0, -1)</td>
+                </tr>
+                <tr>
+                    <td>360°</td>
+                    <td>2π</td>
+                    <td>(1, 0)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Unit Circle Explanation</h3>
+    <div class="unit-circle-explanation">
+        <p>
+            The unit circle allows us to easily define trigonometric functions for all angles. The coordinates 
+            of a point on the circle are given by (cosθ, sinθ), where θ is the angle formed by the radius with the 
+            positive x-axis. This circle is crucial for understanding the periodic nature of trigonometric functions 
+            and for finding values of sin, cos, and tan at various angles.
+        </p>
+        
+        <div class="unit-circle-example">
+            <h4>Example: Finding Coordinates of 45° (π/4)</h4>
+            <p>The coordinates of a point at 45° (or π/4) on the unit circle are:</p>
+            <ul>
+                <li>cos(45°) = √2/2</li>
+                <li>sin(45°) = √2/2</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+        <!-- Encouragement Section -->
+<section id="encouragement">
+    <h2><i class="fas fa-lightbulb"></i> You're on the Right Path!</h2>
+    <p>
+        Trigonometry isn't just an abstract concept—it's a powerful tool used in many fields that impact our daily lives! 
+        Whether you’re analyzing waves, designing machines, or mapping out the world, trigonometry plays a crucial role. 
+        Keep up the great work! You're getting closer to mastering the skills that professionals in physics, engineering, navigation, and computer graphics use every day. 
+        Embrace the challenge—you're capable of amazing things!
+    </p>
+    <div class="motivational-quote">
+        <p><em>"The future belongs to those who believe in the beauty of their dreams."</em></p>
+        <p><strong>Keep believing, keep learning, and keep growing!</strong></p>
+    </div>
+</section>
+
+<!-- Applications of Trigonometry Section -->
+<section id="applications">
+    <h2><i class="fas fa-rocket"></i> Applications of Trigonometry</h2>
+    
+    <div class="applications-grid">
+        <div class="application-card">
+            <h3><i class="fas fa-satellite-dish"></i> Physics</h3>
+            <ul>
+                <li>Wave mechanics (sine waves)</li>
+                <li>Projectile motion analysis</li>
+                <li>Force vector decomposition</li>
+                <li>Simple harmonic motion</li>
+            </ul>
+        </div>
+        
+        <div class="application-card">
+            <h3><i class="fas fa-building"></i> Engineering</h3>
+            <ul>
+                <li>Structural load calculations</li>
+                <li>Electrical AC circuit analysis</li>
+                <li>Signal processing (Fourier transforms)</li>
+                <li>Mechanical advantage in machines</li>
+            </ul>
+        </div>
+        
+        <div class="application-card">
+            <h3><i class="fas fa-map-marked-alt"></i> Navigation</h3>
+            <ul>
+                <li>GPS and triangulation</li>
+                <li>Celestial navigation</li>
+                <li>Bearing calculations</li>
+                <li>Great circle routes</li>
+            </ul>
+        </div>
+        
+        <div class="application-card">
+            <h3><i class="fas fa-laptop-code"></i> Computer Graphics</h3>
+            <ul>
+                <li>3D rendering and rotations</li>
+                <li>Game physics</li>
+                <li>Animation trajectories</li>
+                <li>Perspective transformations</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="real-world-example">
+        <h3><i class="fas fa-mountain"></i> Real-World Example: Height Measurement</h3>
+        <p>To measure the height of a tree without climbing it:</p>
+        <ol>
+            <li>Measure distance from tree (e.g., 20m)</li>
+            <li>Measure angle to top (e.g., 40°)</li>
+            <li>Calculate: height = distance × tan(angle)</li>
+            <li>Height = 20 × tan(40°) ≈ 16.78m</li>
+        </ol>
+    </div>
+</section>
+
+
+        <!-- Encouragement Section -->
+<section id="encouragement">
+    <h2><i class="fas fa-lightbulb"></i> You're Doing Amazing!</h2>
+    <p>
+        You're doing an excellent job mastering trigonometry! These exercises are designed to test your knowledge and challenge you to think critically. 
+        Keep pushing through and know that with each problem you solve, you're strengthening your understanding. Don't hesitate to take your time and approach each exercise step by step—success is just around the corner!
+    </p>
+    <div class="motivational-quote">
+        <p><em>"Success is the sum of small efforts, repeated day in and day out."</em></p>
+        <p><strong>You're making incredible progress—keep going!</strong></p>
+    </div>
+</section>
+
+<!-- Interactive Exercises Section -->
+<section id="exercises">
+    <h2><i class="fas fa-pencil-alt"></i> Interactive Exercises</h2>
+
+    <div class="exercise-section">
+        <h3>Basic Calculations</h3>
+        <ol>
+            <li>Find sin(30°) + cos(60°)</li>
+            <li>Calculate the exact value of tan(45°) × sec(60°)</li>
+            <li>If cos(θ) = 0.6, find sin(θ) using Pythagorean identity</li>
+            <li>Find the value of sin(90°) - cos(45°)</li>
+            <li>Calculate cos(30°) + tan(60°)</li>
+            <li>Determine sec(90°) - sin(0°)</li>
+            <li>If sin(θ) = 0.5, find cos(θ) using Pythagorean identity</li>
+            <li>Find the value of tan(45°) × cos(30°)</li>
+            <li>Evaluate sin(60°) × tan(30°)</li>
+            <li>Find the value of sec(0°) + tan(45°)</li>
+        </ol>
+    </div>
+
+    <div class="exercise-section">
+        <h3>Triangle Solving</h3>
+        <ol start="11">
+            <li>Right triangle has hypotenuse 10, angle 35°. Find opposite side.</li>
+            <li>Find all angles of a right triangle with sides 7, 24, 25.</li>
+            <li>Ladder 5m leans against wall at 75° angle. How high does it reach?</li>
+            <li>A triangle has angles 30°, 60°, and 90°. If the adjacent side is 6, find the opposite side.</li>
+            <li>In a right triangle, if the hypotenuse is 13 and one leg is 5, find the length of the other leg.</li>
+            <li>If the base of a right triangle is 8 and the height is 15, find the hypotenuse.</li>
+            <li>Find the missing angle in a right triangle if the opposite side is 5 and the adjacent side is 12.</li>
+            <li>Calculate the area of a triangle with base 10 and height 8.</li>
+        </ol>
+    </div>
+
+    <div class="exercise-section">
+        <h3>Identities Proof</h3>
+        <ol start="19">
+            <li>Prove that (1 - cos²θ)(1 + cot²θ) = 1</li>
+            <li>Verify the identity: sin(2θ) = 2tanθ/(1 + tan²θ)</li>
+            <li>Simplify: (sinθ + cosθ)² + (sinθ - cosθ)²</li>
+            <li>Prove that sec²θ - tan²θ = 1</li>
+            <li>Prove the identity: 1 - sin²θ = cos²θ</li>
+        </ol>
+    </div>
+
+    <div class="exercise-section">
+        <h3>Unit Circle</h3>
+        <ol start="24">
+            <li>Find exact value of sin(5π/4)</li>
+            <li>If terminal side passes through (-3,4), find all trig functions</li>
+            <li>Convert 225° to radians and find reference angle</li>
+            <li>Find the exact value of cos(3π/2)</li>
+            <li>If the terminal side passes through (5,12), find all trig functions.</li>
+            <li>Convert 150° to radians and find the reference angle.</li>
+            <li>Find the exact value of tan(π/3)</li>
+        </ol>
+    </div>
+
+    <div class="exercise-section">
+        <h3>Word Problems</h3>
+        <ol start="31">
+            <li>A ship sails 10km NE, then 15km NW. How far is it from start?</li>
+            <li>Find the angle of elevation of the sun when a 50m tower casts 30m shadow</li>
+            <li>Calculate the area of a parallelogram with sides 8 and 12 and included angle 60°</li>
+            <li>A building casts a 24m shadow. If the angle of elevation of the sun is 45°, find the height of the building.</li>
+            <li>Calculate the angle of depression of a lighthouse from a ship 150 meters away, given the height of the lighthouse is 50 meters.</li>
+        </ol>
+    </div>
+</section>
+
+<section id="trigonometry-quiz">
+    <h2><i class="fas fa-question-circle"></i> Trigonometry Quiz</h2>
+    <p>Great job! You've made it to the quiz. Take your time, and let's see how much you've learned!</p>
+    <form id="quiz-form">
+        <!-- Question 1 -->
+        <div class="quiz-question">
+            <p>1. What is sin(30°)?</p>
+            <label><input type="radio" name="q1" value="A"> 0.5</label>
+            <label><input type="radio" name="q1" value="B"> √3/2</label>
+            <label><input type="radio" name="q1" value="C"> √2/2</label>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="quiz-question">
+            <p>2. Which identity is correct?</p>
+            <label><input type="radio" name="q2" value="A"> sin²θ - cos²θ = 1</label>
+            <label><input type="radio" name="q2" value="B"> sin²θ + cos²θ = 1</label>
+            <label><input type="radio" name="q2" value="C"> sinθ + cosθ = 1</label>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-question">
+            <p>3. In a right triangle, if opposite=3 and adjacent=4, hypotenuse=?</p>
+            <label><input type="radio" name="q3" value="A"> 5</label>
+            <label><input type="radio" name="q3" value="B"> 7</label>
+            <label><input type="radio" name="q3" value="C"> 12</label>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="quiz-question">
+            <p>4. What is the period of the sine function?</p>
+            <label><input type="radio" name="q4" value="A"> π</label>
+            <label><input type="radio" name="q4" value="B"> 2π</label>
+            <label><input type="radio" name="q4" value="C"> π/2</label>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="quiz-question">
+            <p>5. Which angle has the same sine as 150°?</p>
+            <label><input type="radio" name="q5" value="A"> 30°</label>
+            <label><input type="radio" name="q5" value="B"> 60°</label>
+            <label><input type="radio" name="q5" value="C"> 210°</label>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="quiz-question">
+            <p>6. tan(θ) equals which ratio?</p>
+            <label><input type="radio" name="q6" value="A"> adjacent/opposite</label>
+            <label><input type="radio" name="q6" value="B"> opposite/hypotenuse</label>
+            <label><input type="radio" name="q6" value="C"> opposite/adjacent</label>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="quiz-question">
+            <p>7. What is the amplitude of y = 3sin(2x)?</p>
+            <label><input type="radio" name="q7" value="A"> 2</label>
+            <label><input type="radio" name="q7" value="B"> 3</label>
+            <label><input type="radio" name="q7" value="C"> 6</label>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="quiz-question">
+            <p>8. Which is NOT a trigonometric identity?</p>
+            <label><input type="radio" name="q8" value="A"> 1 + tan²θ = sec²θ</label>
+            <label><input type="radio" name="q8" value="B"> sin(2θ) = 2sinθcosθ</label>
+            <label><input type="radio" name="q8" value="C"> sinθ + cosθ = tanθ</label>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="quiz-question">
+            <p>9. What is the sine of 90°?</p>
+            <label><input type="radio" name="q9" value="A"> 1</label>
+            <label><input type="radio" name="q9" value="B"> 0</label>
+            <label><input type="radio" name="q9" value="C"> -1</label>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="quiz-question">
+            <p>10. Which function is periodic with period 2π?</p>
+            <label><input type="radio" name="q10" value="A"> sin(θ)</label>
+            <label><input type="radio" name="q10" value="B"> log(θ)</label>
+            <label><input type="radio" name="q10" value="C"> e^θ</label>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="quiz-question">
+            <p>11. What is cos(0°)?</p>
+            <label><input type="radio" name="q11" value="A"> 0</label>
+            <label><input type="radio" name="q11" value="B"> 1</label>
+            <label><input type="radio" name="q11" value="C"> -1</label>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="quiz-question">
+            <p>12. The sine of 180° is:</p>
+            <label><input type="radio" name="q12" value="A"> 1</label>
+            <label><input type="radio" name="q12" value="B"> 0</label>
+            <label><input type="radio" name="q12" value="C"> -1</label>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="quiz-question">
+            <p>13. What is tan(45°)?</p>
+            <label><input type="radio" name="q13" value="A"> 0</label>
+            <label><input type="radio" name="q13" value="B"> 1</label>
+            <label><input type="radio" name="q13" value="C"> √2</label>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="quiz-question">
+            <p>14. What is the reference angle for 150°?</p>
+            <label><input type="radio" name="q14" value="A"> 30°</label>
+            <label><input type="radio" name="q14" value="B"> 45°</label>
+            <label><input type="radio" name="q14" value="C"> 60°</label>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="quiz-question">
+            <p>15. What is sec(60°)?</p>
+            <label><input type="radio" name="q15" value="A"> 2</label>
+            <label><input type="radio" name="q15" value="B"> √2</label>
+            <label><input type="radio" name="q15" value="C"> 1/2</label>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="quiz-question">
+            <p>16. What is the cosine of 45°?</p>
+            <label><input type="radio" name="q16" value="A"> 1/2</label>
+            <label><input type="radio" name="q16" value="B"> √2/2</label>
+            <label><input type="radio" name="q16" value="C"> √3/2</label>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="quiz-question">
+            <p>17. What is csc(30°)?</p>
+            <label><input type="radio" name="q17" value="A"> 2</label>
+            <label><input type="radio" name="q17" value="B"> 1/2</label>
+            <label><input type="radio" name="q17" value="C"> √3</label>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="quiz-question">
+            <p>18. Which of the following is true for sin(θ) when θ = 90°?</p>
+            <label><input type="radio" name="q18" value="A"> sin(90°) = 0</label>
+            <label><input type="radio" name="q18" value="B"> sin(90°) = 1</label>
+            <label><input type="radio" name="q18" value="C"> sin(90°) = -1</label>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="quiz-question">
+            <p>19. What is the value of cos(90°)?</p>
+            <label><input type="radio" name="q19" value="A"> 0</label>
+            <label><input type="radio" name="q19" value="B"> 1</label>
+            <label><input type="radio" name="q19" value="C"> -1</label>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="quiz-question">
+            <p>20. What is the cotangent of 45°?</p>
+            <label><input type="radio" name="q20" value="A"> 1</label>
+            <label><input type="radio" name="q20" value="B"> 0</label>
+            <label><input type="radio" name="q20" value="C"> √3</label>
+        </div>
+
+        <button type="trig-submit">Submit</button>
+    </form>
+
+    <div id="quiz-results"></div>
+</section>
+<script>
+    // Answer Key for the Trigonometry Quiz (20 questions)
+    const trigAnswerKey = {
+        q1: "A", q2: "B", q3: "A", q4: "B", q5: "A",
+        q6: "C", q7: "B", q8: "C", q9: "A", q10: "A",
+        q11: "B", q12: "B", q13: "B", q14: "A", q15: "A",
+        q16: "B", q17: "A", q18: "B", q19: "A", q20: "A"
+    };
+    
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const quizForm = document.getElementById('quiz-form');
+        const resultDiv = document.getElementById('quiz-results');
+        
+        // Debugging: Check if elements exist
+        if (!quizForm) {
+            console.error('Quiz form not found! Check the ID "quiz-form"');
+            return;
+        }
+        if (!resultDiv) {
+            console.error('Result div not found! Check the ID "quiz-results"');
+            return;
+        }
+    
+        // Add submit event listener
+        quizForm.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+            console.log('Form submission intercepted'); // Debugging
+            
+            let score = 0;
+            const totalQuestions = Object.keys(trigAnswerKey).length;
+            const unanswered = [];
+            
+            // Check each answer
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionName = `q${i}`;
+                const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (!selectedAnswer) {
+                    unanswered.push(i);
+                    continue;
+                }
+                
+                if (selectedAnswer.value === trigAnswerKey[questionName]) {
+                    score++;
+                }
+            }
+            
+            // Calculate percentage
+            const percentage = (score / totalQuestions * 100).toFixed(1);
+            
+            // Create feedback message
+            let feedbackMessage;
+            if (unanswered.length > 0) {
+                feedbackMessage = `<p><i class="fas fa-exclamation-circle"></i> You didn't answer questions: ${unanswered.join(', ')}</p>`;
+            } else if (percentage >= 80) {
+                feedbackMessage = '<p><i class="fas fa-check-circle"></i> Excellent! You have mastered trigonometry concepts.</p>';
+            } else if (percentage >= 50) {
+                feedbackMessage = '<p><i class="fas fa-thumbs-up"></i> Good job! Review your missed questions.</p>';
+            } else {
+                feedbackMessage = '<p><i class="fas fa-book"></i> Keep practicing! Trigonometry takes time to master.</p>';
+            }
+            
+            // Display results
+            resultDiv.innerHTML = `
+                <div class="quiz-result-box">
+                    <h3>Your Score: ${score}/${totalQuestions} (${percentage}%)</h3>
+                    <div class="feedback">${feedbackMessage}</div>
+                    <div class="breakdown">
+                        <p>Topic Performance:</p>
+                        <ul>
+                            <li>Sine & Cosine: ${score >= 5 ? '✓' : '✗'}</li>
+                            <li>Tangents & Secants: ${score >= 7 ? '✓' : '✗'}</li>
+                            <li>Trigonometric Identities: ${score >= 4 ? '✓' : '✗'}</li>
+                            <li>Angles & Functions: ${score >= 4 ? '✓' : '✗'}</li>
+                        </ul>
+                    </div>
+                    <button class="retry-btn">Try Again</button>
+                </div>
+            `;
+            
+            // Add retry button functionality
+            resultDiv.querySelector('.retry-btn').addEventListener('click', function() {
+                quizForm.reset();
+                resultDiv.innerHTML = '';
+            });
+            
+            // Scroll to results
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+    </script>    
+
+<section id="trig-videos" class="trig-section">
+    <h2 class="trig-heading"><i class="fas fa-video"></i> Trigonometry Video Tutorials</h2>
+    
+    <div class="trig-encouragement">
+        <p><i class="fas fa-lightbulb"></i> Visual learning helps! These curated videos explain key trigonometry concepts with clear examples and demonstrations.</p>
+    </div>
+
+    <div class="trig-video-grid">
+        <div class="trig-video-card">
+            <div class="trig-video-container">
+                <iframe src="https://www.youtube.com/watch?v=PUB0TaZ7bhA" 
+                       frameborder="0" 
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                       allowfullscreen></iframe>
+            </div>
+            <h3 class="trig-video-title">Trigonometry Fundamentals</h3>
+            <p class="trig-video-description">Master the basic functions of sine, cosine, and tangent with clear graphical examples.</p>
+            <div class="trig-video-duration"><i class="fas fa-clock"></i> 15:23</div>
+        </div>
+
+        <div class="trig-video-card">
+            <div class="trig-video-container">
+                <iframe src="https://www.youtube.com/watch?v=YK7KoU6ELWg" 
+                       frameborder="0" 
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                       allowfullscreen></iframe>
+            </div>
+            <h3 class="trig-video-title">Understanding the Unit Circle</h3>
+            <p class="trig-video-description">Visual guide to understanding the unit circle and radian measure with examples.</p>
+            <div class="trig-video-duration"><i class="fas fa-clock"></i> 22:45</div>
+        </div>
+
+        <div class="trig-video-card">
+            <div class="trig-video-container">
+                <iframe src="https://www.youtube.com/watch?v=W6GbAtk08Vo" 
+                       frameborder="0" 
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                       allowfullscreen></iframe>
+            </div>
+            <h3 class="trig-video-title">Trig Identities Proofs</h3>
+            <p class="trig-video-description">Step-by-step explanations of the key trigonometric identities with examples.</p>
+            <div class="trig-video-duration"><i class="fas fa-clock"></i> 28:17</div>
+        </div>
+    </div>
+</section>
+
+<section id="trig-forum" class="trig-forum-section">
+    <div class="trig-forum-header">
+        <h2>Trigonometry Discussion Forum</h2>
+        <p>Stuck on a trigonometry problem? Get help from our community!</p>
+    </div>
+        
+    <form id="trig-forum-form" class="trig-forum-form">
+        <div class="trig-form-row">
+            <div class="trig-form-group">
+                <label for="trig-userName" class="trig-form-label">Your Name</label>
+                <input type="text" id="trig-userName" class="trig-form-input" required>
+            </div>
+            <div class="trig-form-group">
+                <label for="trig-topic" class="trig-form-label">Topic</label>
+                <select id="trig-topic" class="trig-form-select" required>
+                    <option value="" disabled selected>Select topic</option>
+                    <option value="unit-circle">Unit Circle</option>
+                    <option value="identities">Trig Identities</option>
+                </select>
+            </div>
+        </div>
+        <div class="trig-form-group">
+            <label for="trig-userPost" class="trig-form-label">Your Question</label>
+            <textarea id="trig-userPost" class="trig-form-textarea" required></textarea>
+        </div>
+        <form action="https://wa.me/yourwhatsapplink?text=Trigonometry%20Question" method="get" target="_blank">
+            <button type="submit" class="trig-form-submit">Post Question</button>
+        </form>
+    
+    <div class="trig-forum-posts-container">
+        <h3>Recent Discussions</h3>
+        <div id="trig-forum-posts">
+            <!-- Dynamic posts will appear here -->
+        </div>
+    </div>
+</section>
+
+<script src="trigonometryapp.js"></script>
+<script src="trigonometryscript.js"></script>
+<script>
+    // Escape HTML to prevent XSS
+    function escapeHTML(str) {
+        return str.replace(/[&<>"']/g, function (match) {
+            const escapeChars = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return escapeChars[match];
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const forumKey = 'trigForumPosts';
+
+        function loadTrigPosts() {
+            const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
+            const forumPostsDiv = document.getElementById('trig-forum-posts');
+            forumPostsDiv.innerHTML = '';
+
+            // Show latest posts first
+            const reversedPosts = [...forumPosts].reverse();
+
+            reversedPosts.forEach((post, index) => {
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('trig-forum-post');
+
+                postDiv.innerHTML = `
+                    <div class="trig-post-header">
+                        <h4>${escapeHTML(post.userName)}</h4>
+                        <span class="trig-post-time">${new Date(post.timestamp).toLocaleString()}</span>
+                    </div>
+                    <div class="trig-post-content">${escapeHTML(post.userPost)}</div>
+                    ${index === 0 ? '<div class="trig-new-post-indicator">New</div>' : ''}
+                `;
+
+                forumPostsDiv.appendChild(postDiv);
+            });
+        }
+
+        document.getElementById('trig-forum-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const userNameInput = document.getElementById('trig-userName');
+            const userPostInput = document.getElementById('trig-userPost');
+
+            const userName = userNameInput.value.trim();
+            const userPost = userPostInput.value.trim();
+
+            if (!userName || !userPost) {
+                alert('Please fill in all fields');
+                return;
+            }
+            const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
+
+            const newPost = {
+                userName,
+                userPost,
+                timestamp: new Date().toISOString()
+            };
+
+            forumPosts.push(newPost);
+            localStorage.setItem(forumKey, JSON.stringify(forumPosts));
+
+            // Clear form fields
+            userNameInput.value = '';
+            userPostInput.value = '';
+
+            // Reload posts
+            loadTrigPosts();
+
+            // Smooth scroll to posts section
+            document.getElementById('trig-forum-posts').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Initial load
+        loadTrigPosts();
+    });
+</script>
+</body>
+</html>

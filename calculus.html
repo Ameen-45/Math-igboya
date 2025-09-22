@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus - IGBOYA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="calculusstyle.css">
+</head>
+<body>
+    <div class="calculus-container">
+        <!-- Top Navigation -->
+        <div class="calculus-nav">
+            <a href="topics.html" class="calculus-btn"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            <h1 class="calculus-title"><i class="fas fa-infinity calculus-icon"></i> Calculus</h1>
+        </div>
+
+        <div class="calculus-content">
+            <section id="introduction" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-calculator calculus-icon"></i> Introduction to Calculus</h2>
+                <p class="calculus-intro-text">Calculus is a branch of mathematics focused on rates of change and accumulation of quantities. It provides powerful tools for modeling and analyzing dynamic systems in mathematics, science, and engineering.</p>
+                
+                <!-- Encouragement Section -->
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-brain calculus-icon"></i> Don't be intimidated! Calculus might seem challenging at first, but it's incredibly rewarding once you grasp the fundamental concepts.</p>
+                </div>
+    
+                <div class="calculus-history-box">
+                    <h3 class="calculus-subheading"><i class="fas fa-history calculus-icon"></i> Historical Context</h3>
+                    <p>Developed independently by Isaac Newton and Gottfried Leibniz in the late 17th century. Ancient precursors include Archimedes' method of exhaustion and Indian mathematics of the Kerala school.</p>
+                </div>
+    
+                <h3 class="calculus-subheading"><i class="fas fa-lightbulb calculus-icon"></i> Key Branches</h3>
+                <div class="calculus-concept-grid">
+                    <div class="calculus-concept-card">
+                        <h4>Differential Calculus</h4>
+                        <p>Study of rates of change and slopes of curves</p>
+                        <div class="calculus-mini-example">
+                            <p>Example: Finding instantaneous velocity</p>
+                        </div>
+                    </div>
+                    <div class="calculus-concept-card">
+                        <h4>Integral Calculus</h4>
+                        <p>Study of accumulation and areas under curves</p>
+                        <div class="calculus-mini-example">
+                            <p>Example: Calculating work done by a force</p>
+                        </div>
+                    </div>
+                    <div class="calculus-concept-card">
+                        <h4>Multivariable Calculus</h4>
+                        <p>Extension to functions of multiple variables</p>
+                        <div class="calculus-mini-example">
+                            <p>Example: Analyzing 3D surfaces</p>
+                        </div>
+                    </div>
+                    <div class="calculus-concept-card">
+                        <h4>Vector Calculus</h4>
+                        <p>Calculus applied to vector fields</p>
+                        <div class="calculus-mini-example">
+                            <p>Example: Fluid flow analysis</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Fundamental Theorem Section -->
+                <div class="calculus-theorem-box">
+                    <h3 class="calculus-subheading"><i class="fas fa-gem calculus-icon"></i> The Fundamental Theorem of Calculus</h3>
+                    <p>Connects differential and integral calculus:</p>
+                    <div class="calculus-formula">
+                        ∫<sub>a</sub><sup>b</sup> f'(x) dx = f(b) - f(a)
+                    </div>
+                    <p>This remarkable theorem shows that differentiation and integration are inverse processes.</p>
+                </div>
+            </section>
+    
+            <section id="limits" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-infinity calculus-icon"></i> Limits and Continuity</h2>
+                
+                <!-- Encouragement Section -->
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-hand-holding-heart calculus-icon"></i> Limits are the foundation of calculus! Mastering this concept will make everything else much easier to understand.</p>
+                </div>
+    
+                <div class="calculus-type-container">
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-mini-heading">Definition of Limit</h3>
+                        <p>The limit of f(x) as x approaches a is L if we can make f(x) arbitrarily close to L by taking x sufficiently close to a.</p>
+                        <p class="calculus-formula">lim<sub>x→a</sub> f(x) = L</p>
+                        <div class="calculus-example">
+                            <p>Example: lim<sub>x→2</sub> (3x+1) = 7</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-mini-heading">Limit Laws</h3>
+                        <ul class="calculus-key-concepts">
+                            <li>Sum Law: lim(f+g) = lim f + lim g</li>
+                            <li>Product Law: lim(f·g) = lim f · lim g</li>
+                            <li>Quotient Law: lim(f/g) = lim f / lim g (if lim g ≠ 0)</li>
+                            <li>Power Law: lim(f)<sup>n</sup> = (lim f)<sup>n</sup></li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>These laws allow us to break complex limits into simpler parts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-mini-heading">Continuity</h3>
+                        <p>A function f is continuous at a point a if:</p>
+                        <ol class="calculus-key-concepts">
+                            <li>f(a) is defined</li>
+                            <li>lim<sub>x→a</sub> f(x) exists</li>
+                            <li>lim<sub>x→a</sub> f(x) = f(a)</li>
+                        </ol>
+                        <div class="calculus-example">
+                            <p>Polynomials are continuous everywhere.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Special Limits Section -->
+                <div class="calculus-special-limits">
+                    <h3 class="calculus-subheading"><i class="fas fa-star calculus-icon"></i> Important Special Limits</h3>
+                    <div class="calculus-formula-container">
+                        <div class="calculus-formula-card">
+                            <p>lim<sub>x→0</sub> (sin x)/x = 1</p>
+                        </div>
+                        <div class="calculus-formula-card">
+                            <p>lim<sub>x→∞</sub> (1 + 1/x)<sup>x</sup> = e</p>
+                        </div>
+                        <div class="calculus-formula-card">
+                            <p>lim<sub>x→0</sub> (e<sup>x</sup> - 1)/x = 1</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <section id="derivatives" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-chart-line calculus-icon"></i> Derivatives</h2>
+                
+                <!-- Encouragement Section -->
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-rocket calculus-icon"></i> Derivatives unlock the power to understand change! This concept has countless applications in physics, economics, and beyond.</p>
+                </div>
+    
+                <div class="calculus-type-container">
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-mini-heading">Definition</h3>
+                        <p>The derivative measures instantaneous rate of change:</p>
+                        <p class="calculus-formula">f'(x) = lim<sub>h→0</sub> [f(x+h) - f(x)] / h</p>
+                        <div class="calculus-example">
+                            <p>Geometrically, this represents the slope of the tangent line.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-mini-heading">Common Derivatives</h3>
+                        <ul class="calculus-key-concepts">
+                            <li>d/dx (x<sup>n</sup>) = nx<sup>n-1</sup></li>
+                            <li>d/dx (sin x) = cos x</li>
+                            <li>d/dx (cos x) = -sin x</li>
+                            <li>d/dx (e<sup>x</sup>) = e<sup>x</sup></li>
+                            <li>d/dx (ln x) = 1/x</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>These are the building blocks for more complex derivatives.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-mini-heading">Differentiation Rules</h3>
+                        <ul class="calculus-key-concepts">
+                            <li>Sum Rule: (f+g)' = f' + g'</li>
+                            <li>Product Rule: (fg)' = f'g + fg'</li>
+                            <li>Quotient Rule: (f/g)' = (f'g - fg')/g<sup>2</sup></li>
+                            <li>Chain Rule: (f(g(x)))' = f'(g(x))·g'(x)</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>The chain rule is especially powerful for composite functions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+                <!-- Applications Section -->
+                <div class="applications-box">
+                    <h3><i class="fas fa-cogs"></i> Applications of Derivatives</h3>
+                    <div class="app-grid">
+                        <div class="app-card">
+                            <h4>Related Rates</h4>
+                            <p>How changing quantities affect each other</p>
+                        </div>
+                        <div class="app-card">
+                            <h4>Optimization</h4>
+                            <p>Finding maximum and minimum values</p>
+                        </div>
+                        <div class="app-card">
+                            <h4>Curve Sketching</h4>
+                            <p>Analyzing function behavior</p>
+                        </div>
+                        <div class="app-card">
+                            <h4>Motion Analysis</h4>
+                            <p>Position, velocity, acceleration</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="applications-derivatives" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-rocket"></i> Applications of Derivatives</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-lightbulb"></i> This is where calculus comes alive! These applications show how derivatives solve real-world problems across many fields.</p>
+                </div>
+            
+                <div class="calculus-grid">
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-chart-line"></i> Rates of Change</h3>
+                        <ul class="calculus-list">
+                            <li>Velocity as derivative of position: v(t) = ds/dt</li>
+                            <li>Acceleration as derivative of velocity: a(t) = dv/dt</li>
+                            <li>Marginal cost in economics: C'(x) ≈ cost of producing one more unit</li>
+                            <li>Population growth rates in biology</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>If s(t) = t³ - 4t² + 5t, then v(t) = 3t² - 8t + 5</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-mountain"></i> Optimization</h3>
+                        <ul class="calculus-list">
+                            <li>Finding maxima and minima using critical points</li>
+                            <li>First derivative test for local extrema</li>
+                            <li>Second derivative test for concavity</li>
+                            <li>Applied to business (profit maximization) and engineering (material efficiency)</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>To maximize a box's volume V = x(10-2x)², find dV/dx = 0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-draw-polygon"></i> Curve Analysis</h3>
+                        <ul class="calculus-list">
+                            <li>Increasing when f'(x) > 0, decreasing when f'(x) < 0</li>
+                            <li>Concave up when f''(x) > 0, concave down when f''(x) < 0</li>
+                            <li>Inflection points where concavity changes</li>
+                            <li>Asymptotic behavior and end behavior analysis</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-ruler-combined"></i> Related Rates</h3>
+                        <ul class="calculus-list">
+                            <li>Problems involving multiple changing quantities connected by equations</li>
+                            <li>Applications in physics (ladder problems) and geometry (expanding circles)</li>
+                            <li>Requires implicit differentiation</li>
+                            <li>Four-step solution process</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>If a 5m ladder slides down at 0.5m/s, how fast does the base move when top is 3m high?</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="integrals" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-calculator"></i> Integrals</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-puzzle-piece"></i> Integration is like mathematical detective work - finding the original function from its rate of change. You've got this!</p>
+                </div>
+            
+                <div class="calculus-type-container">
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-subheading">Definition</h3>
+                        <p class="calculus-text">The integral represents the accumulation of quantities and the area under a curve.</p>
+                        <p class="calculus-formula">∫ f(x) dx = F(x) + C</p>
+                        <p class="calculus-text">where F'(x) = f(x)</p>
+                        <div class="calculus-visual">
+                            <p>Riemann sums: lim<sub>n→∞</sub> Σ f(x<sub>i</sub>*)Δx</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-subheading">Common Integrals</h3>
+                        <ul class="calculus-list">
+                            <li>∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C (n ≠ -1)</li>
+                            <li>∫ sin x dx = -cos x + C</li>
+                            <li>∫ cos x dx = sin x + C</li>
+                            <li>∫ e<sup>x</sup> dx = e<sup>x</sup> + C</li>
+                            <li>∫ 1/x dx = ln|x| + C</li>
+                            <li>∫ sec²x dx = tan x + C</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calculus-type-card">
+                        <h3 class="calculus-subheading">Integration Techniques</h3>
+                        <ul class="calculus-list">
+                            <li><strong>Substitution:</strong> Reverse chain rule</li>
+                            <li><strong>Integration by parts:</strong> ∫ u dv = uv - ∫ v du</li>
+                            <li><strong>Partial fractions:</strong> Decompose rational functions</li>
+                            <li><strong>Trigonometric integrals:</strong> Powers of sin/cos</li>
+                            <li><strong>Trig substitution:</strong> For √(a²±x²) forms</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="applications-integrals" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-cube"></i> Applications of Integrals</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-globe-americas"></i> Integrals help us measure and calculate things in our 3D world - from the volume of your coffee cup to the force of a waterfall!</p>
+                </div>
+            
+                <div class="calculus-grid">
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-ruler-combined"></i> Area Calculation</h3>
+                        <ul class="calculus-list">
+                            <li>Area between curves: ∫ (top - bottom) dx</li>
+                            <li>Polar area: ½∫ r² dθ</li>
+                            <li>Parametric area: ∫ y(t)x'(t) dt</li>
+                            <li>Area using horizontal vs. vertical elements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-weight"></i> Volume</h3>
+                        <ul class="calculus-list">
+                            <li>Disk method: π∫ [f(x)]² dx</li>
+                            <li>Washer method: π∫ (R² - r²) dx</li>
+                            <li>Shell method: 2π∫ (radius)(height) dx</li>
+                            <li>Cross-sections: ∫ A(x) dx</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>Volume of sphere: π∫<sub>-r</sub><sup>r</sup> (r² - x²) dx = 4/3πr³</p>
+                        </div>
+                    </div>
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-atom"></i> Physics</h3>
+                        <ul class="calculus-list">
+                            <li>Work: W = ∫ F(x) dx</li>
+                            <li>Center of mass: (∫ xρ(x)dx)/mass</li>
+                            <li>Fluid pressure: P = ρgd</li>
+                            <li>Arc length: ∫ √(1 + (dy/dx)²) dx</li>
+                            <li>Surface area of revolution</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calculus-card">
+                        <h3 class="calculus-subheading"><i class="fas fa-chart-bar"></i> Probability</h3>
+                        <ul class="calculus-list">
+                            <li>Probability density functions: ∫<sub>-∞</sub><sup>∞</sup> f(x)dx = 1</li>
+                            <li>Expected value: E[X] = ∫ xf(x)dx</li>
+                            <li>Normal distributions: (1/σ√2π)e<sup>-(x-μ)²/2σ²</sup></li>
+                            <li>Cumulative distribution functions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="fundamental-theorem" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-link"></i> Fundamental Theorem of Calculus</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-star"></i> This is the crown jewel of calculus! The FTC connects the two main concepts in a beautiful way.</p>
+                </div>
+            
+                <div class="calculus-theorem-container">
+                    <div class="calculus-theorem-card">
+                        <h3 class="calculus-subheading">First Fundamental Theorem</h3>
+                        <p class="calculus-text">Connects differentiation and integration:</p>
+                        <p class="calculus-formula">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) - F(a)</p>
+                        <p class="calculus-text">where F is any antiderivative of f</p>
+                        <div class="calculus-example">
+                            <p>∫<sub>1</sub><sup>3</sup> 2x dx = 3² - 1² = 8</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-theorem-card">
+                        <h3 class="calculus-subheading">Second Fundamental Theorem</h3>
+                        <p class="calculus-text">Shows that differentiation reverses integration:</p>
+                        <p class="calculus-formula">d/dx ∫<sub>a</sub><sup>x</sup> f(t) dt = f(x)</p>
+                        <p class="calculus-text">For a ≤ x ≤ b</p>
+                        <div class="calculus-visual">
+                            <p>Explains why antiderivatives work for evaluation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculus-applications">
+                    <h3 class="calculus-subheading"><i class="fas fa-cogs"></i> FTC Applications</h3>
+                    <ul class="calculus-list">
+                        <li>Evaluating definite integrals without Riemann sums</li>
+                        <li>Finding average value of functions: (1/(b-a))∫<sub>a</sub><sup>b</sup> f(x)dx</li>
+                        <li>Net change theorem: ∫ rate of change = net change</li>
+                        <li>Accumulation functions</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="techniques" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-tools"></i> Advanced Techniques</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-magic"></i> These powerful techniques will help you solve integrals that seem impossible at first glance!</p>
+                </div>
+            
+                <div class="calculus-technique-grid">
+                    <div class="calculus-technique-card">
+                        <h3 class="calculus-subheading">Integration by Parts</h3>
+                        <p class="calculus-formula">∫ u dv = uv - ∫ v du</p>
+                        <p class="calculus-text">Useful for products of functions (polynomial × exponential, etc.)</p>
+                        <div class="calculus-example">
+                            <p>∫ x e<sup>x</sup> dx = x e<sup>x</sup> - e<sup>x</sup> + C</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-technique-card">
+                        <h3 class="calculus-subheading">Trigonometric Substitution</h3>
+                        <ul class="calculus-list">
+                            <li>√(a²-x²) → x = a sinθ</li>
+                            <li>√(x²+a²) → x = a tanθ</li>
+                            <li>√(x²-a²) → x = a secθ</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>∫ dx/√(4-x²) → x = 2sinθ → ∫ dθ = θ + C = sin⁻¹(x/2) + C</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-technique-card">
+                        <h3 class="calculus-subheading">Partial Fractions</h3>
+                        <p class="calculus-text">Decomposes rational functions into simpler fractions</p>
+                        <p class="calculus-text">For P(x)/Q(x) where deg(P) < deg(Q)</p>
+                        <div class="calculus-example">
+                            <p>1/[(x+1)(x-2)] = A/(x+1) + B/(x-2)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-technique-card">
+                        <h3 class="calculus-subheading">Improper Integrals</h3>
+                        <ul class="calculus-list">
+                            <li>Type 1: Infinite limits</li>
+                            <li>Type 2: Discontinuous integrands</li>
+                            <li>Convergence tests</li>
+                        </ul>
+                        <div class="calculus-example">
+                            <p>∫<sub>1</sub><sup>∞</sup> 1/x² dx = lim<sub>b→∞</sub> [-1/x]<sub>1</sub><sup>b</sup> = 1</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="series" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-infinity"></i> Infinite Series</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-infinity"></i> Series let us work with infinity in finite ways - they're the bridge to advanced mathematics!</p>
+                </div>
+            
+                <div class="calculus-series-container">
+                    <div class="calculus-series-card">
+                        <h3 class="calculus-subheading">Convergence Tests</h3>
+                        <ul class="calculus-list">
+                            <li><strong>Comparison Test:</strong> Compare to known series</li>
+                            <li><strong>Ratio Test:</strong> lim |a<sub>n+1</sub>/a<sub>n</sub>| < 1</li>
+                            <li><strong>Root Test:</strong> lim (a<sub>n</sub>)<sup>1/n</sup> < 1</li>
+                            <li><strong>Integral Test:</strong> Compare to ∫ f(x)dx</li>
+                            <li><strong>Alternating Series Test:</strong> For (-1)<sup>n</sup> series</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calculus-series-card">
+                        <h3 class="calculus-subheading">Power Series</h3>
+                        <p class="calculus-formula">∑<sub>n=0</sub><sup>∞</sup> c<sub>n</sub>(x-a)<sup>n</sup></p>
+                        <p class="calculus-text">Radius of convergence R = 1/lim sup |c<sub>n</sub>|<sup>1/n</sup></p>
+                        <div class="calculus-example">
+                            <p>Geometric series: ∑ x<sup>n</sup> = 1/(1-x) for |x| < 1</p>
+                        </div>
+                    </div>
+                    
+                    <div class="calculus-series-card">
+                        <h3 class="calculus-subheading">Taylor Series</h3>
+                        <p class="calculus-formula">f(x) = ∑<sub>n=0</sub><sup>∞</sup> [f<sup>(n)</sup>(a)/n!](x-a)<sup>n</sup></p>
+                        <p class="calculus-text">Maclaurin series when a = 0</p>
+                        <div class="calculus-example">
+                            <p>e<sup>x</sup> = ∑ x<sup>n</sup>/n! = 1 + x + x²/2! + x³/3! + ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculus-series-applications">
+                    <h3 class="calculus-subheading"><i class="fas fa-cogs"></i> Series Applications</h3>
+                    <ul class="calculus-list">
+                        <li>Approximating functions (sin, cos, exp, ln)</li>
+                        <li>Solving differential equations</li>
+                        <li>Evaluating non-elementary integrals</li>
+                        <li>Numerical analysis and computations</li>
+                        <li>Fourier series for periodic functions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="exercises" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-pencil-alt"></i> Practice Exercises</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-fire"></i> Practice makes perfect! These exercises will help solidify your calculus understanding. Try solving them before checking answers!</p>
+                </div>
+            
+                <div class="calculus-exercise-section">
+                    <h3 class="calculus-subheading">Limits</h3>
+                    <ol class="calculus-exercise-list">
+                        <li>Evaluate lim<sub>x→2</sub> (x² - 4)/(x - 2)</li>
+                        <li>Find lim<sub>x→∞</sub> (3x² + 2x)/(5x² - x + 1)</li>
+                        <li>Compute lim<sub>x→0</sub> (sin(3x))/x</li>
+                        <li>Determine lim<sub>x→1</sub> (√x - 1)/(x - 1)</li>
+                        <li>Evaluate lim<sub>x→π/2</sub> (tan x)/(sec x)</li>
+                    </ol>
+                </div>
+            
+                <div class="calculus-exercise-section">
+                    <h3 class="calculus-subheading">Derivatives</h3>
+                    <ol class="calculus-exercise-list" start="6">
+                        <li>Find the derivative of f(x) = 3x⁴ - 2x³ + 5x - 7</li>
+                        <li>Differentiate g(x) = sin(x² + 1)</li>
+                        <li>Compute dy/dx for y = e<sup>2x</sup>cos(3x)</li>
+                        <li>Find f'(x) for f(x) = ln(√(x²+1))</li>
+                        <li>Calculate the derivative of y = (x²+1)<sup>3x</sup></li>
+                    </ol>
+                </div>
+            
+                <div class="calculus-exercise-section">
+                    <h3 class="calculus-subheading">Integrals</h3>
+                    <ol class="calculus-exercise-list" start="11">
+                        <li>Evaluate ∫ (3x² + 2√x - 5) dx</li>
+                        <li>Compute ∫<sub>0</sub><sup>π</sup> sin x dx</li>
+                        <li>Find ∫ x e<sup>x²</sup> dx</li>
+                        <li>Calculate ∫ (x³ + 1)/(x + 1) dx</li>
+                        <li>Evaluate ∫ sec²(2x) tan(2x) dx</li>
+                    </ol>
+                </div>
+            
+                <div class="calculus-exercise-section">
+                    <h3 class="calculus-subheading">Applications</h3>
+                    <ol class="calculus-exercise-list" start="16">
+                        <li>Find the area between y = x² and y = x from x=0 to x=1</li>
+                        <li>A spherical balloon is being inflated at 100 cm³/s. How fast is the radius increasing when r=5cm?</li>
+                        <li>Find the volume of the solid formed by rotating y = √x about the x-axis from x=0 to x=4</li>
+                        <li>Determine the local extrema of f(x) = x³ - 3x² - 9x + 5</li>
+                        <li>Find the equation of the tangent line to y = x²lnx at x=1</li>
+                    </ol>
+                </div>
+            
+                <div class="calculus-exercise-section">
+                    <h3 class="calculus-subheading">Challenge Problems</h3>
+                    <ol class="calculus-exercise-list" start="21">
+                        <li>Evaluate lim<sub>x→0</sub> (1 - cos(x²))/x⁴</li>
+                        <li>Find the derivative of f(x) = sin⁻¹(2x√(1-x²))</li>
+                        <li>Compute ∫ e<sup>x</sup>sinx dx</li>
+                        <li>Determine the area enclosed by r = 2 + cosθ in polar coordinates</li>
+                        <li>Find the Taylor series expansion for f(x) = 1/(1+x) about x=0</li>
+                    </ol>
+                </div>
+            
+                <div class="calculus-hint-box">
+                    <h4 class="calculus-hint-heading"><i class="fas fa-lightbulb"></i> Study Tips</h4>
+                    <ul class="calculus-hint-list">
+                        <li>Always check your work step by step</li>
+                        <li>Draw diagrams for application problems</li>
+                        <li>Remember +C for indefinite integrals!</li>
+                        <li>Practice both algebraic and conceptual understanding</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="calculus-quiz" class="calculus-section">
+                <h2 class="calculus-heading"><i class="fas fa-question-circle"></i> Calculus Concepts Quiz</h2>
+                
+                <div class="calculus-encouragement">
+                    <p><i class="fas fa-brain"></i> Test your calculus knowledge with these 20 questions covering key concepts from limits to integrals!</p>
+                </div>
+            
+                <form id="calculus-quiz-form">
+                    <!-- Question 1 -->
+                    <div class="calculus-quiz-question">
+                        <p>1. What is the derivative of f(x) = e<sup>2x</sup>?</p>
+                        <label><input type="radio" name="q1" value="A"> 2e<sup>2x</sup></label>
+                        <label><input type="radio" name="q1" value="B"> e<sup>2x</sup></label>
+                        <label><input type="radio" name="q1" value="C"> 2e<sup>x</sup></label>
+                    </div>
+            
+                    <!-- Question 2 -->
+                    <div class="calculus-quiz-question">
+                        <p>2. What does ∫<sub>a</sub><sup>b</sup> f'(x) dx equal?</p>
+                        <label><input type="radio" name="q2" value="A"> f(b) - f(a)</label>
+                        <label><input type="radio" name="q2" value="B"> f'(b) - f'(a)</label>
+                        <label><input type="radio" name="q2" value="C"> f(b) + f(a)</label>
+                    </div>
+            
+                    <!-- Question 3 -->
+                    <div class="calculus-quiz-question">
+                        <p>3. Which test determines convergence by comparing to a known series?</p>
+                        <label><input type="radio" name="q3" value="A"> Ratio Test</label>
+                        <label><input type="radio" name="q3" value="B"> Comparison Test</label>
+                        <label><input type="radio" name="q3" value="C"> Root Test</label>
+                    </div>
+            
+                    <!-- Question 4 -->
+                    <div class="calculus-quiz-question">
+                        <p>4. What is lim<sub>x→0</sub> sin(x)/x?</p>
+                        <label><input type="radio" name="q4" value="A"> 0</label>
+                        <label><input type="radio" name="q4" value="B"> 1</label>
+                        <label><input type="radio" name="q4" value="C"> ∞</label>
+                    </div>
+            
+                    <!-- Question 5 -->
+                    <div class="calculus-quiz-question">
+                        <p>5. What is the derivative of ln(x)?</p>
+                        <label><input type="radio" name="q5" value="A"> 1/x</label>
+                        <label><input type="radio" name="q5" value="B"> e<sup>x</sup></label>
+                        <label><input type="radio" name="q5" value="C"> x</label>
+                    </div>
+            
+                    <!-- Question 6 -->
+                    <div class="calculus-quiz-question">
+                        <p>6. Which integration technique is best for ∫x·sin(x)dx?</p>
+                        <label><input type="radio" name="q6" value="A"> Substitution</label>
+                        <label><input type="radio" name="q6" value="B"> Integration by parts</label>
+                        <label><input type="radio" name="q6" value="C"> Partial fractions</label>
+                    </div>
+            
+                    <!-- Question 7 -->
+                    <div class="calculus-quiz-question">
+                        <p>7. What is the second derivative of f(x) = x³ - 3x?</p>
+                        <label><input type="radio" name="q7" value="A"> 3x² - 3</label>
+                        <label><input type="radio" name="q7" value="B"> 6x</label>
+                        <label><input type="radio" name="q7" value="C"> 6</label>
+                    </div>
+            
+                    <!-- Question 8 -->
+                    <div class="calculus-quiz-question">
+                        <p>8. What is the integral of 1/x dx?</p>
+                        <label><input type="radio" name="q8" value="A"> ln|x| + C</label>
+                        <label><input type="radio" name="q8" value="B"> x⁻² + C</label>
+                        <label><input type="radio" name="q8" value="C"> e<sup>x</sup> + C</label>
+                    </div>
+            
+                    <!-- Question 9 -->
+                    <div class="calculus-quiz-question">
+                        <p>9. What is the derivative of sin(2x)?</p>
+                        <label><input type="radio" name="q9" value="A"> cos(2x)</label>
+                        <label><input type="radio" name="q9" value="B"> 2cos(2x)</label>
+                        <label><input type="radio" name="q9" value="C"> -cos(2x)</label>
+                    </div>
+            
+                    <!-- Question 10 -->
+                    <div class="calculus-quiz-question">
+                        <p>10. What is the area under y = x² from x=0 to x=2?</p>
+                        <label><input type="radio" name="q10" value="A"> 2</label>
+                        <label><input type="radio" name="q10" value="B"> 8/3</label>
+                        <label><input type="radio" name="q10" value="C"> 4</label>
+                    </div>
+            
+                    <!-- Question 11 -->
+                    <div class="calculus-quiz-question">
+                        <p>11. Which is the correct application of the chain rule to d/dx[sin(x²)]?</p>
+                        <label><input type="radio" name="q11" value="A"> cos(x²)</label>
+                        <label><input type="radio" name="q11" value="B"> 2x·cos(x²)</label>
+                        <label><input type="radio" name="q11" value="C"> cos(2x)</label>
+                    </div>
+            
+                    <!-- Question 12 -->
+                    <div class="calculus-quiz-question">
+                        <p>12. What is lim<sub>x→∞</sub> (1 + 1/x)<sup>x</sup>?</p>
+                        <label><input type="radio" name="q12" value="A"> 0</label>
+                        <label><input type="radio" name="q12" value="B"> 1</label>
+                        <label><input type="radio" name="q12" value="C"> e</label>
+                    </div>
+            
+                    <!-- Question 13 -->
+                    <div class="calculus-quiz-question">
+                        <p>13. What is the volume of revolution when y = √x is rotated about the x-axis from x=0 to x=4?</p>
+                        <label><input type="radio" name="q13" value="A"> π</label>
+                        <label><input type="radio" name="q13" value="B"> 2π</label>
+                        <label><input type="radio" name="q13" value="C"> 8π</label>
+                    </div>
+            
+                    <!-- Question 14 -->
+                    <div class="calculus-quiz-question">
+                        <p>14. Which function grows fastest as x → ∞?</p>
+                        <label><input type="radio" name="q14" value="A"> ln(x)</label>
+                        <label><input type="radio" name="q14" value="B"> x²</label>
+                        <label><input type="radio" name="q14" value="C"> e<sup>x</sup></label>
+                    </div>
+            
+                    <!-- Question 15 -->
+                    <div class="calculus-quiz-question">
+                        <p>15. What is the derivative of tan⁻¹(x)?</p>
+                        <label><input type="radio" name="q15" value="A"> 1/(1+x²)</label>
+                        <label><input type="radio" name="q15" value="B"> sec²(x)</label>
+                        <label><input type="radio" name="q15" value="C"> ln|sec(x)|</label>
+                    </div>
+            
+                    <!-- Question 16 -->
+                    <div class="calculus-quiz-question">
+                        <p>16. What is the general solution to dy/dx = 2x?</p>
+                        <label><input type="radio" name="q16" value="A"> y = x² + C</label>
+                        <label><input type="radio" name="q16" value="B"> y = 2x + C</label>
+                        <label><input type="radio" name="q16" value="C"> y = x³/3 + C</label>
+                    </div>
+            
+                    <!-- Question 17 -->
+                    <div class="calculus-quiz-question">
+                        <p>17. Which is the correct partial fractions decomposition for 1/(x²-1)?</p>
+                        <label><input type="radio" name="q17" value="A"> A/(x-1) + B/(x+1)</label>
+                        <label><input type="radio" name="q17" value="B"> A/x + B/(x²-1)</label>
+                        <label><input type="radio" name="q17" value="C"> A/(x-1)² + B/(x+1)²</label>
+                    </div>
+            
+                    <!-- Question 18 -->
+                    <div class="calculus-quiz-question">
+                        <p>18. What is the derivative of x·sin(x)?</p>
+                        <label><input type="radio" name="q18" value="A"> sin(x) + x·cos(x)</label>
+                        <label><input type="radio" name="q18" value="B"> sin(x) + cos(x)</label>
+                        <label><input type="radio" name="q18" value="C"> x·cos(x)</label>
+                    </div>
+            
+                    <!-- Question 19 -->
+                    <div class="calculus-quiz-question">
+                        <p>19. What is the integral of sec²(x)?</p>
+                        <label><input type="radio" name="q19" value="A"> tan(x) + C</label>
+                        <label><input type="radio" name="q19" value="B"> sec(x)tan(x) + C</label>
+                        <label><input type="radio" name="q19" value="C"> ln|sec(x)| + C</label>
+                    </div>
+            
+                    <!-- Question 20 -->
+                    <div class="calculus-quiz-question">
+                        <p>20. What is the Taylor series expansion for e<sup>x</sup> about x=0?</p>
+                        <label><input type="radio" name="q20" value="A"> 1 + x + x²/2! + x³/3! + ...</label>
+                        <label><input type="radio" name="q20" value="B"> x - x³/3! + x⁵/5! - ...</label>
+                        <label><input type="radio" name="q20" value="C"> 1 - x²/2! + x⁴/4! - ...</label>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="calculus-quiz-result"></div>
+            </section>
+
+<script>
+// Answer Key for the Calculus Quiz (20 questions)
+const calculusAnswerKey = {
+    q1: "A", q2: "A", q3: "B", q4: "B", q5: "A",
+    q6: "B", q7: "B", q8: "A", q9: "B", q10: "B",
+    q11: "B", q12: "C", q13: "C", q14: "C", q15: "A",
+    q16: "A", q17: "A", q18: "A", q19: "A", q20: "A"
+};
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const quizForm = document.getElementById('calculus-quiz-form');
+    const resultDiv = document.getElementById('calculus-quiz-result');
+    
+    // Debugging: Check if elements exist
+    if (!quizForm) {
+        console.error('Quiz form not found! Check the ID "calculus-quiz-form"');
+        return;
+    }
+    if (!resultDiv) {
+        console.error('Result div not found! Check the ID "calculus-quiz-result"');
+        return;
+    }
+
+    // Add submit event listener
+    quizForm.addEventListener('submit', function(event) {
+        // Prevent default form submission
+        event.preventDefault();
+        console.log('Form submission intercepted'); // Debugging
+        
+        let score = 0;
+        const totalQuestions = Object.keys(calculusAnswerKey).length;
+        const unanswered = [];
+        
+        // Check each answer
+        for (let i = 1; i <= totalQuestions; i++) {
+            const questionName = `q${i}`;
+            const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+            
+            if (!selectedAnswer) {
+                unanswered.push(i);
+                continue;
+            }
+            
+            if (selectedAnswer.value === calculusAnswerKey[questionName]) {
+                score++;
+            }
+        }
+        
+        // Calculate percentage
+        const percentage = (score / totalQuestions * 100).toFixed(1);
+        
+        // Create feedback message
+        let feedbackMessage;
+        if (unanswered.length > 0) {
+            feedbackMessage = `<p><i class="fas fa-exclamation-circle"></i> You didn't answer questions: ${unanswered.join(', ')}</p>`;
+        } else if (percentage >= 80) {
+            feedbackMessage = '<p><i class="fas fa-check-circle"></i> Excellent! You have mastered calculus concepts.</p>';
+        } else if (percentage >= 50) {
+            feedbackMessage = '<p><i class="fas fa-thumbs-up"></i> Good job! Review your missed questions.</p>';
+        } else {
+            feedbackMessage = '<p><i class="fas fa-book"></i> Keep practicing! Calculus takes time to master.</p>';
+        }
+        
+        // Display results
+        resultDiv.innerHTML = `
+            <div class="calculus-quiz-result-box">
+                <h3>Your Score: ${score}/${totalQuestions} (${percentage}%)</h3>
+                <div class="feedback">${feedbackMessage}</div>
+                <div class="breakdown">
+                    <p>Topic Performance:</p>
+                    <ul>
+                        <li>Limits: ${score >= 4 ? '✓' : '✗'}</li>
+                        <li>Derivatives: ${score >= 7 ? '✓' : '✗'}</li>
+                        <li>Integrals: ${score >= 5 ? '✓' : '✗'}</li>
+                        <li>Applications: ${score >= 4 ? '✓' : '✗'}</li>
+                    </ul>
+                </div>
+                <button class="retry-btn">Try Again</button>
+            </div>
+        `;
+        
+        // Add retry button functionality
+        resultDiv.querySelector('.retry-btn').addEventListener('click', function() {
+            quizForm.reset();
+            resultDiv.innerHTML = '';
+        });
+        
+        // Scroll to results
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+
+<section id="calculus-videos" class="calculus-section">
+    <h2 class="calculus-heading"><i class="fas fa-video"></i> Calculus Video Tutorials</h2>
+    
+    <div class="calculus-encouragement">
+        <p><i class="fas fa-lightbulb"></i> Visual learning helps! These curated videos explain key calculus concepts with clear examples and demonstrations.</p>
+    </div>
+
+    <div class="calculus-video-grid">
+        <div class="calculus-video-card">
+            <div class="calculus-video-container">
+                <iframe src="https://www.youtube.com/watch?v=9brk313DjV8" 
+                       frameborder="0" 
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                       allowfullscreen></iframe>
+            </div>
+            <h3 class="calculus-video-title">Limits and Continuity</h3>
+            <p class="calculus-video-description">Master the foundational concept of limits and understand continuous functions with graphical examples.</p>
+            <div class="calculus-video-duration"><i class="fas fa-clock"></i> 15:23</div>
+        </div>
+
+        <div class="calculus-video-card">
+            <div class="calculus-video-container">
+                <iframe src="https://www.youtube.com/watch?v=5yfh5cf4-0w" 
+                       frameborder="0" 
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                       allowfullscreen></iframe>
+            </div>
+            <h3 class="calculus-video-title">Derivative Rules Explained</h3>
+            <p class="calculus-video-description">Comprehensive guide to all differentiation rules including power, product, quotient, and chain rules.</p>
+            <div class="calculus-video-duration"><i class="fas fa-clock"></i> 22:45</div>
+        </div>
+
+        <div class="calculus-video-card">
+            <div class="calculus-video-container">
+                <iframe src="https://www.youtube.com/watch?v=RX41yYGnEsM" 
+                       frameborder="0" 
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                       allowfullscreen></iframe>
+            </div>
+            <h3 class="calculus-video-title">Integration Techniques</h3>
+            <p class="calculus-video-description">Step-by-step walkthrough of substitution, integration by parts, and partial fractions methods.</p>
+            <div class="calculus-video-duration"><i class="fas fa-clock"></i> 28:17</div>
+        </div>
+
+        <div class="calculus-forum-container">
+    <div class="calculus-forum-header">
+        <h2>Calculus Discussion Forum</h2>
+        <p>Stuck on a calculus problem? Get help from our community!</p>
+    </div>
+        
+            <form id="calculus-forum-form" class="calculus-forum-form">
+                <div class="calculus-form-row">
+                    <div class="calculus-form-group">
+                        <label for="calculus-userName" class="calculus-form-label">Your Name</label>
+                        <input type="text" id="calculus-userName" class="calculus-form-input" required>
+                    </div>
+                    <div class="calculus-form-group">
+                        <label for="calculus-topic" class="calculus-form-label">Topic</label>
+                        <select id="calculus-topic" class="calculus-form-select" required>
+                            <option value="" disabled selected>Select topic</option>
+                            <option value="limits">Limits</option>
+                            <option value="derivatives">Derivatives</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calculus-form-group">
+                    <label for="calculus-userPost" class="calculus-form-label">Your Question</label>
+                    <textarea id="calculus-userPost" class="calculus-form-textarea" required></textarea>
+                </div>
+                <button type="submit" class="calculus-form-submit">Post Question</button>
+            </form>
+        
+            <div class="calculus-forum-posts-container">
+                <h3>Recent Discussions</h3>
+                <div id="calculus-forum-posts">
+                    <!-- Dynamic posts will appear here -->
+                </div>
+            </section>
+            <script src="calculusapp.js"></script>
+            <script src="calculusscript.js"></script>
+            <script>
+                // Escape HTML to prevent XSS
+                function escapeHTML(str) {
+                    return str.replace(/[&<>"']/g, function (match) {
+                        const escapeChars = {
+                            '&': '&amp;',
+                            '<': '&lt;',
+                            '>': '&gt;',
+                            '"': '&quot;',
+                            "'": '&#039;'
+                        };
+                        return escapeChars[match];
+                    });
+                }
+            
+                document.addEventListener('DOMContentLoaded', function () {
+                    const forumKey = 'calculusForumPosts';
+            
+                    function loadCalculusPosts() {
+                        const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
+                        const forumPostsDiv = document.getElementById('calculus-forum-posts');
+                        forumPostsDiv.innerHTML = '';
+            
+                        // Show latest posts first
+                        const reversedPosts = [...forumPosts].reverse();
+            
+                        reversedPosts.forEach((post, index) => {
+                            const postDiv = document.createElement('div');
+                            postDiv.classList.add('calculus-forum-post');
+            
+                            postDiv.innerHTML = `
+                                <div class="calculus-post-header">
+                                    <h4>${escapeHTML(post.userName)}</h4>
+                                    <span class="calculus-post-time">${new Date(post.timestamp).toLocaleString()}</span>
+                                </div>
+                                <div class="calculus-post-content">${escapeHTML(post.userPost)}</div>
+                                ${index === 0 ? '<div class="calculus-new-post-indicator">New</div>' : ''}
+                            `;
+            
+                            forumPostsDiv.appendChild(postDiv);
+                        });
+                    }
+            
+                    document.getElementById('calculus-forum-form').addEventListener('submit', function (event) {
+                        event.preventDefault();
+            
+                        const userNameInput = document.getElementById('calculus-userName');
+                        const userPostInput = document.getElementById('calculus-userPost');
+            
+                        const userName = userNameInput.value.trim();
+                        const userPost = userPostInput.value.trim();
+            
+                        if (!userName || !userPost) {
+                            alert('Please fill in all fields');
+                            return;
+                        }
+                        const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
+            
+                        const newPost = {
+                            userName,
+                            userPost,
+                            timestamp: new Date().toISOString()
+                        };
+            
+                        forumPosts.push(newPost);
+                        localStorage.setItem(forumKey, JSON.stringify(forumPosts));
+            
+                        // Clear form fields
+                        userNameInput.value = '';
+                        userPostInput.value = '';
+            
+                        // Reload posts
+                        loadCalculusPosts();
+            
+                        // Smooth scroll to posts section
+                        document.getElementById('calculus-forum-posts').scrollIntoView({ behavior: 'smooth' });
+                    });
+            
+                    // Initial load
+                    loadCalculusPosts();
+                });
+            </script>
+            
+        </body>
+    </html>

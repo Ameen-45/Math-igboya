@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry - IGBOYA</title>
+    <link rel="stylesheet" href="geometrystyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="side-nav-content">
+                <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            </div>
+        </nav>
+        
+        <div class="geometry-main-content">
+            <section id="geometry-introduction">
+                <h1 class="geometry-title"><i class="fas fa-shapes"></i> Introduction to Geometry</h1>
+                <p class="geometry-description">Geometry is the branch of mathematics that studies the properties and relationships of points, lines, surfaces, and solids.</p>
+                
+                <div class="geometry-history-box">
+                    <h3 class="geometry-subtitle"><i class="fas fa-history"></i> Historical Context</h3>
+                    <p class="geometry-text">Euclid established formal geometry in "Elements". Ancient Egyptians used geometry for land surveying.</p>
+                </div>
+        
+                <h3 class="geometry-subtitle"><i class="fas fa-lightbulb"></i> Key Branches</h3>
+                <div class="geometry-branch-grid">
+                    <div class="geometry-branch-card">
+                        <h4 class="geometry-card-title">Euclidean</h4>
+                        <p class="geometry-card-text">Plane geometry with points and lines</p>
+                    </div>
+                    <div class="geometry-branch-card">
+                        <h4 class="geometry-card-title">Analytic</h4>
+                        <p class="geometry-card-text">Coordinates and algebraic equations</p>
+                    </div>
+                    <div class="geometry-branch-card">
+                        <h4 class="geometry-card-title">Differential</h4>
+                        <p class="geometry-card-text">Curves and surfaces using calculus</p>
+                    </div>
+                </div>
+        
+                <div class="geometry-applications">
+                    <h3 class="geometry-subtitle"><i class="fas fa-ruler-combined"></i> Real-World Applications</h3>
+                    <ul class="geometry-list">
+                        <li><i class="fas fa-robot"></i> Robotics: Path planning</li>
+                        <li><i class="fas fa-building"></i> Architecture: Structural design</li>
+                        <li><i class="fas fa-gamepad"></i> Game Development: 3D modeling</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="geometry-fundamentals">
+                <h2 class="geometry-section-title"><i class="fas fa-drafting-compass"></i> Fundamental Concepts</h2>
+                
+                <div class="geometry-fundamentals-grid">
+                    <div class="geometry-concept-card">
+                        <h3 class="geometry-concept-title">Points</h3>
+                        <div class="geometry-point-visual"></div>
+                        <p class="geometry-concept-desc">Zero-dimensional location</p>
+                    </div>
+                    
+                    <div class="geometry-concept-card">
+                        <h3 class="geometry-concept-title">Lines</h3>
+                        <div class="geometry-line-visual"></div>
+                        <p class="geometry-concept-desc">One-dimensional, infinite length</p>
+                    </div>
+                    
+                    <div class="geometry-concept-card">
+                        <h3 class="geometry-concept-title">Planes</h3>
+                        <div class="geometry-plane-visual"></div>
+                        <p class="geometry-concept-desc">Two-dimensional flat surface</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="geometry-angles">
+                <h2 class="geometry-section-title"><i class="fas fa-angle-right"></i> Angles</h2>
+                
+                <div class="geometry-angle-types">
+                    <div class="geometry-angle-card">
+                        <h3 class="geometry-angle-name">Acute</h3>
+                        <div class="geometry-acute-angle"></div>
+                        <p class="geometry-angle-range">0° < θ < 90°</p>
+                    </div>
+                    <div class="geometry-angle-card">
+                        <h3 class="geometry-angle-name">Right</h3>
+                        <div class="geometry-right-angle"></div>
+                        <p class="geometry-angle-range">θ = 90°</p>
+                    </div>
+                    <div class="geometry-angle-card">
+                        <h3 class="geometry-angle-name">Obtuse</h3>
+                        <div class="geometry-obtuse-angle"></div>
+                        <p class="geometry-angle-range">90° < θ < 180°</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="geometry-triangles">
+                <h2 class="geometry-section-title"><i class="fas fa-play"></i> Triangles</h2>
+                
+                <div class="geometry-classification-section">
+                    <h3 class="geometry-subsection-title">Types of Triangles</h3>
+                    <div class="geometry-triangle-grid">
+                        <div class="geometry-triangle-card">
+                            <h4 class="geometry-triangle-type">Equilateral</h4>
+                            <div class="geometry-equilateral"></div>
+                            <p>All sides equal</p>
+                        </div>
+                        <div class="geometry-triangle-card">
+                            <h4 class="geometry-triangle-type">Isosceles</h4>
+                            <div class="geometry-isosceles"></div>
+                            <p>Two sides equal</p>
+                        </div>
+                        <div class="geometry-triangle-card">
+                            <h4 class="geometry-triangle-type">Scalene</h4>
+                            <div class="geometry-scalene"></div>
+                            <p>No sides equal</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="geometry-subsection-title">Triangle Formulas</h3>
+                <div class="geometry-area-grid">
+                    <div class="geometry-area-card">
+                        <h4 class="geometry-area-method">Area</h4>
+                        <p class="geometry-formula">A = ½ × base × height</p>
+                    </div>
+                    <div class="geometry-area-card">
+                        <h4 class="geometry-area-method">Pythagorean</h4>
+                        <p class="geometry-formula">a² + b² = c²</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="geometry-quadrilaterals">
+                <h2 class="geometry-section-title"><i class="fas fa-border-style"></i> Quadrilaterals</h2>
+                
+                <div class="geometry-quad-grid">
+                    <div class="geometry-quad-card">
+                        <h3 class="geometry-quad-name">Square</h3>
+                        <div class="geometry-square-visual"></div>
+                        <p>All sides equal</p>
+                        <p>All angles 90°</p>
+                    </div>
+                    
+                    <div class="geometry-quad-card">
+                        <h3 class="geometry-quad-name">Rectangle</h3>
+                        <div class="geometry-rectangle-visual"></div>
+                        <p>Opposite sides equal</p>
+                        <p>All angles 90°</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="circles">
+                <h2><i class="fas fa-circle"></i> Circles</h2>
+                
+                <div class="circle-diagram">
+                    <div class="circle-visual">
+                        <div class="center">O</div>
+                        <div class="radius">r</div>
+                    </div>
+                    
+                    <div class="circle-terms">
+                        <h3>Key Terms</h3>
+                        <ul>
+                            <li><strong>Radius</strong>: Distance from center to edge</li>
+                            <li><strong>Diameter</strong>: Longest chord (d = 2r)</li>
+                            <li><strong>Circumference</strong>: C = 2πr</li>
+                            <li><strong>Area</strong>: A = πr²</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="geometry-solids">
+                <h2><i class="fas fa-cube"></i> 3D Shapes</h2>
+                
+                <div class="solid-grid">
+                    <div class="solid-card">
+                        <h3>Cube</h3>
+                        <div class="cube-visual"></div>
+                        <p>Volume: V = s³</p>
+                    </div>
+                    
+                    <div class="solid-card">
+                        <h3>Sphere</h3>
+                        <div class="sphere-visual"></div>
+                        <p>Volume: V = ⁴⁄₃πr³</p>
+                    </div>
+                </div>
+            </section>      
+
+        <section id="geometry-exercises">
+            <h2><i class="fas fa-pencil-alt"></i> Geometry Exercises</h2>
+        
+            <div class="geometry-exercise-section">
+                <h3>Basic Problems</h3>
+                <ol>
+                    <li>Find the area of a triangle with base 8cm and height 5cm.</li>
+                    <li>Calculate the circumference of a circle with radius 7m.</li>
+                    <li>Find the volume of a cube with edge length 4in.</li>
+                    <li>Determine the surface area of a square with side length 6cm.</li>
+                    <li>Find the perimeter of a rectangle with length 10m and width 4m.</li>
+                </ol>
+            </div>
+        
+            <div class="geometry-exercise-section">
+                <h3>Angle Calculations</h3>
+                <ol start="6">
+                    <li>Two angles are complementary. One is 35°. Find the other.</li>
+                    <li>In a triangle, angles are in ratio 2:3:4. Find each angle.</li>
+                    <li>Find all angles formed when parallel lines are cut by a transversal.</li>
+                    <li>Find the missing angle in a quadrilateral where three angles are 90°, 120°, and 75°.</li>
+                    <li>Two angles are supplementary. One is 55°. Find the other.</li>
+                </ol>
+            </div>
+        
+            <div class="geometry-exercise-section">
+                <h3>Pythagorean Theorem</h3>
+                <ol start="11">
+                    <li>Right triangle has legs 5 and 12. Find hypotenuse.</li>
+                    <li>Hypotenuse is 13, one leg is 5. Find the other leg.</li>
+                    <li>Determine if triangle with sides 7, 24, 25 is right.</li>
+                    <li>Find the hypotenuse of a right triangle with legs 8m and 15m.</li>
+                    <li>If one leg of a right triangle is 9 and the hypotenuse is 15, find the length of the other leg.</li>
+                </ol>
+            </div>
+        
+            <div class="geometry-exercise-section">
+                <h3>Area and Volume</h3>
+                <ol start="16">
+                    <li>Find the area of a trapezoid with bases 6 and 10, height 4.</li>
+                    <li>Calculate the surface area of a cylinder with r=3, h=7.</li>
+                    <li>Find the volume of a sphere with diameter 10cm.</li>
+                    <li>Calculate the volume of a cone with radius 5cm and height 12cm.</li>
+                    <li>Find the surface area of a rectangular prism with length 8m, width 4m, and height 3m.</li>
+                </ol>
+            </div>
+        
+            <div class="geometry-exercise-section">
+                <h3>Advanced Geometry</h3>
+                <ol start="21">
+                    <li>Find the length of the diagonal of a square with side length 6cm.</li>
+                    <li>Determine the area of a sector of a circle with a radius of 4m and central angle of 60°.</li>
+                    <li>Find the volume of a pyramid with a square base of side 8m and height 10m.</li>
+                    <li>Determine the perimeter of an ellipse with semi-major axis 10cm and semi-minor axis 5cm (use approximation formula).</li>
+                    <li>Find the area of a rhombus with diagonals 12cm and 16cm.</li>
+                </ol>
+            </div>
+        
+            <div class="geometry-exercise-section">
+                <h3>Proofs</h3>
+                <ol start="26">
+                    <li>Prove the sum of angles in a triangle is 180°.</li>
+                    <li>Prove that opposite angles of a parallelogram are equal.</li>
+                    <li>Prove the inscribed angle theorem.</li>
+                    <li>Prove that the sum of the exterior angles of any polygon is 360°.</li>
+                    <li>Prove that the diagonals of a rectangle are equal in length.</li>
+                </ol>
+            </div>
+        </section>
+        
+
+        <section id="geometry-quiz">
+            <h2><i class="fas fa-question-circle"></i> Geometry Quiz</h2>
+            <form id="quiz-form">
+                <!-- Question 1 -->
+                <div class="quiz-question">
+                    <p>1. How many degrees in a straight angle?</p>
+                    <label><input type="radio" name="q1" value="A"> 90°</label>
+                    <label><input type="radio" name="q1" value="B"> 180°</label>
+                    <label><input type="radio" name="q1" value="C"> 360°</label>
+                </div>
+        
+                <!-- Question 2 -->
+                <div class="quiz-question">
+                    <p>2. What is the area of a 3×4 rectangle?</p>
+                    <label><input type="radio" name="q2" value="A"> 7</label>
+                    <label><input type="radio" name="q2" value="B"> 12</label>
+                    <label><input type="radio" name="q2" value="C"> 14</label>
+                </div>
+        
+                <!-- Question 3 -->
+                <div class="quiz-question">
+                    <p>3. In a right triangle with legs 6 and 8, the hypotenuse is:</p>
+                    <label><input type="radio" name="q3" value="A"> 10</label>
+                    <label><input type="radio" name="q3" value="B"> 14</label>
+                    <label><input type="radio" name="q3" value="C"> 100</label>
+                </div>
+        
+                <!-- Question 4 -->
+                <div class="quiz-question">
+                    <p>4. How many sides does a hexagon have?</p>
+                    <label><input type="radio" name="q4" value="A"> 5</label>
+                    <label><input type="radio" name="q4" value="B"> 6</label>
+                    <label><input type="radio" name="q4" value="C"> 7</label>
+                </div>
+        
+                <!-- Question 5 -->
+                <div class="quiz-question">
+                    <p>5. What is the circumference of a circle with diameter 10?</p>
+                    <label><input type="radio" name="q5" value="A"> 10π</label>
+                    <label><input type="radio" name="q5" value="B"> 20π</label>
+                    <label><input type="radio" name="q5" value="C"> 25π</label>
+                </div>
+        
+                <!-- Question 6 -->
+                <div class="quiz-question">
+                    <p>6. Which quadrilateral has exactly one pair of parallel sides?</p>
+                    <label><input type="radio" name="q6" value="A"> Parallelogram</label>
+                    <label><input type="radio" name="q6" value="B"> Rhombus</label>
+                    <label><input type="radio" name="q6" value="C"> Trapezoid</label>
+                </div>
+        
+                <!-- Question 7 -->
+                <div class="quiz-question">
+                    <p>7. The sum of angles in a pentagon is:</p>
+                    <label><input type="radio" name="q7" value="A"> 360°</label>
+                    <label><input type="radio" name="q7" value="B"> 540°</label>
+                    <label><input type="radio" name="q7" value="C"> 720°</label>
+                </div>
+        
+                <!-- Question 8 -->
+                <div class="quiz-question">
+                    <p>8. What is the volume of a cube with edge length 5?</p>
+                    <label><input type="radio" name="q8" value="A"> 15</label>
+                    <label><input type="radio" name="q8" value="B"> 25</label>
+                    <label><input type="radio" name="q8" value="C"> 125</label>
+                </div>
+        
+                <!-- Question 9 -->
+                <div class="quiz-question">
+                    <p>9. What is the area of a circle with radius 7?</p>
+                    <label><input type="radio" name="q9" value="A"> 49π</label>
+                    <label><input type="radio" name="q9" value="B"> 14π</label>
+                    <label><input type="radio" name="q9" value="C"> 28π</label>
+                </div>
+        
+                <!-- Question 10 -->
+                <div class="quiz-question">
+                    <p>10. The sum of the interior angles of a quadrilateral is:</p>
+                    <label><input type="radio" name="q10" value="A"> 180°</label>
+                    <label><input type="radio" name="q10" value="B"> 360°</label>
+                    <label><input type="radio" name="q10" value="C"> 540°</label>
+                </div>
+        
+                <!-- Question 11 -->
+                <div class="quiz-question">
+                    <p>11. The perimeter of a rectangle is 24m. If the length is 8m, what is the width?</p>
+                    <label><input type="radio" name="q11" value="A"> 4m</label>
+                    <label><input type="radio" name="q11" value="B"> 5m</label>
+                    <label><input type="radio" name="q11" value="C"> 6m</label>
+                </div>
+        
+                <!-- Question 12 -->
+                <div class="quiz-question">
+                    <p>12. What is the area of a triangle with base 10 and height 5?</p>
+                    <label><input type="radio" name="q12" value="A"> 25</label>
+                    <label><input type="radio" name="q12" value="B"> 50</label>
+                    <label><input type="radio" name="q12" value="C"> 100</label>
+                </div>
+        
+                <!-- Question 13 -->
+                <div class="quiz-question">
+                    <p>13. How many faces does a pyramid with a square base have?</p>
+                    <label><input type="radio" name="q13" value="A"> 5</label>
+                    <label><input type="radio" name="q13" value="B"> 6</label>
+                    <label><input type="radio" name="q13" value="C"> 8</label>
+                </div>
+        
+                <!-- Question 14 -->
+                <div class="quiz-question">
+                    <p>14. What is the volume of a cone with radius 3 and height 9?</p>
+                    <label><input type="radio" name="q14" value="A"> 81π</label>
+                    <label><input type="radio" name="q14" value="B"> 27π</label>
+                    <label><input type="radio" name="q14" value="C"> 36π</label>
+                </div>
+        
+                <!-- Question 15 -->
+                <div class="quiz-question">
+                    <p>15. What is the surface area of a sphere with radius 6?</p>
+                    <label><input type="radio" name="q15" value="A"> 144π</label>
+                    <label><input type="radio" name="q15" value="B"> 72π</label>
+                    <label><input type="radio" name="q15" value="C"> 36π</label>
+                </div>
+        
+                <!-- Question 16 -->
+                <div class="quiz-question">
+                    <p>16. What is the area of a trapezoid with bases 5 and 10, and height 4?</p>
+                    <label><input type="radio" name="q16" value="A"> 30</label>
+                    <label><input type="radio" name="q16" value="B"> 25</label>
+                    <label><input type="radio" name="q16" value="C"> 20</label>
+                </div>
+        
+                <!-- Question 17 -->
+                <div class="quiz-question">
+                    <p>17. The sum of the interior angles of a polygon with 6 sides is:</p>
+                    <label><input type="radio" name="q17" value="A"> 720°</label>
+                    <label><input type="radio" name="q17" value="B"> 900°</label>
+                    <label><input type="radio" name="q17" value="C"> 1080°</label>
+                </div>
+        
+                <!-- Question 18 -->
+                <div class="quiz-question">
+                    <p>18. What is the area of a rhombus with diagonals 8 and 6?</p>
+                    <label><input type="radio" name="q18" value="A"> 24</label>
+                    <label><input type="radio" name="q18" value="B"> 18</label>
+                    <label><input type="radio" name="q18" value="C"> 12</label>
+                </div>
+        
+                <!-- Question 19 -->
+                <div class="quiz-question">
+                    <p>19. The sum of angles in a triangle is:</p>
+                    <label><input type="radio" name="q19" value="A"> 180°</label>
+                    <label><input type="radio" name="q19" value="B"> 90°</label>
+                    <label><input type="radio" name="q19" value="C"> 360°</label>
+                </div>
+        
+                <!-- Question 20 -->
+                <div class="quiz-question">
+                    <p>20. What is the sum of 3/8 + 1/2?</p>
+                    <label><input type="radio" name="q20" value="A"> 7/8</label>
+                    <label><input type="radio" name="q20" value="B"> 5/8</label>
+                    <label><input type="radio" name="q20" value="C"> 1</label>
+                </div>
+        
+                <button type="geometry-submit">Submit</button>
+            </form>
+        
+            <div id="quiz-results"></div>
+        </section>
+        
+        <script>
+            // Answer Key for the Geometry Quiz (20 questions)
+            const geometryAnswerKey = {
+                q1: "B", q2: "B", q3: "A", q4: "B", q5: "B",
+                q6: "C", q7: "B", q8: "C", q9: "A", q10: "B",
+                q11: "A", q12: "B", q13: "A", q14: "B", q15: "A",
+                q16: "A", q17: "A", q18: "A", q19: "A", q20: "A"
+            };
+        
+            // Wait for DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                const quizForm = document.getElementById('quiz-form');
+                const resultDiv = document.getElementById('quiz-results');
+                
+                // Debugging: Check if elements exist
+                if (!quizForm) {
+                    console.error('Quiz form not found! Check the ID "quiz-form"');
+                    return;
+                }
+                if (!resultDiv) {
+                    console.error('Result div not found! Check the ID "quiz-results"');
+                    return;
+                }
+        
+                // Add submit event listener
+                quizForm.addEventListener('submit', function(event) {
+                    // Prevent default form submission
+                    event.preventDefault();
+                    console.log('Form submission intercepted'); // Debugging
+                    
+                    let score = 0;
+                    const totalQuestions = Object.keys(geometryAnswerKey).length;
+                    const unanswered = [];
+                    
+                    // Check each answer
+                    for (let i = 1; i <= totalQuestions; i++) {
+                        const questionName = `q${i}`;
+                        const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+                        
+                        if (!selectedAnswer) {
+                            unanswered.push(i);
+                            continue;
+                        }
+                        
+                        if (selectedAnswer.value === geometryAnswerKey[questionName]) {
+                            score++;
+                        }
+                    }
+                    
+                    // Calculate percentage
+                    const percentage = (score / totalQuestions * 100).toFixed(1);
+                    
+                    // Create feedback message
+                    let feedbackMessage;
+                    if (unanswered.length > 0) {
+                        feedbackMessage = `<p><i class="fas fa-exclamation-circle"></i> You didn't answer questions: ${unanswered.join(', ')}</p>`;
+                    } else if (percentage >= 80) {
+                        feedbackMessage = '<p><i class="fas fa-check-circle"></i> Excellent! You have mastered geometry.</p>';
+                    } else if (percentage >= 50) {
+                        feedbackMessage = '<p><i class="fas fa-thumbs-up"></i> Good job! Review your missed questions.</p>';
+                    } else {
+                        feedbackMessage = '<p><i class="fas fa-book"></i> Keep practicing! Geometry takes time to master.</p>';
+                    }
+                    
+                    // Display results
+                    resultDiv.innerHTML = `
+                        <div class="quiz-result-box">
+                            <h3>Your Score: ${score}/${totalQuestions} (${percentage}%)</h3>
+                            <div class="feedback">${feedbackMessage}</div>
+                            <button class="retry-btn">Try Again</button>
+                        </div>
+                    `;
+                    
+                    // Add retry button functionality
+                    resultDiv.querySelector('.retry-btn').addEventListener('click', function() {
+                        quizForm.reset();
+                        resultDiv.innerHTML = '';
+                    });
+                    
+                    // Scroll to results
+                    resultDiv.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        </script>
+        
+        
+        <section id="geometry-videos" class="geometry-section">
+            <h2 class="geometry-heading"><i class="fas fa-video"></i> Geometry Video Tutorials</h2>
+            
+            <div class="geometry-encouragement">
+                <p><i class="fas fa-lightbulb"></i> Visual learning helps! These curated videos explain key geometry concepts with clear examples and demonstrations.</p>
+            </div>
+        
+            <div class="geometry-video-grid">
+                <div class="geometry-video-card">
+                    <div class="geometry-video-container">
+                        <iframe src="https://www.youtube.com/watch?v=lxbkx5rewqg" 
+                               frameborder="0" 
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                               allowfullscreen></iframe>
+                    </div>
+                    <h3 class="geometry-video-title">Geometry Fundamentals</h3>
+                    <p class="geometry-video-description">Learn about points, lines, planes, and basic constructions.</p>
+                    <div class="geometry-video-duration"><i class="fas fa-clock"></i> 8:25</div>
+                </div>
+        
+                <div class="geometry-video-card">
+                    <div class="geometry-video-container">
+                        <iframe src=" https://www.youtube.com/watch?v=kMHJOZRETxo" 
+                               frameborder="0" 
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                               allowfullscreen></iframe>
+                    </div>
+                    <h3 class="geometry-video-title">Triangle Properties</h3>
+                    <p class="geometry-video-description">Explore different types of triangles and their properties.</p>
+                    <div class="geometry-video-duration"><i class="fas fa-clock"></i> 10:30</div>
+                </div>
+        
+                <div class="geometry-video-card">
+                    <div class="geometry-video-container">
+                        <iframe src=" https://www.youtube.com/watch?v=z9XMYCmyybY" 
+                               frameborder="0" 
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                               allowfullscreen></iframe>
+                    </div>
+                    <h3 class="geometry-video-title">Circle Theorems</h3>
+                    <p class="geometry-video-description">Visual explanations of key circle theorems and proofs.</p>
+                    <div class="geometry-video-duration"><i class="fas fa-clock"></i> 9:12</div>
+                </div>
+            </div>
+        </section>        
+        <section id="forum" class="forum-section">
+    <div class="forum-header">
+        <h2><i class="fas fa-comments"></i> Discussion Forum</h2>
+        <p>Have questions or want to discuss this topic? Fill the form, copy your message, and join the WhatsApp group to post it!</p>
+    </div>
+
+    <form id="forum-form" class="forum-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="userName" class="form-label">Your Name</label>
+                <input type="text" id="userName" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="topic" class="form-label">Topic</label>
+                <select id="topic" class="form-select" required>
+                    <option value="" disabled selected>Select topic</option>
+                    <option value="Geometry Fundamentals">Geometry Fundamentals</option>
+                    <option value="Triangle Properties">Triangle Properties</option>
+                    <option value="Circle Theorems">Circle Theorems</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="userPost" class="form-label">Your Question</label>
+            <textarea id="userPost" class="form-textarea" required></textarea>
+        </div>
+        <button type="button" class="form-submit" onclick="copyForumMessage()">Copy & Join Group</button>
+    </form>
+</section>
+
+<script>
+function copyForumMessage() {
+    const name = document.getElementById('userName').value.trim();
+    const topic = document.getElementById('topic').value;
+    const question = document.getElementById('userPost').value.trim();
+
+    if (!name || !topic || !question) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    const message = `👤 Name: ${name}\n📘 Topic: ${topic}\n❓ Question:\n${question}`;
+    
+    navigator.clipboard.writeText(message).then(() => {
+        alert("✅ Your question has been copied. Please paste it in the WhatsApp group.");
+        window.open("https://chat.whatsapp.com/LPoXBwl6Y9ZDkyYPcHvKbx?mode=ac_c", "_blank");
+    }).catch(err => {
+        alert("❌ Failed to copy text: " + err);
+    });
+}
+</script>
+
+            
+            <div class="forum-posts-container">
+                <h3>Recent Discussions</h3>
+                <div id="forum-posts">
+                    <!-- Dynamic posts will appear here -->
+                </div>
+            </div>
+        </section>
+        
+        <script src="geometryapp.js"></script>
+        <script src="geometryscript.js"></script>
+        <script>
+            // Escape HTML to prevent XSS
+            function escapeHTML(str) {
+                return str.replace(/[&<>"']/g, function (match) {
+                    const escapeChars = {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#039;'
+                    };
+                    return escapeChars[match];
+                });
+            }
+        
+            document.addEventListener('DOMContentLoaded', function () {
+                const forumKey = 'forumPosts';
+        
+                function loadForumPosts() {
+                    const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
+                    const forumPostsDiv = document.getElementById('forum-posts');
+                    forumPostsDiv.innerHTML = '';
+        
+                    // Show latest posts first
+                    const reversedPosts = [...forumPosts].reverse();
+        
+                    reversedPosts.forEach((post, index) => {
+                        const postDiv = document.createElement('div');
+                        postDiv.classList.add('forum-post');
+        
+                        postDiv.innerHTML = `
+                            <div class="post-header">
+                                <h4>${escapeHTML(post.userName)}</h4>
+                                <span class="post-time">${new Date(post.timestamp).toLocaleString()}</span>
+                            </div>
+                            <div class="post-content">${escapeHTML(post.userPost)}</div>
+                            ${index === 0 ? '<div class="new-post-indicator">New</div>' : ''}
+                        `;
+        
+                        forumPostsDiv.appendChild(postDiv);
+                    });
+                }
+        
+                document.getElementById('forum-form').addEventListener('submit', function (event) {
+                    event.preventDefault();
+        
+                    const userNameInput = document.getElementById('userName');
+                    const userPostInput = document.getElementById('userPost');
+        
+                    const userName = userNameInput.value.trim();
+                    const userPost = userPostInput.value.trim();
+        
+                    if (!userName || !userPost) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+        
+                    const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
+        
+                    const newPost = {
+                        userName,
+                        userPost,
+                        timestamp: new Date().toISOString()
+                    };
+        
+                    forumPosts.push(newPost);
+                    localStorage.setItem(forumKey, JSON.stringify(forumPosts));
+        
+                    // Clear form fields
+                    userNameInput.value = '';
+                    userPostInput.value = '';
+        
+                    // Reload posts
+                    loadForumPosts();
+        
+                    // Smooth scroll to posts section
+                    document.getElementById('forum-posts').scrollIntoView({ behavior: 'smooth' });
+                });
+        
+                // Initial load
+                loadForumPosts();
+            });
+        </script>
+    </body>
+</html>
+        
