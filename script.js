@@ -1,4 +1,4 @@
-// Firebase configuration - Updated with your actual Firebase project details
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBO8Kw2hadRZt1sjDvmRsotRsyJuDN4r8Y",
   authDomain: "igboya-eb9e9.firebaseapp.com",
@@ -8,19 +8,77 @@ const firebaseConfig = {
   appId: "1:934039900810:web:5050890741fa90c9b89373"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+// Initialize Firebase with error handling
+try {
+    firebase.initializeApp(firebaseConfig);
+    var auth = firebase.auth();
+    var db = firebase.firestore();
+    console.log('Firebase initialized successfully');
+} catch (error) {
+    console.error('Firebase initialization failed:', error);
+    document.addEventListener('DOMContentLoaded', function() {
+        showErrorMessage('Failed to initialize the app. Please refresh the page.');
+    });
+}
+
+// Utility function to show error messages
+function showErrorMessage(message, elementId = null, isSuccess = false) {
+    if (elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = message;
+            element.style.color = isSuccess ? '#2a9d8f' : '#e63946';
+            element.style.display = 'block';
+        }
+    } else {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${isSuccess ? '#2a9d8f' : '#e63946'};
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 10000;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        `;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(0)';
+        }, 100);
+        
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 5000);
+    }
+}
 
 // Handle Splash Screen
 document.addEventListener('DOMContentLoaded', function() {
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.body.className = savedTheme;
-        updateThemeIcon(savedTheme);
+    let currentTheme = 'light-mode';
+    
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        currentTheme = 'dark-mode';
     }
+    
+    document.body.className = currentTheme;
+    updateThemeIcon(currentTheme);
     
     // Typewriter effect for splash screen
     const welcomeText = "Welcome to IGBOYA";
@@ -28,54 +86,68 @@ document.addEventListener('DOMContentLoaded', function() {
     let i = 0;
     
     function typeWriter() {
-        if (i < welcomeText.length) {
+        if (welcomeElement && i < welcomeText.length) {
             welcomeElement.innerHTML += welcomeText.charAt(i);
             i++;
             setTimeout(typeWriter, 150);
         }
     }
     
-    // Start typewriter effect
     typeWriter();
     
-    // Check if user is already logged in
-    auth.onAuthStateChanged(user => {
-        if (user && user.emailVerified) {
-            // User is signed in and email is verified, show main app
-            setTimeout(() => {
-                document.getElementById('splash-screen').style.opacity = '0';
+    // Check authentication status
+    try {
+        auth.onAuthStateChanged(user => {
+            if (user && user.emailVerified) {
                 setTimeout(() => {
-                    document.getElementById('splash-screen').classList.add('hidden');
-                    document.getElementById('app-container').classList.remove('hidden');
-                    updateUserUI(user);
-                }, 500);
-            }, 2000);
-        } else {
-            // No user is signed in or email not verified, show auth screen
-            setTimeout(() => {
-                document.getElementById('splash-screen').style.opacity = '0';
+                    transitionToMainApp(user);
+                }, 2000);
+            } else {
                 setTimeout(() => {
-                    document.getElementById('splash-screen').classList.add('hidden');
-                    document.getElementById('auth-container').classList.remove('hidden');
-                }, 500);
-            }, 4000);
+                    transitionToAuth();
+                }, 4000);
+            }
+        });
+    } catch (error) {
+        console.error('Auth state change error:', error);
+        setTimeout(transitionToAuth, 4000);
+    }
+    
+    function transitionToMainApp(user) {
+        const splashScreen = document.getElementById('splash-screen');
+        const appContainer = document.getElementById('app-container');
+        
+        if (splashScreen && appContainer) {
+            splashScreen.style.opacity = '0';
+            setTimeout(() => {
+                splashScreen.classList.add('hidden');
+                appContainer.classList.remove('hidden');
+                updateUserUI(user);
+                loadUserProgress(user); // NEW: Load user progress data
+            }, 500);
         }
-    });
+    }
+    
+    function transitionToAuth() {
+        const splashScreen = document.getElementById('splash-screen');
+        const authContainer = document.getElementById('auth-container');
+        
+        if (splashScreen && authContainer) {
+            splashScreen.style.opacity = '0';
+            setTimeout(() => {
+                splashScreen.classList.add('hidden');
+                authContainer.classList.remove('hidden');
+            }, 500);
+        }
+    }
     
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            if (isDarkMode) {
-                document.body.className = 'light-mode';
-                localStorage.setItem('theme', 'light-mode');
-                updateThemeIcon('light-mode');
-            } else {
-                document.body.className = 'dark-mode';
-                localStorage.setItem('theme', 'dark-mode');
-                updateThemeIcon('dark-mode');
-            }
+            currentTheme = currentTheme === 'dark-mode' ? 'light-mode' : 'dark-mode';
+            document.body.className = currentTheme;
+            updateThemeIcon(currentTheme);
         });
     }
     
@@ -94,11 +166,9 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const targetTab = this.getAttribute('data-tab');
             
-            // Update active tab button
             tabButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
-            // Show corresponding form
             authForms.forEach(form => {
                 form.classList.remove('active');
                 if (form.id === `${targetTab}-form`) {
@@ -106,11 +176,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Clear any error messages when switching tabs
-            const errorElements = document.querySelectorAll('.error-message');
+            const errorElements = document.querySelectorAll('.auth-error');
             errorElements.forEach(element => {
                 element.textContent = '';
-                element.style.color = '#e63946'; // Reset to default error color
+                element.style.display = 'none';
             });
         });
     });
@@ -121,58 +190,55 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = document.getElementById('email')?.value;
+            const password = document.getElementById('password')?.value;
             const errorElement = document.getElementById('login-error');
             
-            // Clear previous errors
             if (errorElement) {
                 errorElement.textContent = '';
-                errorElement.style.color = '#e63946'; // Reset to default error color
+                errorElement.style.display = 'none';
             }
             
-            // Validate inputs
             if (!email || !password) {
-                if (errorElement) errorElement.textContent = 'Please enter both email and password';
+                showErrorMessage('Please enter both email and password', 'login-error');
                 return;
             }
             
-            // Show loading state
             const loginButton = loginForm.querySelector('button[type="submit"]');
+            if (!loginButton) return;
+            
             const originalText = loginButton.textContent;
             loginButton.textContent = 'Signing in...';
             loginButton.disabled = true;
             
-            // Sign in with email and password
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Signed in 
                     const user = userCredential.user;
                     
-                    // Check if email is verified
                     if (!user.emailVerified) {
-                        // Send verification email again if not verified
                         return user.sendEmailVerification()
                             .then(() => {
-                                // Sign out the user since email is not verified
                                 return auth.signOut();
                             })
                             .then(() => {
-                                throw new Error('Please verify your email address before signing in. A new verification email has been sent.');
+                                throw new Error('Please verify your email address before signing in. Kindly check your spam folder for the verification email.');
                             });
                     }
                     
-                    // If email is verified, proceed to main app
-                    document.getElementById('auth-container').classList.add('hidden');
-                    document.getElementById('app-container').classList.remove('hidden');
-                    updateUserUI(user);
+                    const authContainer = document.getElementById('auth-container');
+                    const appContainer = document.getElementById('app-container');
+                    
+                    if (authContainer && appContainer) {
+                        authContainer.classList.add('hidden');
+                        appContainer.classList.remove('hidden');
+                        updateUserUI(user);
+                        loadUserProgress(user); // NEW: Load user progress
+                    }
                 })
                 .catch((error) => {
-                    // Reset button state
                     loginButton.textContent = originalText;
                     loginButton.disabled = false;
                     
-                    // Handle specific error cases
                     let errorMessage = 'An error occurred during sign in. Please try again.';
                     
                     switch (error.code) {
@@ -190,11 +256,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'auth/too-many-requests':
                             errorMessage = 'Too many unsuccessful login attempts. Please try again later or reset your password.';
                             break;
+                        case 'auth/network-request-failed':
+                            errorMessage = 'Network error. Please check your internet connection and try again.';
+                            break;
                         default:
-                            errorMessage = error.message;
+                            errorMessage = error.message || errorMessage;
                     }
                     
-                    if (errorElement) errorElement.textContent = errorMessage;
+                    showErrorMessage(errorMessage, 'login-error');
                 });
         });
     }
@@ -205,38 +274,35 @@ document.addEventListener('DOMContentLoaded', function() {
         signupForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
+            const name = document.getElementById('signup-name')?.value;
+            const email = document.getElementById('signup-email')?.value;
+            const password = document.getElementById('signup-password')?.value;
+            const confirmPassword = document.getElementById('confirm-password')?.value;
             const errorElement = document.getElementById('signup-error');
             
-            // Clear previous errors
             if (errorElement) {
                 errorElement.textContent = '';
-                errorElement.style.color = '#e63946'; // Reset to default error color
+                errorElement.style.display = 'none';
             }
             
-            // Validate inputs
             if (!name || !email || !password || !confirmPassword) {
-                if (errorElement) errorElement.textContent = 'Please fill in all fields';
+                showErrorMessage('Please fill in all fields', 'signup-error');
                 return;
             }
             
-            // Validate passwords match
             if (password !== confirmPassword) {
-                if (errorElement) errorElement.textContent = 'Passwords do not match';
+                showErrorMessage('Passwords do not match', 'signup-error');
                 return;
             }
             
-            // Validate password strength
             if (password.length < 6) {
-                if (errorElement) errorElement.textContent = 'Password should be at least 6 characters long';
+                showErrorMessage('Password should be at least 6 characters long', 'signup-error');
                 return;
             }
             
-            // Show loading state
             const signupButton = signupForm.querySelector('button[type="submit"]');
+            if (!signupButton) return;
+            
             const originalText = signupButton.textContent;
             signupButton.textContent = 'Creating account...';
             signupButton.disabled = true;
@@ -244,37 +310,47 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create user with email and password
             auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Signed up 
                     const user = userCredential.user;
                     
                     // Send email verification
-                    return user.sendEmailVerification({
-                        url: 'https://igboya-eb9e9.firebaseapp.com',
-                        handleCodeInApp: true
-                    });
+                    return user.sendEmailVerification();
                 })
                 .then(() => {
                     // Update user profile with name
-                    return auth.currentUser.updateProfile({
-                        displayName: name
-                    });
-                })
-                .then(() => {
-                    // Save user data to Firestore
                     const user = auth.currentUser;
-                    return db.collection('users').doc(user.uid).set({
-                        name: name,
-                        email: email,
-                        emailVerified: false,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
+                    if (user) {
+                        return user.updateProfile({
+                            displayName: name
+                        });
+                    }
                 })
                 .then(() => {
-                    // Show success message with verification info
-                    alert('Account created successfully! Please check your email to verify your account before signing in.');
-                    
-                    // Switch to login tab
-                    document.querySelector('.tab-btn[data-tab="login"]').click();
+                    // Save user data to Firestore (now with proper permissions)
+                    const user = auth.currentUser;
+                    if (user) {
+                        return db.collection('users').doc(user.uid).set({
+                            name: name,
+                            email: email,
+                            emailVerified: false,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                            // NEW: Initialize user progress data
+                            progress: {
+                                algebra: 0,
+                                geometry: 0,
+                                calculus: 0,
+                                matrices: 0,
+                                trigonometry: 0,
+                                statistics: 0
+                            },
+                            points: 0,
+                            streak: 0,
+                            lastActive: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    }
+                })
+                .then(() => {
+                    // Show success message
+                    showErrorMessage('Account created successfully! Kindly check your email (including spam folder) to verify your account before signing in.', 'signup-error', true);
                     
                     // Clear the form
                     signupForm.reset();
@@ -283,16 +359,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     return auth.signOut();
                 })
                 .catch((error) => {
-                    // Reset button state
                     signupButton.textContent = originalText;
                     signupButton.disabled = false;
                     
-                    // Handle specific error cases
                     let errorMessage = 'An error occurred during sign up. Please try again.';
                     
                     switch (error.code) {
                         case 'auth/email-already-in-use':
-                            errorMessage = 'This email is already registered. Please try verifying your email by checking your spam box.';
+                            errorMessage = 'This email is already registered. Please try signing in or check your spam folder for verification email.';
                             break;
                         case 'auth/invalid-email':
                             errorMessage = 'Invalid email address format. Please check your email.';
@@ -303,13 +377,82 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'auth/operation-not-allowed':
                             errorMessage = 'Email/password accounts are not enabled. Please contact support.';
                             break;
+                        case 'auth/network-request-failed':
+                            errorMessage = 'Network error. Please check your internet connection and try again.';
+                            break;
+                        case 'permission-denied':
+                            // This error should no longer occur with the new rules
+                            errorMessage = 'Account created successfully! Kindly check your spam folder to verify your email.';
+                            showErrorMessage(errorMessage, 'signup-error', true);
+                            signupForm.reset();
+                            if (auth.currentUser) auth.signOut();
+                            return;
                         default:
-                            errorMessage = error.message;
+                            errorMessage = error.message || errorMessage;
                     }
                     
-                    if (errorElement) errorElement.textContent = errorMessage;
+                    showErrorMessage(errorMessage, 'signup-error');
                 });
         });
+    }
+    
+    // NEW: Function to load user progress data
+    function loadUserProgress(user) {
+        if (!user || !db) return;
+        
+        db.collection('users').doc(user.uid).get()
+            .then(doc => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    const progress = userData.progress || {};
+                    
+                    // Update progress bars on topics page
+                    updateProgressBars(progress);
+                    
+                    // Update profile statistics
+                    updateProfileStats(userData);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading user progress:', error);
+            });
+    }
+    
+    // NEW: Function to update progress bars
+    function updateProgressBars(progress) {
+        const topics = ['algebra', 'geometry', 'calculus', 'matrices', 'trigonometry', 'statistics'];
+        
+        topics.forEach(topic => {
+            const progressBar = document.querySelector(`.topic-card[href="${topic}.html"] .progress`);
+            const progressText = document.querySelector(`.topic-card[href="${topic}.html"] .topic-progress span`);
+            
+            if (progressBar && progressText) {
+                const percentage = progress[topic] || 0;
+                progressBar.style.width = `${percentage}%`;
+                progressText.textContent = `${percentage}% Complete`;
+            }
+        });
+    }
+    
+    // NEW: Function to update profile statistics
+    function updateProfileStats(userData) {
+        const topicsCompleted = document.getElementById('topics-completed');
+        const totalPoints = document.getElementById('total-points');
+        const learningStreak = document.getElementById('learning-streak');
+        
+        if (topicsCompleted) {
+            const progress = userData.progress || {};
+            const completed = Object.values(progress).filter(p => p >= 100).length;
+            topicsCompleted.textContent = completed;
+        }
+        
+        if (totalPoints) {
+            totalPoints.textContent = userData.points || '0';
+        }
+        
+        if (learningStreak) {
+            learningStreak.textContent = `${userData.streak || 0} days`;
+        }
     }
     
     // Resend verification email functionality
@@ -318,155 +461,145 @@ document.addEventListener('DOMContentLoaded', function() {
         resendVerificationLink.addEventListener('click', function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const errorElement = document.getElementById('login-error');
+            const user = auth.currentUser;
+            const email = document.getElementById('email')?.value;
             
-            if (!email) {
-                if (errorElement) {
-                    errorElement.textContent = 'Please enter your email address first';
-                    errorElement.style.color = '#e63946';
-                }
+            if (!user && !email) {
+                showErrorMessage('Please enter your email address first', 'login-error');
                 return;
             }
             
-            // Show loading state
             const originalText = resendVerificationLink.textContent;
             resendVerificationLink.textContent = 'Sending...';
             
-            // Send password reset email to trigger reauthentication
-            auth.sendPasswordResetEmail(email)
-                .then(() => {
-                    if (errorElement) {
-                        errorElement.textContent = 'Verification email sent. Please check your Spam box.';
-                        errorElement.style.color = 'green';
-                    }
-                })
-                .catch((error) => {
-                    let errorMessage = 'Failed to send verification email. Please try again.';
-                    
-                    switch (error.code) {
-                        case 'auth/user-not-found':
-                            errorMessage = 'No account found with this email address.';
-                            break;
-                        case 'auth/invalid-email':
-                            errorMessage = 'Invalid email address format.';
-                            break;
-                        default:
-                            errorMessage = error.message;
-                    }
-                    
-                    if (errorElement) {
-                        errorElement.textContent = errorMessage;
-                        errorElement.style.color = '#e63946';
-                    }
-                })
-                .finally(() => {
-                    // Reset button text after a delay
-                    setTimeout(() => {
-                        resendVerificationLink.textContent = originalText;
-                    }, 3000);
-                });
+            if (user) {
+                user.sendEmailVerification()
+                    .then(() => {
+                        showErrorMessage('Verification email sent! Please check your spam folder.', 'login-error', true);
+                    })
+                    .catch((error) => {
+                        showErrorMessage('Failed to send verification email. Please try again.', 'login-error');
+                    });
+            } else {
+                auth.sendPasswordResetEmail(email)
+                    .then(() => {
+                        showErrorMessage('If an account exists, verification email sent. Check your spam folder.', 'login-error', true);
+                    })
+                    .catch((error) => {
+                        showErrorMessage('Failed to send email. Please try again.', 'login-error');
+                    });
+            }
+            
+            setTimeout(() => {
+                resendVerificationLink.textContent = originalText;
+            }, 3000);
         });
     }
     
     // Forgot password functionality
     const forgotPasswordLink = document.getElementById('forgot-password-link');
-    if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener('click', function(e) {
-            e.preventDefault();
+    if (!forgotPasswordLink) {
+        // Create forgot password link if it doesn't exist
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+            const forgotPasswordHtml = '<p class="forgot-password"><a href="#" id="forgot-password-link">Forgot your password?</a></p>';
+            loginForm.insertAdjacentHTML('beforeend', forgotPasswordHtml);
             
-            const email = document.getElementById('email').value;
-            const errorElement = document.getElementById('login-error');
-            
-            if (!email) {
-                if (errorElement) {
-                    errorElement.textContent = 'Please enter your email address first';
-                    errorElement.style.color = '#e63946';
-                }
-                return;
-            }
-            
-            // Show loading state
-            const originalText = forgotPasswordLink.textContent;
-            forgotPasswordLink.textContent = 'Sending...';
-            
-            // Send password reset email
-            auth.sendPasswordResetEmail(email)
-                .then(() => {
-                    if (errorElement) {
-                        errorElement.textContent = 'Password reset email sent. Please check your Spam.';
-                        errorElement.style.color = 'green';
-                    }
-                })
-                .catch((error) => {
-                    let errorMessage = 'Failed to send password reset email. Please try again.';
-                    
-                    switch (error.code) {
-                        case 'auth/user-not-found':
-                            errorMessage = 'No account found with this email address.';
-                            break;
-                        case 'auth/invalid-email':
-                            errorMessage = 'Invalid email address format.';
-                            break;
-                        default:
-                            errorMessage = error.message;
-                    }
-                    
-                    if (errorElement) {
-                        errorElement.textContent = errorMessage;
-                        errorElement.style.color = '#e63946';
-                    }
-                })
-                .finally(() => {
-                    // Reset link text after a delay
-                    setTimeout(() => {
-                        forgotPasswordLink.textContent = originalText;
-                    }, 3000);
-                });
-        });
+            const newForgotPasswordLink = document.getElementById('forgot-password-link');
+            newForgotPasswordLink.addEventListener('click', handleForgotPassword);
+        }
+    } else {
+        forgotPasswordLink.addEventListener('click', handleForgotPassword);
+    }
+    
+    function handleForgotPassword(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email')?.value;
+        
+        if (!email) {
+            showErrorMessage('Please enter your email address first', 'login-error');
+            return;
+        }
+        
+        const originalText = e.target.textContent;
+        e.target.textContent = 'Sending...';
+        
+        auth.sendPasswordResetEmail(email)
+            .then(() => {
+                showErrorMessage('Password reset email sent! Please check your spam folder.', 'login-error', true);
+            })
+            .catch((error) => {
+                showErrorMessage('Failed to send password reset email. Please try again.', 'login-error');
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    e.target.textContent = originalText;
+                }, 3000);
+            });
     }
     
     // Logout functionality
     const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            auth.signOut().then(() => {
-                document.getElementById('app-container').classList.add('hidden');
-                document.getElementById('auth-container').classList.remove('hidden');
-            }).catch((error) => {
-                console.error('Logout error:', error);
-                alert('Failed to sign out. Please try again.');
-            });
+    const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+    
+    function handleLogout() {
+        auth.signOut().then(() => {
+            const appContainer = document.getElementById('app-container');
+            const authContainer = document.getElementById('auth-container');
+            
+            if (appContainer && authContainer) {
+                appContainer.classList.add('hidden');
+                authContainer.classList.remove('hidden');
+            }
+        }).catch((error) => {
+            console.error('Logout error:', error);
         });
     }
     
-    // Mobile menu toggle
+    if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
+    if (mobileLogoutBtn) mobileLogoutBtn.addEventListener('click', handleLogout);
+    
+    // Mobile navigation functionality
     const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    const mobileNav = document.getElementById('mobile-nav');
+    const closeNav = document.getElementById('close-nav');
     
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+    function openMobileNav() {
+        if (mobileNavOverlay && mobileNav) {
+            mobileNavOverlay.classList.add('active');
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
+    
+    function closeMobileNav() {
+        if (mobileNavOverlay && mobileNav) {
+            mobileNavOverlay.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    if (hamburger) hamburger.addEventListener('click', openMobileNav);
+    if (mobileNavOverlay) mobileNavOverlay.addEventListener('click', closeMobileNav);
+    if (closeNav) closeNav.addEventListener('click', closeMobileNav);
     
     // Navigation between sections
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     const contentSections = document.querySelectorAll('.content-section');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Get target section ID from href
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = this.getAttribute('href')?.substring(1);
+            if (!targetId) return;
             
-            // Update active navigation link
             navLinks.forEach(navLink => navLink.classList.remove('active'));
             this.classList.add('active');
             
-            // Show target section
             contentSections.forEach(section => {
                 section.classList.remove('active');
                 if (section.id === targetId) {
@@ -474,41 +607,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Close mobile menu if open
-            if (navMenu && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                if (hamburger) hamburger.classList.remove('active');
-            }
-            
-            // Scroll to top of page
-            window.scrollTo(0, 0);
+            closeMobileNav();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
     
-    // Add click event to CTA button
+    // CTA button functionality
     const ctaButton = document.querySelector('.cta-button');
     if (ctaButton) {
         ctaButton.addEventListener('click', function() {
-            // Navigate to topics section
-            document.querySelector('.nav-link[href="#topics"]').click();
+            const topicsLink = document.querySelector('.nav-link[href="#topics"], .mobile-nav-link[href="#topics"]');
+            if (topicsLink) topicsLink.click();
         });
     }
     
     // Handle email verification status changes
     auth.onAuthStateChanged(user => {
         if (user) {
-            // Check if the user just verified their email
             user.reload().then(() => {
                 if (user.emailVerified) {
-                    // Update Firestore with verified status
                     db.collection('users').doc(user.uid).update({
                         emailVerified: true
+                    }).then(() => {
+                        showErrorMessage('Email verified successfully!', null, true);
+                        updateUserUI(user);
                     });
-                    
-                    // Show success message if user is on the app
-                    if (!document.getElementById('app-container').classList.contains('hidden')) {
-                        alert('Your email has been successfully verified!');
-                    }
                 }
             });
         }
@@ -516,45 +639,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to update UI with user data
     function updateUserUI(user) {
-        // Get user data from Firestore
+        if (!user || !db) return;
+        
         db.collection('users').doc(user.uid).get()
             .then(doc => {
                 if (doc.exists) {
                     const userData = doc.data();
                     
-                    // Update user name in navbar
                     const userNameElement = document.getElementById('user-name');
-                    if (userNameElement) userNameElement.textContent = userData.name;
-                    
-                    // Update profile section
+                    const mobileUserNameElement = document.getElementById('mobile-user-name');
                     const profileName = document.getElementById('profile-name');
                     const profileEmail = document.getElementById('profile-email');
                     const avatarInitials = document.getElementById('avatar-initials');
                     
-                    if (profileName) profileName.textContent = userData.name;
+                    if (userNameElement && userData.name) userNameElement.textContent = userData.name;
+                    if (mobileUserNameElement && userData.name) mobileUserNameElement.textContent = userData.name;
+                    if (profileName && userData.name) profileName.textContent = userData.name;
                     if (profileEmail) profileEmail.textContent = user.email;
                     
-                    // Show verification status
-                    const verificationStatus = document.getElementById('verification-status');
-                    if (verificationStatus) {
-                        if (user.emailVerified) {
-                            verificationStatus.textContent = 'Email verified';
-                            verificationStatus.style.color = '#2a9d8f';
-                        } else {
-                            verificationStatus.textContent = 'Email not verified';
-                            verificationStatus.style.color = '#e63946';
-                        }
-                    }
-                    
-                    // Get initials for avatar
-                    if (avatarInitials) {
+                    if (avatarInitials && userData.name) {
                         const names = userData.name.split(' ');
                         let initials = names[0].substring(0, 1).toUpperCase();
-                        
-                        if (names.length > 1) {
-                            initials += names[names.length - 1].substring(0, 1).toUpperCase();
-                        }
-                        
+                        if (names.length > 1) initials += names[names.length - 1].substring(0, 1).toUpperCase();
                         avatarInitials.textContent = initials;
                     }
                 }
@@ -564,3 +670,40 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+
+// NEW: Next Steps - Topic Page Functionality
+function initializeTopicPage(topicName) {
+    // This function would be called on individual topic pages (algebra.html, geometry.html, etc.)
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    // Load topic content and progress
+    db.collection('topics').doc(topicName).get()
+        .then(doc => {
+            if (doc.exists) {
+                const topicData = doc.data();
+                displayTopicContent(topicData);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading topic content:', error);
+        });
+}
+
+// NEW: Function to update user progress
+function updateUserProgress(topicName, progressPercentage) {
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    const updateData = {};
+    updateData[`progress.${topicName}`] = progressPercentage;
+    updateData.lastActive = firebase.firestore.FieldValue.serverTimestamp();
+    
+    db.collection('users').doc(user.uid).update(updateData)
+        .then(() => {
+            console.log('Progress updated successfully');
+        })
+        .catch(error => {
+            console.error('Error updating progress:', error);
+        });
+}

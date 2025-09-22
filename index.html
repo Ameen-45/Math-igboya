@@ -5,21 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IGBOYA - Mathematics Learning</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <!-- Firebase App (core SDK) -->
+    <link rel="stylesheet" href="styles.css"> 
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <!-- Firebase Auth -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body class="light-mode">
-    <!-- Theme Toggle -->
-    <button id="theme-toggle" class="theme-toggle">
-        <span class="theme-icon">🌙</span>
-    </button>
-
-    <!-- Splash Screen -->
     <div id="splash-screen">
         <div class="splash-content">
             <div class="logo">
@@ -29,8 +20,6 @@
             <div class="loader"></div>
         </div>
     </div>
-
-    <!-- Login/Signup Page -->
     <div id="auth-container" class="hidden">
         <div class="auth-card">
             <div class="auth-header">
@@ -87,12 +76,16 @@
             </div>
         </div>
     </div>
-
-    <!-- Main Application Layout (Initially Hidden) -->
     <div id="app-container" class="hidden">
-        <!-- Navigation Bar -->
+        
         <nav class="navbar">
             <div class="nav-container">
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                
                 <div class="nav-logo">
                     <svg width="40" height="40" viewBox="0 0 50 50">
                         <circle cx="25" cy="25" r="20" fill="var(--primary-color)" />
@@ -101,38 +94,52 @@
                     </svg>
                     <h2>IGBOYA</h2>
                 </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link active">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#topics" class="nav-link">Topics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#community" class="nav-link">Community</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#resources" class="nav-link">Resources</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#profile" class="nav-link">Profile</a>
-                    </li>
-                </ul>
+                
                 <div class="nav-user">
                     <span id="user-name">User</span>
                     <button id="logout-btn" class="logout-btn">Logout</button>
                 </div>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </div>
         </nav>
 
+        <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+        <div id="mobile-nav" class="mobile-nav">
+            <div class="mobile-nav-header">
+                <div class="mobile-nav-logo">
+                    <svg width="40" height="40" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="var(--primary-color)" />
+                        <path d="M20,15 L30,15 L35,25 L30,35 L20,35 L15,25 Z" fill="#fff" />
+                        <text x="25" y="28" font-size="10" text-anchor="middle" fill="var(--primary-color)">I</text>
+                    </svg>
+                    <h2>IGBOYA</h2>
+                </div>
+                <button id="close-nav" class="close-nav">&times;</button>
+            </div>
+            <ul class="mobile-nav-menu">
+                <li class="mobile-nav-item">
+                    <a href="#home" class="mobile-nav-link active">Home</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#topics" class="mobile-nav-link">Topics</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#community" class="mobile-nav-link">Community</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#resources" class="mobile-nav-link">Resources</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#profile" class="mobile-nav-link">Profile</a>
+                </li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <span id="mobile-user-name">User</span>
+                <button id="mobile-logout-btn" class="mobile-logout-btn">Logout</button>
+            </div>
+        </div>
+
         <!-- Main Content Sections -->
         <main class="main-content">
-            <!-- Home Section -->
             <section id="home" class="content-section active">
                 <div class="hero-banner">
                     <h1>Master Mathematics with IGBOYA</h1>
@@ -158,9 +165,8 @@
                 </div>
             </section>
 
-            <!-- Topics Section -->
             <section id="topics" class="content-section">
-                <h2>Mathematics Topics</h2>
+                <h2 class="section-title">Mathematics Topics</h2>
                 <p class="section-subtitle">Explore our comprehensive mathematics curriculum</p>
                 <div class="topics-grid">
                     <a href="algebra.html" class="topic-card">
@@ -218,12 +224,22 @@
                             <span>50% Complete</span>
                         </div>
                     </a>
+                    <a href="statistics.html" class="topic-card">
+                        <div class="topic-icon">📈</div>
+                        <h3>Statistics</h3>
+                        <p>Data analysis, probability, and distributions</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 25%"></div>
+                            </div>
+                            <span>25% Complete</span>
+                        </div>
+                    </a>
                 </div>
             </section>
 
-            <!-- Community Section -->
             <section id="community" class="content-section">
-                <h2>Community</h2>
+                <h2 class="section-title">Community</h2>
                 <p class="section-subtitle">Connect with other learners, ask questions, and share knowledge.</p>
                 <div class="community-content">
                     <div class="forum-preview">
@@ -259,9 +275,8 @@
                 </div>
             </section>
 
-            <!-- Resources Section -->
             <section id="resources" class="content-section">
-                <h2>Learning Resources</h2>
+                <h2 class="section-title">Learning Resources</h2>
                 <p class="section-subtitle">Supplement your learning with our comprehensive resources</p>
                 <div class="resources-grid">
                     <div class="resource-card">
@@ -282,18 +297,11 @@
                         <p>Quick reference guides for important formulas.</p>
                         <button class="resource-btn">View Formulas</button>
                     </div>
-                    <div class="resource-card">
-                        <div class="resource-icon">🛠️</div>
-                        <h3>Interactive Tools</h3>
-                        <p>Graphing calculators and other helpful tools.</p>
-                        <button class="resource-btn">Use Tools</button>
-                    </div>
                 </div>
             </section>
 
-            <!-- Profile Section -->
             <section id="profile" class="content-section">
-                <h2>Your Profile</h2>
+                <h2 class="section-title">Your Profile</h2>
                 <p class="section-subtitle">Manage your account and track your progress</p>
                 <div class="profile-content">
                     <div class="profile-card">
