@@ -3,778 +3,1114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrices - IGBOYA</title>
-    <link rel="stylesheet" href="matricesstyle.css">
+    <title>Matrices - Interactive Learning</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .top-nav {
+            margin-bottom: 30px;
+        }
+
+        .btn-red {
+            display: inline-block;
+            background-color: #0d47a1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-red:hover {
+            background-color: #0d47a1;
+        }
+
+        /* Objectives Section */
+        .objectives-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .objectives-container h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .objectives-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .objectives-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .start-lesson-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .start-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .concept-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .concept-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .matrices-header h1 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .matrices-header h3 {
+            color: var(--text-light);
+            margin: 15px 0 10px;
+        }
+
+        .concept-content {
+            margin-bottom: 20px;
+        }
+
+        .matrix-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .matrix-brackets {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin: 0 10px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            gap: 5px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .matrix-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .matrix-row span {
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .key-concepts {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .key-concepts li {
+            margin-bottom: 8px;
+        }
+
+        /* Understanding Check */
+        .understanding-check {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .understanding-check h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .yes-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Further Explanation */
+        .further-explanation {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .further-explanation.active {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .further-explanation h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .continue-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .continue-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .quiz-section h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .quiz-question p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+        }
+
+        .submit-quiz {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .submit-quiz:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        /* Matrix Types Grid */
+        .matrix-types, .operations-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .type-card, .operation-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .type-card:hover, .operation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .type-card h4, .operation-card h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .type-card pre, .operation-card pre {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 10px;
+            }
+            
+            .concept-section {
+                padding: 15px;
+            }
+            
+            .objectives-container {
+                padding: 20px;
+            }
+            
+            .check-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .progress-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+            }
+            
+            .matrix-types, .operations-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <!-- Back Button Only -->
         <div class="top-nav">
-            <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            <a href="index.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
-        <div class="matrices-content">
+
+        <!-- Objectives Section -->
+        <div class="objectives-container">
+            <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Understand what matrices are and their basic notation</li>
+                <li>Identify different types of matrices and their properties</li>
+                <li>Perform matrix operations: addition, subtraction, multiplication</li>
+                <li>Calculate determinants and inverses of matrices</li>
+                <li>Apply matrices to solve real-world problems</li>
+                <li>Understand advanced matrix concepts like eigenvalues and rank</li>
+            </ul>
+            <button class="start-lesson-btn" id="startLessonBtn">
+                <i class="fas fa-play"></i> Start Lesson
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressText">0%</span></span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content" id="lessonContent">
             <!-- Introduction Section -->
-            <section id="introduction" class="matrices-header">
-                <h1><i class="fas fa-th-large"></i>Introduction</h1>
-                <p class="intro-text">A matrix is a rectangular array of numbers, symbols, or expressions arranged in rows and columns and enclosed within brackets. Matrices are fundamental in mathematics and are widely used in various disciplines, including physics, engineering, economics, and computer science.</p>
-                
-                <!-- Matrix Example -->
-                <div class="matrix-example">
-                    <h3><i class="fas fa-table"></i> Matrix Example</h3>
+            <section id="concept-1" class="concept-section active">
+                <div class="matrices-header">
+                    <h1><i class="fas fa-th-large"></i> Introduction to Matrices</h1>
+                    <div class="concept-content">
+                        <p class="intro-text">A matrix is a rectangular array of numbers, symbols, or expressions arranged in rows and columns and enclosed within brackets. Matrices are fundamental in mathematics and are widely used in various disciplines, including physics, engineering, economics, and computer science.</p>
+                        
+                        <!-- Matrix Example -->
+                        <div class="matrix-example">
+                            <h3><i class="fas fa-table"></i> Matrix Example</h3>
+                            <div class="matrix-container">
+                                <div class="matrix-brackets">[</div>
+                                <div class="matrix-grid">
+                                    <div class="matrix-row">
+                                        <span>1</span>
+                                        <span>2</span>
+                                        <span>3</span>
+                                    </div>
+                                    <div class="matrix-row">
+                                        <span>4</span>
+                                        <span>5</span>
+                                        <span>6</span>
+                                    </div>
+                                </div>
+                                <div class="matrix-brackets">]</div>
+                            </div>
+                            <p class="matrix-description">This is a 2×3 matrix (2 rows and 3 columns)</p>
+                        </div>
+
+                        <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
+                        <ul class="key-concepts">
+                            <li><strong>Dimensions:</strong> An m × n matrix has m rows and n columns.</li>
+                            <li><strong>Elements:</strong> The individual numbers in a matrix are called elements or entries.</li>
+                            <li><strong>Notation:</strong> Matrices are typically denoted by capital letters (A, B, C).</li>
+                            <li><strong>Order:</strong> The order of a matrix is written as rows × columns.</li>
+                            <li><strong>Indexing:</strong> The element in the i-th row and j-th column is denoted as a<sub>ij</sub>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Is this introduction to matrices clear?</h4>
+                    <p>Let me know if you need further explanation before we continue.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="1">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="1">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-1">
+                    <h4>Let me explain matrices differently:</h4>
+                    <p>Think of a matrix as a way to organize data in rows and columns, like a spreadsheet. Each "cell" in this grid contains a number.</p>
+                    <p>For example, if you have data about students' test scores:</p>
                     <div class="matrix-container">
                         <div class="matrix-brackets">[</div>
                         <div class="matrix-grid">
                             <div class="matrix-row">
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
+                                <span>85</span>
+                                <span>92</span>
+                                <span>78</span>
                             </div>
                             <div class="matrix-row">
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
+                                <span>91</span>
+                                <span>88</span>
+                                <span>95</span>
                             </div>
                         </div>
                         <div class="matrix-brackets">]</div>
                     </div>
-                    <p class="matrix-description">This is a 2×3 matrix (2 rows and 3 columns)</p>
-                </div>
-
-                <!-- Encouragement Section -->
-                <div class="encouragement-box">
-                    <p><i class="fas fa-thumbs-up"></i> You're on the right track! Stay focused, and let's dive into the world of matrices!</p>
-                </div>
-
-                <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
-                <ul class="key-concepts">
-                    <li><strong>Dimensions:</strong> An m × n matrix has m rows and n columns.</li>
-                    <li><strong>Elements:</strong> The individual numbers in a matrix are called elements or entries.</li>
-                    <li><strong>Notation:</strong> Matrices are typically denoted by capital letters (A, B, C).</li>
-                    <li><strong>Order:</strong> The order of a matrix is written as rows × columns.</li>
-                    <li><strong>Indexing:</strong> The element in the i-th row and j-th column is denoted as a<sub>ij</sub>.</li>
-                </ul>
-
-                <!-- Matrix Notation Section -->
-                <div class="matrix-notation">
-                    <h3><i class="fas fa-pen-fancy"></i> General Matrix Notation</h3>
-                    <p>A general m × n matrix A can be written as:</p>
-                    <div class="matrix-container">
-                        <div class="matrix-brackets">[</div>
-                        <div class="matrix-grid">
-                            <div class="matrix-row">
-                                <span>a<sub>11</sub></span>
-                                <span>a<sub>12</sub></span>
-                                <span>...</span>
-                                <span>a<sub>1n</sub></span>
-                            </div>
-                            <div class="matrix-row">
-                                <span>a<sub>21</sub></span>
-                                <span>a<sub>22</sub></span>
-                                <span>...</span>
-                                <span>a<sub>2n</sub></span>
-                            </div>
-                            <div class="matrix-row">
-                                <span>...</span>
-                                <span>...</span>
-                                <span>...</span>
-                                <span>...</span>
-                            </div>
-                            <div class="matrix-row">
-                                <span>a<sub>m1</sub></span>
-                                <span>a<sub>m2</sub></span>
-                                <span>...</span>
-                                <span>a<sub>mn</sub></span>
-                            </div>
-                        </div>
-                        <div class="matrix-brackets">]</div>
-                    </div>
+                    <p>This matrix could represent test scores for 2 students across 3 tests. Matrices help us work with this kind of organized data mathematically.</p>
+                    <button class="continue-btn" data-concept="1">Continue to next concept</button>
                 </div>
             </section>
-            <section id="types">
-                <h2><i class="fas fa-layer-group"></i> Types of Matrices</h2>
-                <div class="matrix-types">
-                    <!-- Row Matrix -->
-                    <div class="type-card">
-                        <h4>Row Matrix</h4>
-                        <p>A matrix with only one row.</p>
-                        <pre>Example: [3 5 7]</pre>
-                    </div>
-            
-                    <!-- Column Matrix -->
-                    <div class="type-card">
-                        <h4>Column Matrix</h4>
-                        <p>A matrix with only one column.</p>
-                        <pre>Example: 
+
+            <!-- Types of Matrices Section -->
+            <section id="concept-2" class="concept-section">
+                <div class="matrices-header">
+                    <h1><i class="fas fa-layer-group"></i> Types of Matrices</h1>
+                    <div class="concept-content">
+                        <p>Matrices come in various types, each with unique properties and applications. Understanding these types is essential for working with matrices effectively.</p>
+                        
+                        <div class="matrix-types">
+                            <!-- Row Matrix -->
+                            <div class="type-card">
+                                <h4>Row Matrix</h4>
+                                <p>A matrix with only one row.</p>
+                                <pre>Example: [3 5 7]</pre>
+                            </div>
+                    
+                            <!-- Column Matrix -->
+                            <div class="type-card">
+                                <h4>Column Matrix</h4>
+                                <p>A matrix with only one column.</p>
+                                <pre>Example: 
             | 2 |
             | 4 |</pre>
-                    </div>
-            
-                    <!-- Square Matrix -->
-                    <div class="type-card">
-                        <h4>Square Matrix</h4>
-                        <p>A matrix where the number of rows equals the number of columns.</p>
-                        <pre>Example: 
+                            </div>
+                    
+                            <!-- Square Matrix -->
+                            <div class="type-card">
+                                <h4>Square Matrix</h4>
+                                <p>A matrix where the number of rows equals the number of columns.</p>
+                                <pre>Example: 
             | 1 2 |
             | 3 4 |</pre>
-                    </div>
-            
-                    <!-- Diagonal Matrix -->
-                    <div class="type-card">
-                        <h4>Diagonal Matrix</h4>
-                        <p>A square matrix where the non-diagonal elements are all zero.</p>
-                        <pre>Example: 
-            | 1 0 |
-            | 0 2 |</pre>
-                    </div>
-            
-                    <!-- Zero Matrix -->
-                    <div class="type-card">
-                        <h4>Zero Matrix</h4>
-                        <p>A matrix where all elements are zero.</p>
-                        <pre>Example: 
-            | 0 0 |
-            | 0 0 |</pre>
-                    </div>
-            
-                    <!-- Symmetric Matrix -->
-                    <div class="type-card">
-                        <h4>Symmetric Matrix</h4>
-                        <p>A square matrix where A<sup>T</sup> = A (the matrix is equal to its transpose).</p>
-                        <pre>Example: 
-            | 1 2 |
-            | 2 3 |</pre>
-                    </div>
-            
-                    <!-- Skew-Symmetric Matrix -->
-                    <div class="type-card">
-                        <h4>Skew-Symmetric Matrix</h4>
-                        <p>A square matrix where A<sup>T</sup> = -A (the matrix is the negative of its transpose).</p>
-                        <pre>Example: 
-            | 0 -1 |
-            | 1  0 |</pre>
-                    </div>
-            
-                    <!-- Identity Matrix -->
-                    <div class="type-card">
-                        <h4>Identity Matrix</h4>
-                        <p>A square matrix with 1s on the diagonal and 0s elsewhere. It is denoted by I.</p>
-                        <pre>Example: 
+                            </div>
+                    
+                            <!-- Identity Matrix -->
+                            <div class="type-card">
+                                <h4>Identity Matrix</h4>
+                                <p>A square matrix with 1s on the diagonal and 0s elsewhere. It is denoted by I.</p>
+                                <pre>Example: 
             | 1 0 |
             | 0 1 |</pre>
-                    </div>
-            
-                    <!-- Upper Triangular Matrix -->
-                    <div class="type-card">
-                        <h4>Upper Triangular Matrix</h4>
-                        <p>A square matrix where all the elements below the main diagonal are zero.</p>
-                        <pre>Example: 
-            | 1 2 3 |
-            | 0 4 5 |
-            | 0 0 6 |</pre>
-                    </div>
-            
-                    <!-- Lower Triangular Matrix -->
-                    <div class="type-card">
-                        <h4>Lower Triangular Matrix</h4>
-                        <p>A square matrix where all the elements above the main diagonal are zero.</p>
-                        <pre>Example: 
-            | 1 0 0 |
-            | 2 3 0 |
-            | 4 5 6 |</pre>
-                    </div>
-            
-                    <!-- Scalar Matrix -->
-                    <div class="type-card">
-                        <h4>Scalar Matrix</h4>
-                        <p>A diagonal matrix where all the diagonal elements are the same.</p>
-                        <pre>Example: 
-            | 3 0 0 |
-            | 0 3 0 |
-            | 0 0 3 |</pre>
-                    </div>
-            
-                    <!-- Orthogonal Matrix -->
-                    <div class="type-card">
-                        <h4>Orthogonal Matrix</h4>
-                        <p>A square matrix where the rows and columns are orthogonal unit vectors. That is, <code>A<sup>T</sup> * A = I</code>.</p>
-                        <pre>Example: 
+                            </div>
+                    
+                            <!-- Zero Matrix -->
+                            <div class="type-card">
+                                <h4>Zero Matrix</h4>
+                                <p>A matrix where all elements are zero.</p>
+                                <pre>Example: 
+            | 0 0 |
+            | 0 0 |</pre>
+                            </div>
+                    
+                            <!-- Diagonal Matrix -->
+                            <div class="type-card">
+                                <h4>Diagonal Matrix</h4>
+                                <p>A square matrix where the non-diagonal elements are all zero.</p>
+                                <pre>Example: 
             | 1 0 |
-            | 0 -1 |</pre>
+            | 0 2 |</pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>            
-            <section id="operations">
-                <h2><i class="fas fa-calculator"></i> Matrix Operations</h2>
-                <div class="operations-content">
-                    <!-- Matrix Addition -->
-                    <div class="operation-card">
-                        <h4>Matrix Addition</h4>
-                        <p>Matrix addition involves adding corresponding elements of two matrices of the same order. The sum of two matrices A and B is a matrix C, where each element is the sum of the corresponding elements of A and B.</p>
-                        <pre>Example: 
-            A = | 1 2 |   B = | 4 5 |   C = A + B = | 1+4 2+5 | = | 5 7 |
-                | 3 4 |       | 6 7 |               | 3+6 4+7 |   | 9 11 |</pre>
+
+                <div class="understanding-check">
+                    <h4>Do you understand the different types of matrices?</h4>
+                    <p>Each type has specific properties that make them useful for different applications.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="2">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="2">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
                     </div>
-            
-                    <!-- Matrix Subtraction -->
-                    <div class="operation-card">
-                        <h4>Matrix Subtraction</h4>
-                        <p>Matrix subtraction is similar to addition, except that corresponding elements are subtracted instead of added. Matrices A and B must have the same order for subtraction to be defined.</p>
-                        <pre>Example: 
-            A = | 5 7 |   B = | 1 2 |   C = A - B = | 5-1 7-2 | = | 4 5 |
-                | 9 11 |       | 3 4 |               | 9-3 11-4 |   | 6 7 |</pre>
-                    </div>
-            
-                    <!-- Scalar Multiplication -->
-                    <div class="operation-card">
-                        <h4>Scalar Multiplication</h4>
-                        <p>Scalar multiplication involves multiplying every element of a matrix by a scalar (a constant). For a matrix A and scalar k, the result is a new matrix where each element of A is multiplied by k.</p>
-                        <pre>Example: 
-            A = | 1 2 |   k = 3   C = kA = | 3*1 3*2 | = | 3 6 |
-                | 3 4 |               | 3*3 3*4 |   | 9 12 |</pre>
-                    </div>
-            
-                    <!-- Matrix Multiplication -->
-                    <div class="operation-card">
-                        <h4>Matrix Multiplication</h4>
-                        <p>Matrix multiplication involves multiplying the rows of the first matrix by the columns of the second matrix. The number of columns in the first matrix must be equal to the number of rows in the second matrix.</p>
-                        <pre>Example: 
-            A = | 1 2 |   B = | 4 5 |   C = AB = | (1*4 + 2*6) (1*5 + 2*7) | = | 16 19 |
-                | 3 4 |       | 6 7 |               | (3*4 + 4*6) (3*5 + 4*7) |   | 39 43 |</pre>
-                    </div>
-            
-                    <!-- Transpose of a Matrix -->
-                    <div class="operation-card">
-                        <h4>Transpose of a Matrix</h4>
-                        <p>The transpose of a matrix is obtained by flipping the matrix over its diagonal. The rows become columns and the columns become rows.</p>
-                        <pre>Example: 
-            A = | 1 2 |   A<sup>T</sup> = | 1 3 |
-                | 3 4 |               | 2 4 |</pre>
-                    </div>
-            
-                    <!-- Determinant of a Matrix -->
-                    <div class="operation-card">
-                        <h4>Determinant of a Matrix</h4>
-                        <p>The determinant is a scalar value that can be computed from the elements of a square matrix. The determinant of a 2x2 matrix is calculated as follows: <code>det(A) = ad - bc</code> for matrix A = | a b |</p>
-                        <pre>Example: 
+                </div>
+
+                <div class="further-explanation" id="explanation-2">
+                    <h4>Let me explain matrix types differently:</h4>
+                    <p>Think of matrices like different types of containers:</p>
+                    <ul class="key-concepts">
+                        <li><strong>Row Matrix:</strong> Like a single shelf holding multiple items</li>
+                        <li><strong>Column Matrix:</strong> Like a stack of items in a single column</li>
+                        <li><strong>Square Matrix:</strong> Like a perfect grid (same number of rows and columns)</li>
+                        <li><strong>Identity Matrix:</strong> Like a "do nothing" matrix in multiplication (like multiplying by 1)</li>
+                        <li><strong>Zero Matrix:</strong> Like an empty container (adding it doesn't change anything)</li>
+                        <li><strong>Diagonal Matrix:</strong> Like only having items on the main diagonal of a grid</li>
+                    </ul>
+                    <p>Each type serves a specific purpose in mathematical operations.</p>
+                    <button class="continue-btn" data-concept="2">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Matrix Operations Section -->
+            <section id="concept-3" class="concept-section">
+                <div class="matrices-header">
+                    <h1><i class="fas fa-calculator"></i> Matrix Operations</h1>
+                    <div class="concept-content">
+                        <p>Matrix operations allow us to manipulate matrices to solve problems. The basic operations include addition, subtraction, multiplication, and more advanced operations like finding determinants and inverses.</p>
+                        
+                        <div class="operations-content">
+                            <!-- Matrix Addition -->
+                            <div class="operation-card">
+                                <h4>Matrix Addition</h4>
+                                <p>Matrix addition involves adding corresponding elements of two matrices of the same order.</p>
+                                <pre>Example: 
+            A = | 1 2 |   B = | 4 5 |   C = A + B = | 5 7 |
+                | 3 4 |       | 6 7 |               | 9 11 |</pre>
+                            </div>
+                    
+                            <!-- Matrix Multiplication -->
+                            <div class="operation-card">
+                                <h4>Matrix Multiplication</h4>
+                                <p>Matrix multiplication involves multiplying rows of the first matrix by columns of the second matrix.</p>
+                                <pre>Example: 
+            A = | 1 2 |   B = | 4 5 |   C = AB = | 16 19 |
+                | 3 4 |       | 6 7 |               | 39 43 |</pre>
+                            </div>
+                    
+                            <!-- Determinant of a Matrix -->
+                            <div class="operation-card">
+                                <h4>Determinant of a Matrix</h4>
+                                <p>The determinant is a scalar value that can be computed from the elements of a square matrix.</p>
+                                <pre>Example: 
             A = | 1 2 |
                 | 3 4 |
             det(A) = (1*4) - (2*3) = 4 - 6 = -2</pre>
-                    </div>
-            
-                    <!-- Inverse of a Matrix -->
-                    <div class="operation-card">
-                        <h4>Inverse of a Matrix</h4>
-                        <p>The inverse of a matrix A is another matrix, denoted A<sup>-1</sup>, such that when A is multiplied by its inverse, the result is the identity matrix. Not all matrices have an inverse, only square matrices with a non-zero determinant.</p>
-                        <pre>Example: 
-            A = | 1 2 |   det(A) = -2   A<sup>-1</sup> = (1/det(A)) * adj(A)
-                | 3 4 |</pre>
-                    </div>
-            
-                    <!-- Identity Matrix Operation -->
-                    <div class="operation-card">
-                        <h4>Identity Matrix Operation</h4>
-                        <p>Multiplying any matrix by the identity matrix results in the original matrix. If A is a matrix, then A × I = A, where I is the identity matrix.</p>
-                        <pre>Example: 
-            A = | 1 2 |   I = | 1 0 |
-                | 3 4 |         | 0 1 |
-            
-            A × I = A, so the result is the same matrix:
-            | 1 2 |
-            | 3 4 |</pre>
-                    </div>
-            
-                    <!-- Adjoint of a Matrix -->
-                    <div class="operation-card">
-                        <h4>Adjoint of a Matrix</h4>
-                        <p>The adjoint (or adjugate) of a matrix is the transpose of its cofactor matrix. It is used to find the inverse of a matrix.</p>
-                        <pre>Example: 
-            A = | 1 2 |
-                | 3 4 |
-            
-            Cofactor matrix = | 4 -3 |
-                             | -2 1 |
-            
-            Adj(A) = | 4 -3 |
-                     | -2 1 |</pre>
-                    </div>
-            
-                    <!-- Matrix Rank -->
-                    <div class="operation-card">
-                        <h4>Rank of a Matrix</h4>
-                        <p>The rank of a matrix is the maximum number of linearly independent rows or columns. It indicates the dimension of the row or column space of the matrix.</p>
-                        <pre>Example: 
-            A = | 1 2 |
-                | 3 4 |
-            
-            Rank(A) = 2 (since there are 2 linearly independent rows/columns)</pre>
-                    </div>
-            
-                    <!-- Eigenvalues and Eigenvectors -->
-                    <div class="operation-card">
-                        <h4>Eigenvalues and Eigenvectors</h4>
-                        <p>Eigenvalues and eigenvectors are used in linear algebra to analyze the properties of matrices. The eigenvalue equation is: <code>Av = λv</code>, where A is a matrix, v is an eigenvector, and λ is the eigenvalue.</p>
-                        <pre>Example: 
-            A = | 4 1 |
-                | 2 3 |
-            
-            Eigenvalues λ are solutions to the characteristic equation <code>det(A - λI) = 0</code>.</pre>
+                            </div>
+                    
+                            <!-- Inverse of a Matrix -->
+                            <div class="operation-card">
+                                <h4>Inverse of a Matrix</h4>
+                                <p>The inverse of a matrix A is another matrix, denoted A<sup>-1</sup>, such that A × A<sup>-1</sup> = I.</p>
+                                <pre>Example: 
+            A = | 1 2 |   A<sup>-1</sup> = | -2  1 |
+                | 3 4 |               | 1.5 -0.5 |</pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>            
-        
-            <section id="exercises">
-                <h2><i class="fas fa-pencil-alt"></i> Interactive Exercises</h2>
-                
-                <!-- Matrix Addition Exercises -->
-                <div class="matrices-exercise">
-                    <h3>Matrix Addition</h3>
-                    <ol>
-                        <li>Add these matrices: A = | 2 3 |, B = | 4 1 |</li>
-                        <li>Add these matrices: C = | -1 5 |, D = | 3 -2 |</li>
-                        <li>Add these 3×3 matrices: E = | 1 0 2 |, F = | 0 1 3 |</li>
-                        <li>Add these matrices: G = | 7 8 |, H = | 4 2 |</li>
-                        <li>Add these 2×2 matrices: I = | 6 1 |, J = | 2 5 |</li>
-                    </ol>
-                </div>
-            
-                <!-- Matrix Multiplication Exercises -->
-                <div class="matrices-exercise">
-                    <h3>Matrix Multiplication</h3>
-                    <ol start="6">
-                        <li>Multiply: A = | 1 2 |, B = | 2 3 |</li>
-                        <li>Multiply: C = | 3 0 |, D = | 0 3 |</li>
-                        <li>Multiply: E = | 2 1 |, F = | 1 2 |</li>
-                        <li>Multiply: G = | 1 2 3 |, H = | 1 0 |</li>
-                        <li>Multiply: I = | 4 5 |, J = | 6 7 |</li>
-                    </ol>
-                </div>
-            
-                <!-- Determinant Exercises -->
-                <div class="matrices-exercise">
-                    <h3>Determinants</h3>
-                    <ol start="11">
-                        <li>Find the determinant of A = | 5 6 |, B = | 7 8 |</li>
-                        <li>Find the determinant of C = | 1 2 3 |, D = | 0 1 2 |</li>
-                        <li>Find the determinant of E = | 1 2 |, F = | 3 4 |</li>
-                        <li>Find the determinant of G = | 3 5 |, H = | 1 4 |</li>
-                        <li>Find the determinant of I = | 1 2 3 |, J = | 1 2 4 |</li>
-                    </ol>
-                </div>
-            
-                <!-- Inverse and Transpose Exercises -->
-                <div class="matrices-exercise">
-                    <h3>Inverse and Transpose</h3>
-                    <ol start="16">
-                        <li>Find the inverse of A = | 2 1 |, B = | 3 4 |</li>
-                        <li>Find the transpose of B = | 1 2 3 |</li>
-                        <li>Solve for X in AX = B where A = | 1 2 |, B = | 5 |</li>
-                        <li>Find the inverse of C = | 4 5 |, D = | 6 7 |</li>
-                        <li>Find the transpose of E = | 2 3 |, F = | 4 5 |</li>
-                    </ol>
-                </div>
-            
-                <!-- Advanced Matrix Problems -->
-                <div class="matrices-exercise">
-                    <h3>Advanced Problems</h3>
-                    <ol start="21">
-                        <li>Find the eigenvalues of matrix A = | 1 2 |, B = | 2 1 |</li>
-                        <li>Find the eigenvectors of matrix C = | 3 4 |, D = | 2 3 |</li>
-                        <li>Find the rank of matrix E = | 5 6 |, F = | 1 4 |</li>
-                        <li>Determine if matrix G = | 2 3 |, H = | 4 5 | is invertible</li>
-                        <li>Find the adjoint of matrix I = | 7 8 |, J = | 1 3 |</li>
-                    </ol>
-                </div>
-            
-                <!-- Word Problem Exercises -->
-                <div class="matrices-exercise">
-                    <h3>Word Problems</h3>
-                    <ol start="26">
-                        <li>A store sells two products. Matrix A shows Monday's sales (rows: product 1, product 2; columns: morning, afternoon). Matrix B shows Tuesday's sales. Add them to find total sales.</li>
-                        <li>Matrix C shows costs (rows: material, labor; columns: product X, product Y). Matrix D shows quantities produced. Multiply to find total costs.</li>
-                        <li>Matrix A = | 2 4 | represents two types of products. Matrix B = | 1 3 | shows the quantity of each type sold. Find the total revenue.</li>
-                        <li>A business uses Matrix A = | 3 4 | to show costs of operations. Matrix B = | 2 1 | shows profit margins. Multiply to find the overall profit.</li>
-                        <li>Matrix A shows weekly hours worked by employees in a company. Matrix B shows hourly wages. Multiply to find the total payroll for the week.</li>
-                    </ol>
-                </div>
-            
-            </section>            
-        
-            <section id="quiz">
-                <h2><i class="fas fa-question-circle"></i> Matrix Quiz</h2>
-                <form id="quiz-form">
-                    <!-- Question 1 -->
-                    <div class="quiz-question">
-                        <p>1. What is the result of A + B if A = | 1 2 | and B = | 3 4 |?</p>
-                        <label><input type="radio" name="q1" value="A"> | 4 6 |</label>
-                        <label><input type="radio" name="q1" value="B"> | 1 2 |</label>
-                        <label><input type="radio" name="q1" value="C"> | 2 4 |</label>
-                    </div>
-            
-                    <!-- Question 2 -->
-                    <div class="quiz-question">
-                        <p>2. What is the determinant of matrix A = | 1 2 |, B = | 3 4 |?</p>
-                        <label><input type="radio" name="q2" value="A"> -2</label>
-                        <label><input type="radio" name="q2" value="B"> 2</label>
-                        <label><input type="radio" name="q2" value="C"> 1</label>
-                    </div>
-            
-                    <!-- Question 3 -->
-                    <div class="quiz-question">
-                        <p>3. What is required for matrix multiplication AB to be possible?</p>
-                        <label><input type="radio" name="q3" value="A"> Same dimensions</label>
-                        <label><input type="radio" name="q3" value="B"> Columns of A = Rows of B</label>
-                        <label><input type="radio" name="q3" value="C"> Rows of A = Columns of B</label>
-                    </div>
-            
-                    <!-- Question 4 -->
-                    <div class="quiz-question">
-                        <p>4. What is the identity matrix for 2×2 matrices?</p>
-                        <label><input type="radio" name="q4" value="A"> | 0 0 |</label>
-                        <label><input type="radio" name="q4" value="B"> | 1 1 |</label>
-                        <label><input type="radio" name="q4" value="C"> | 1 0 |</label>
-                    </div>
-            
-                    <!-- Question 5 -->
-                    <div class="quiz-question">
-                        <p>5. What is the transpose of | 1 2 3 |?</p>
-                        <label><input type="radio" name="q5" value="A"> | 3 2 1 |</label>
-                        <label><input type="radio" name="q5" value="B"> | 1 |, | 2 |, | 3 |</label>
-                        <label><input type="radio" name="q5" value="C"> | 1 2 3 |</label>
-                    </div>
-            
-                    <!-- Question 6 -->
-                    <div class="quiz-question">
-                        <p>6. Which matrix operation is not commutative?</p>
-                        <label><input type="radio" name="q6" value="A"> Addition</label>
-                        <label><input type="radio" name="q6" value="B"> Multiplication</label>
-                        <label><input type="radio" name="q6" value="C"> Scalar multiplication</label>
-                    </div>
-            
-                    <!-- Question 7 -->
-                    <div class="quiz-question">
-                        <p>7. What is the inverse of A = | 1 0 |, B = | 0 1 |?</p>
-                        <label><input type="radio" name="q7" value="A"> | 0 1 |</label>
-                        <label><input type="radio" name="q7" value="B"> | 1 0 |</label>
-                        <label><input type="radio" name="q7" value="C"> It's its own inverse</label>
-                    </div>
-            
-                    <!-- Question 8 -->
-                    <div class="quiz-question">
-                        <p>8. Which is NOT a type of matrix?</p>
-                        <label><input type="radio" name="q8" value="A"> Diagonal</label>
-                        <label><input type="radio" name="q8" value="B"> Symmetric</label>
-                        <label><input type="radio" name="q8" value="C"> Circular</label>
-                    </div>
-            
-                    <!-- Question 9 -->
-                    <div class="quiz-question">
-                        <p>9. What is the determinant of the matrix A = | 2 3 |, B = | 1 4 |?</p>
-                        <label><input type="radio" name="q9" value="A"> 5</label>
-                        <label><input type="radio" name="q9" value="B"> 6</label>
-                        <label><input type="radio" name="q9" value="C"> 11</label>
-                    </div>
-            
-                    <!-- Question 10 -->
-                    <div class="quiz-question">
-                        <p>10. If A = | 1 2 | and B = | 0 1 |, what is A + B?</p>
-                        <label><input type="radio" name="q10" value="A"> | 1 3 |</label>
-                        <label><input type="radio" name="q10" value="B"> | 1 1 |</label>
-                        <label><input type="radio" name="q10" value="C"> | 1 2 |</label>
-                    </div>
-            
-                    <!-- Question 11 -->
-                    <div class="quiz-question">
-                        <p>11. What is the rank of the zero matrix?</p>
-                        <label><input type="radio" name="q11" value="A"> 0</label>
-                        <label><input type="radio" name="q11" value="B"> 1</label>
-                        <label><input type="radio" name="q11" value="C"> Undefined</label>
-                    </div>
-            
-                    <!-- Question 12 -->
-                    <div class="quiz-question">
-                        <p>12. What is the trace of a matrix?</p>
-                        <label><input type="radio" name="q12" value="A"> The sum of all elements</label>
-                        <label><input type="radio" name="q12" value="B"> The sum of the diagonal elements</label>
-                        <label><input type="radio" name="q12" value="C"> The product of the diagonal elements</label>
-                    </div>
-            
-                    <!-- Question 13 -->
-                    <div class="quiz-question">
-                        <p>13. Which matrix is not square?</p>
-                        <label><input type="radio" name="q13" value="A"> Identity matrix</label>
-                        <label><input type="radio" name="q13" value="B"> Zero matrix</label>
-                        <label><input type="radio" name="q13" value="C"> Rectangular matrix</label>
-                    </div>
-            
-                    <!-- Question 14 -->
-                    <div class="quiz-question">
-                        <p>14. What does the determinant of a matrix tell us?</p>
-                        <label><input type="radio" name="q14" value="A"> Whether the matrix is invertible</label>
-                        <label><input type="radio" name="q14" value="B"> The rank of the matrix</label>
-                        <label><input type="radio" name="q14" value="C"> The dimension of the matrix</label>
-                    </div>
-            
-                    <!-- Question 15 -->
-                    <div class="quiz-question">
-                        <p>15. Which operation is used to compute the inverse of a matrix?</p>
-                        <label><input type="radio" name="q15" value="A"> Transpose</label>
-                        <label><input type="radio" name="q15" value="B"> Row reduction</label>
-                        <label><input type="radio" name="q15" value="C"> Addition</label>
-                    </div>
-            
-                    <!-- Question 16 -->
-                    <div class="quiz-question">
-                        <p>16. What is a diagonal matrix?</p>
-                        <label><input type="radio" name="q16" value="A"> A matrix with non-zero elements only on the diagonal</label>
-                        <label><input type="radio" name="q16" value="B"> A matrix with all elements as zero</label>
-                        <label><input type="radio" name="q16" value="C"> A matrix with identical rows</label>
-                    </div>
-            
-                    <!-- Question 17 -->
-                    <div class="quiz-question">
-                        <p>17. What is the rank of a matrix?</p>
-                        <label><input type="radio" name="q17" value="A"> The number of non-zero rows</label>
-                        <label><input type="radio" name="q17" value="B"> The number of columns</label>
-                        <label><input type="radio" name="q17" value="C"> The determinant of the matrix</label>
-                    </div>
-            
-                    <!-- Question 18 -->
-                    <div class="quiz-question">
-                        <p>18. What is an orthogonal matrix?</p>
-                        <label><input type="radio" name="q18" value="A"> A matrix with all elements equal</label>
-                        <label><input type="radio" name="q18" value="B"> A matrix whose rows and columns are orthogonal</label>
-                        <label><input type="radio" name="q18" value="C"> A matrix with zero diagonal elements</label>
-                    </div>
-            
-                    <!-- Question 19 -->
-                    <div class="quiz-question">
-                        <p>19. What is the adjoint of a matrix?</p>
-                        <label><input type="radio" name="q19" value="A"> The transpose of the cofactor matrix</label>
-                        <label><input type="radio" name="q19" value="B"> The inverse of the matrix</label>
-                        <label><input type="radio" name="q19" value="C"> The determinant of the matrix</label>
-                    </div>
-            
-                    <!-- Question 20 -->
-                    <div class="quiz-question">
-                        <p>20. What is a singular matrix?</p>
-                        <label><input type="radio" name="q20" value="A"> A matrix with a zero determinant</label>
-                        <label><input type="radio" name="q20" value="B"> A matrix with all diagonal elements equal</label>
-                        <label><input type="radio" name="q20" value="C"> A matrix with non-zero determinant</label>
-                    </div>
-            
-                    <!-- Submit Button -->
-                    <button type="submit">Submit</button>
-                </form>
-                <div id="quiz-result"></div>
-            </section>
-              
-            <script>
-                // Answer Key for the Quiz (20 questions)
-                const answerKey = {
-                    q1: "A",
-                    q2: "B",
-                    q3: "B",
-                    q4: "C",
-                    q5: "A",
-                    q6: "B",
-                    q7: "C",
-                    q8: "C",
-                    q9: "B",
-                    q10: "A",
-                    q11: "A",
-                    q12: "B",
-                    q13: "C",
-                    q14: "A",
-                    q15: "B",
-                    q16: "A",
-                    q17: "A",
-                    q18: "B",
-                    q19: "A",
-                    q20: "A"
-                };
-            
-                // Handle the quiz submission
-                document.getElementById('quiz-form').addEventListener('submit', function(event) {
-                    event.preventDefault();
-            
-                    let score = 0;
-                    const totalQuestions = Object.keys(answerKey).length;
-            
-                    // Loop through each question and check if the selected answer is correct
-                    for (let i = 1; i <= totalQuestions; i++) {
-                        const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
-                        if (selectedAnswer && selectedAnswer.value === answerKey[`q${i}`]) {
-                            score++;
-                        }
-                    }
-            
-                    // Display the result
-                    const result = document.getElementById('quiz-result');
-                    result.innerHTML = `<h3>Your Score: ${score} / ${totalQuestions}</h3>`;
-                });
-            </script>
-         <section id="videos">
-  <h2><i class="fas fa-video"></i> Video Tutorials</h2>
-  <div class="video-grid">
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/Ag1arLzxy2k"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-      <h3>Introduction to Matrices</h3>
-      <p>Learn the basics of matrices including notation and dimensions.</p>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/p48uw2vFWQs"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-      <h3>Matrix Operations</h3>
-      <p>Step‑by‑step guide to matrix addition, subtraction and multiplication.</p>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/sT9IgHjjhiY"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-      <h3>Determinants and Inverses</h3>
-      <p>How to calculate determinants and find inverse matrices.</p>
-    </div>
-  </div>
-</section>
 
-        <section id="forum">
-            <h2><i class="fas fa-comments"></i> Discussion Forum</h2>
-            <p>Have questions or want to discuss this topic? Join the forum below:</p>
+                <div class="understanding-check">
+                    <h4>Do you understand matrix operations?</h4>
+                    <p>These operations are fundamental to working with matrices.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="3">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="3">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-3">
+                    <h4>Let me explain matrix operations differently:</h4>
+                    <p>Think of matrix operations like working with spreadsheets:</p>
+                    <ul class="key-concepts">
+                        <li><strong>Addition:</strong> Like combining two similar spreadsheets cell by cell</li>
+                        <li><strong>Multiplication:</strong> More complex - like calculating weighted sums across rows and columns</li>
+                        <li><strong>Determinant:</strong> A special number that tells us if a matrix can be "reversed" (like checking if a transformation can be undone)</li>
+                        <li><strong>Inverse:</strong> The "undo" operation for matrices (like division is the inverse of multiplication)</li>
+                    </ul>
+                    <p>Matrix multiplication is particularly important because it represents combinations of linear transformations.</p>
+                    <button class="continue-btn" data-concept="3">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Matrix Applications Section -->
+            <section id="concept-4" class="concept-section">
+                <div class="matrices-header">
+                    <h1><i class="fas fa-rocket"></i> Applications of Matrices</h1>
+                    <div class="concept-content">
+                        <p>Matrices have numerous real-world applications across various fields. Understanding these applications helps illustrate the practical importance of matrix theory.</p>
+                        
+                        <h3><i class="fas fa-lightbulb"></i> Key Applications</h3>
+                        <ul class="key-concepts">
+                            <li><strong>Computer Graphics:</strong> Matrices are used to transform and manipulate images (rotation, scaling, translation)</li>
+                            <li><strong>Physics:</strong> Matrices represent quantum states and transformations in quantum mechanics</li>
+                            <li><strong>Economics:</strong> Input-output models use matrices to analyze economic systems</li>
+                            <li><strong>Engineering:</strong> Matrices solve systems of linear equations in structural analysis</li>
+                            <li><strong>Computer Science:</strong> Matrices represent graphs and networks, and are used in machine learning</li>
+                            <li><strong>Statistics:</strong> Covariance matrices describe relationships between variables</li>
+                        </ul>
+
+                        <div class="operation-card">
+                            <h4>Example: Solving Systems of Equations</h4>
+                            <p>Matrices can efficiently solve systems of linear equations. For example:</p>
+                            <pre>2x + 3y = 8
+4x + y = 6
+
+Can be written as:
+| 2 3 | | x | = | 8 |
+| 4 1 | | y |   | 6 |
+
+Solving gives x = 1, y = 2</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand how matrices are applied in real-world scenarios?</h4>
+                    <p>Matrices are powerful tools for solving complex problems.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="4">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="4">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-4">
+                    <h4>Let me explain matrix applications differently:</h4>
+                    <p>Matrices are like Swiss Army knives for mathematics - they have many uses:</p>
+                    <ul class="key-concepts">
+                        <li><strong>Transformations:</strong> When you rotate or resize an image on your phone, matrices are doing the work</li>
+                        <li><strong>Data Organization:</strong> Spreadsheets use matrix-like structures to organize information</li>
+                        <li><strong>Network Analysis:</strong> Social media connections can be represented as matrices</li>
+                        <li><strong>Machine Learning:</strong> Neural networks use matrices to process information</li>
+                        <li><strong>Game Development:</strong> 3D game engines use matrices to position objects in space</li>
+                    </ul>
+                    <p>Whenever you have multiple related quantities, matrices provide a powerful way to work with them systematically.</p>
+                    <button class="continue-btn" data-concept="4">Continue to Quiz</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <h3><i class="fas fa-question-circle"></i> Matrices Quiz</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What is the result of A + B if A = | 1 2 | and B = | 3 4 |?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">| 4 6 |</div>
+                        <div class="quiz-option" data-value="B">| 1 2 |</div>
+                        <div class="quiz-option" data-value="C">| 2 4 |</div>
+                    </div>
+                </div>
         
-            <!-- Forum Post Form -->
-            <form id="forumForm">
-                <label for="userName">Your Name:</label>
-                <input type="text" id="userName" name="userName" required>
+                <div class="quiz-question">
+                    <p>2. What is required for matrix multiplication AB to be possible?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">Same dimensions</div>
+                        <div class="quiz-option" data-value="B">Columns of A = Rows of B</div>
+                        <div class="quiz-option" data-value="C">Rows of A = Columns of B</div>
+                    </div>
+                </div>
         
-                <label for="userPost">Your Post:</label>
-                <textarea id="userPost" name="userPost" rows="5" required></textarea>
+                <div class="quiz-question">
+                    <p>3. What is the identity matrix for 2×2 matrices?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">| 0 0 |</div>
+                        <div class="quiz-option" data-value="B">| 1 1 |</div>
+                        <div class="quiz-option" data-value="C">| 1 0 |</div>
+                    </div>
+                </div>
         
-                <a href="https://chat.whatsapp.com/LPoXBwl6Y9ZDkyYPcHvKbx?mode=ac_c" target="_blank">
-            <button type="button">Join Group</button>
-        </a>
-         </form>
+                <div class="quiz-question">
+                    <p>4. Which matrix operation is not commutative?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">Addition</div>
+                        <div class="quiz-option" data-value="B">Multiplication</div>
+                        <div class="quiz-option" data-value="C">Scalar multiplication</div>
+                    </div>
+                </div>
         
-            <!-- Recent Posts -->
-            <h3>Recent Discussions</h3>
-            <div id="forumPosts">
-                <!-- Posts will be dynamically loaded here -->
-            </div>
-        </section>
-        
-        <script src="matricesapp.js"></script>
-        <script src="matricesscript.js"></script>
-        <script>
-            // Load posts from localStorage on page load
-            function loadPosts() {
-                const forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
-                const forumPostsDiv = document.getElementById('forumPosts');
-                forumPostsDiv.innerHTML = '';  // Clear any existing posts
-        
-                forumPosts.forEach(post => {
-                    const postDiv = document.createElement('div');
-                    postDiv.classList.add('forumPost');
-                    postDiv.innerHTML = `<h4>${post.userName}</h4><p>${post.userPost}</p>`;
-                    forumPostsDiv.appendChild(postDiv);
-                });
+                <div class="quiz-question">
+                    <p>5. What is a singular matrix?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">A matrix with a zero determinant</div>
+                        <div class="quiz-option" data-value="B">A matrix with all diagonal elements equal</div>
+                        <div class="quiz-option" data-value="C">A matrix with non-zero determinant</div>
+                    </div>
+                </div>
+                
+                <button class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Results</h3>
+                    <p>Your score: <span id="score">0</span>/5 (<span id="percentage">0%</span>)</p>
+                    <p id="feedback">Keep practicing!</p>
+                    <button class="continue-btn" id="restartQuiz">Try Again</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const startLessonBtn = document.getElementById('startLessonBtn');
+        const lessonContent = document.getElementById('lessonContent');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizSection = document.getElementById('quizSection');
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        const restartQuizBtn = document.getElementById('restartQuiz');
+
+        // Quiz Answers
+        const quizAnswers = ['A', 'B', 'C', 'B', 'A'];
+
+        // Current concept tracking
+        let currentConcept = 1;
+        const totalConcepts = 4;
+
+        // Start Lesson Button Functionality
+        startLessonBtn.addEventListener('click', function() {
+            lessonContent.classList.add('active');
+            progressSection.style.display = 'flex';
+            this.style.display = 'none';
+            updateProgress();
+            nextBtn.disabled = false;
+        });
+
+        // Update Progress
+        function updateProgress() {
+            const progress = ((currentConcept - 1) / totalConcepts) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', function() {
+            if (currentConcept > 1) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept--;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                nextBtn.disabled = false;
+                
+                if (currentConcept === 1) {
+                    prevBtn.disabled = true;
+                }
             }
-        
-            // Add a new post to localStorage
-            document.getElementById('forumForm').addEventListener('submit', function(event) {
-                event.preventDefault();
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentConcept < totalConcepts) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept++;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                prevBtn.disabled = false;
                 
-                const userName = document.getElementById('userName').value;
-                const userPost = document.getElementById('userPost').value;
-        
-                // Get existing posts from localStorage
-                const forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+                if (currentConcept === totalConcepts) {
+                    nextBtn.disabled = true;
+                }
+            }
+        });
+
+        // Understanding Check Buttons
+        document.querySelectorAll('.check-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
                 
-                // Create new post object
-                const newPost = { userName, userPost };
-                
-                // Add new post to the list
-                forumPosts.push(newPost);
-        
-                // Save the updated posts array to localStorage
-                localStorage.setItem('forumPosts', JSON.stringify(forumPosts));
-        
-                // Reload posts to display the new one
-                loadPosts();
-        
-                // Clear form fields
-                document.getElementById('userName').value = '';
-                document.getElementById('userPost').value = '';
+                if (this.classList.contains('yes-btn')) {
+                    // User understands, move to next concept
+                    if (conceptNum < totalConcepts) {
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        currentConcept = parseInt(conceptNum) + 1;
+                        document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                        updateProgress();
+                        prevBtn.disabled = false;
+                        
+                        if (currentConcept === totalConcepts) {
+                            nextBtn.disabled = true;
+                        }
+                    } else {
+                        // Last concept, show quiz
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        quizSection.classList.add('active');
+                    }
+                } else {
+                    // User needs more explanation
+                    explanation.classList.add('active');
+                }
             });
-        
-            // Initially load posts when the page loads
-            window.onload = loadPosts;
-        </script>
+        });
 
-            <!-- Resources Section -->
-            <section class="math-section" id="resources">
-                <div class="section-header">
-                    <h1><i class="fas fa-book-open"></i> Learning Resources</h1>
-                    <div class="section-divider"></div>
-                </div>
+        // Continue Buttons in Further Explanations
+        document.querySelectorAll('.continue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                explanation.classList.remove('active');
                 
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3>Video Tutorials</h3>
-                        <p>Watch step-by-step explanations of matrix operations</p>
-                        <a href="#" class="resource-link">View Videos</a>
-                    </div>
+                if (conceptNum < totalConcepts) {
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    currentConcept = parseInt(conceptNum) + 1;
+                    document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
                     
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <h3>PDF Guides</h3>
-                        <p>Download comprehensive matrix reference sheets</p>
-                        <a href="#" class="resource-link">Download PDFs</a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <h3>Live Help</h3>
-                        <p>Get personalized assistance from math tutors</p>
-                        <a href="#" class="resource-link">Join Session</a>
-                    </div>
-                </div>
-            </section>
-        </main>
+                    if (currentConcept === totalConcepts) {
+                        nextBtn.disabled = true;
+                    }
+                } else {
+                    // Last concept, show quiz
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    quizSection.classList.add('active');
+                }
+            });
+        });
 
-        <!-- Footer -->
-        <footer class="math-footer">
-            <div class="footer-content">
-                <div class="footer-logo">IGBOYA</div>
-                <div class="footer-links">
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Privacy Policy</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                &copy; 2023 IGBOYA Mathematics. All rights reserved.
-            </div>
-        </footer>
-    </div>
+        // Quiz Functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this question
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
 
-    <script src="matricesapp.js"></script>
+        // Submit Quiz
+        submitQuizBtn.addEventListener('click', function() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                if (selectedOption && selectedOption.getAttribute('data-value') === quizAnswers[index]) {
+                    score++;
+                    selectedOption.style.backgroundColor = 'var(--success-color)';
+                } else if (selectedOption) {
+                    selectedOption.style.backgroundColor = '#d32f2f';
+                }
+            });
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            let feedback = '';
+            if (percentage >= 80) {
+                feedback = 'Excellent work! You have a strong understanding of matrices.';
+            } else if (percentage >= 60) {
+                feedback = 'Good job! Review the questions you missed to improve.';
+            } else {
+                feedback = 'Keep practicing! Review the concepts and try again.';
+            }
+            
+            document.getElementById('feedback').textContent = feedback;
+            quizResult.classList.add('active');
+            
+            // Scroll to results
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Restart Quiz
+        restartQuizBtn.addEventListener('click', function() {
+            // Reset quiz
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.backgroundColor = '';
+            });
+            
+            quizResult.classList.remove('active');
+            
+            // Go back to first concept
+            quizSection.classList.remove('active');
+            document.querySelectorAll('.concept-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            currentConcept = 1;
+            document.getElementById(`concept-${currentConcept}`).classList.add('active');
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+        });
+    </script>
 </body>
 </html>

@@ -3,714 +3,1204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometry - IGBOYA</title>
-    <link rel="stylesheet" href="geometrystyle.css">
+    <title>Geometry - Interactive Learning</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .side-nav {
+            margin-bottom: 30px;
+        }
+
+        .btn-red {
+            display: inline-block;
+            background-color:  #0d47a1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-red:hover {
+            background-color:  #0d47a1;
+        }
+
+        /* Objectives Section */
+        .objectives-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .objectives-container h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .objectives-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .objectives-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .start-lesson-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .start-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .concept-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .concept-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .geometry-title {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .geometry-subtitle {
+            color: var(--text-light);
+            margin: 15px 0 10px;
+        }
+
+        .concept-content {
+            margin-bottom: 20px;
+        }
+
+        .geometry-branch-grid, .geometry-fundamentals-grid, .geometry-angle-types, 
+        .geometry-triangle-grid, .geometry-quad-grid, .geometry-area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .geometry-branch-card, .geometry-concept-card, .geometry-angle-card,
+        .geometry-triangle-card, .geometry-quad-card, .geometry-area-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .geometry-branch-card:hover, .geometry-concept-card:hover, .geometry-angle-card:hover,
+        .geometry-triangle-card:hover, .geometry-quad-card:hover, .geometry-area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .geometry-card-title, .geometry-concept-title, .geometry-angle-name,
+        .geometry-triangle-type, .geometry-quad-name, .geometry-area-method {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .geometry-card-text, .geometry-concept-desc, .geometry-angle-range {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .geometry-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .geometry-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .geometry-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Understanding Check */
+        .understanding-check {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .understanding-check h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .yes-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Further Explanation */
+        .further-explanation {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .further-explanation.active {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .further-explanation h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .continue-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .continue-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .quiz-section h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .quiz-question p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+        }
+
+        .submit-quiz {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .submit-quiz:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        /* Visual Elements */
+        .geometry-point-visual, .geometry-line-visual, .geometry-plane-visual,
+        .geometry-acute-angle, .geometry-right-angle, .geometry-obtuse-angle,
+        .geometry-equilateral, .geometry-isosceles, .geometry-scalene,
+        .geometry-square-visual, .geometry-rectangle-visual {
+            height: 80px;
+            margin: 10px auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .geometry-point-visual::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .geometry-line-visual::after {
+            content: "";
+            width: 80%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .geometry-plane-visual::after {
+            content: "";
+            width: 70%;
+            height: 50px;
+            background-color: var(--accent-color);
+            opacity: 0.3;
+            border: 1px solid var(--accent-color);
+        }
+
+        .geometry-acute-angle::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--accent-color);
+        }
+
+        .geometry-right-angle::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background: 
+                linear-gradient(to bottom right, transparent 49%, var(--accent-color) 49%, var(--accent-color) 51%, transparent 51%),
+                linear-gradient(to top right, transparent 49%, var(--accent-color) 49%, var(--accent-color) 51%, transparent 51%);
+        }
+
+        .geometry-obtuse-angle::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 40px solid var(--accent-color);
+        }
+
+        .geometry-equilateral::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid var(--accent-color);
+        }
+
+        .geometry-isosceles::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--accent-color);
+        }
+
+        .geometry-scalene::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 50px solid var(--accent-color);
+        }
+
+        .geometry-square-visual::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+        }
+
+        .geometry-rectangle-visual::after {
+            content: "";
+            width: 60px;
+            height: 40px;
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 10px;
+            }
+            
+            .concept-section {
+                padding: 15px;
+            }
+            
+            .objectives-container {
+                padding: 20px;
+            }
+            
+            .check-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .progress-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+            }
+            
+            .geometry-branch-grid, .geometry-fundamentals-grid, .geometry-angle-types, 
+            .geometry-triangle-grid, .geometry-quad-grid, .geometry-area-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <!-- Side Navigation -->
         <nav class="side-nav">
             <div class="side-nav-content">
-                <a href="topics.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+                <a href="index.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Home</a>
             </div>
         </nav>
-        
-        <div class="geometry-main-content">
-            <section id="geometry-introduction">
-                <h1 class="geometry-title"><i class="fas fa-shapes"></i> Introduction to Geometry</h1>
-                <p class="geometry-description">Geometry is the branch of mathematics that studies the properties and relationships of points, lines, surfaces, and solids.</p>
-                
-                <div class="geometry-history-box">
-                    <h3 class="geometry-subtitle"><i class="fas fa-history"></i> Historical Context</h3>
-                    <p class="geometry-text">Euclid established formal geometry in "Elements". Ancient Egyptians used geometry for land surveying.</p>
-                </div>
-        
-                <h3 class="geometry-subtitle"><i class="fas fa-lightbulb"></i> Key Branches</h3>
-                <div class="geometry-branch-grid">
-                    <div class="geometry-branch-card">
-                        <h4 class="geometry-card-title">Euclidean</h4>
-                        <p class="geometry-card-text">Plane geometry with points and lines</p>
-                    </div>
-                    <div class="geometry-branch-card">
-                        <h4 class="geometry-card-title">Analytic</h4>
-                        <p class="geometry-card-text">Coordinates and algebraic equations</p>
-                    </div>
-                    <div class="geometry-branch-card">
-                        <h4 class="geometry-card-title">Differential</h4>
-                        <p class="geometry-card-text">Curves and surfaces using calculus</p>
-                    </div>
-                </div>
-        
-                <div class="geometry-applications">
-                    <h3 class="geometry-subtitle"><i class="fas fa-ruler-combined"></i> Real-World Applications</h3>
-                    <ul class="geometry-list">
-                        <li><i class="fas fa-robot"></i> Robotics: Path planning</li>
-                        <li><i class="fas fa-building"></i> Architecture: Structural design</li>
-                        <li><i class="fas fa-gamepad"></i> Game Development: 3D modeling</li>
-                    </ul>
-                </div>
-            </section>
 
-            <section id="geometry-fundamentals">
-                <h2 class="geometry-section-title"><i class="fas fa-drafting-compass"></i> Fundamental Concepts</h2>
-                
-                <div class="geometry-fundamentals-grid">
-                    <div class="geometry-concept-card">
-                        <h3 class="geometry-concept-title">Points</h3>
-                        <div class="geometry-point-visual"></div>
-                        <p class="geometry-concept-desc">Zero-dimensional location</p>
-                    </div>
-                    
-                    <div class="geometry-concept-card">
-                        <h3 class="geometry-concept-title">Lines</h3>
-                        <div class="geometry-line-visual"></div>
-                        <p class="geometry-concept-desc">One-dimensional, infinite length</p>
-                    </div>
-                    
-                    <div class="geometry-concept-card">
-                        <h3 class="geometry-concept-title">Planes</h3>
-                        <div class="geometry-plane-visual"></div>
-                        <p class="geometry-concept-desc">Two-dimensional flat surface</p>
-                    </div>
-                </div>
-            </section>
+        <!-- Objectives Section -->
+        <div class="objectives-container">
+            <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Understand fundamental geometric concepts: points, lines, and planes</li>
+                <li>Identify and classify different types of angles and triangles</li>
+                <li>Calculate area, perimeter, and volume of various shapes</li>
+                <li>Apply the Pythagorean theorem to solve problems</li>
+                <li>Understand properties of quadrilaterals and circles</li>
+                <li>Solve real-world geometry problems</li>
+            </ul>
+            <button class="start-lesson-btn" id="startLessonBtn">
+                <i class="fas fa-play"></i> Start Lesson
+            </button>
+        </div>
 
-            <section id="geometry-angles">
-                <h2 class="geometry-section-title"><i class="fas fa-angle-right"></i> Angles</h2>
-                
-                <div class="geometry-angle-types">
-                    <div class="geometry-angle-card">
-                        <h3 class="geometry-angle-name">Acute</h3>
-                        <div class="geometry-acute-angle"></div>
-                        <p class="geometry-angle-range">0° < θ < 90°</p>
-                    </div>
-                    <div class="geometry-angle-card">
-                        <h3 class="geometry-angle-name">Right</h3>
-                        <div class="geometry-right-angle"></div>
-                        <p class="geometry-angle-range">θ = 90°</p>
-                    </div>
-                    <div class="geometry-angle-card">
-                        <h3 class="geometry-angle-name">Obtuse</h3>
-                        <div class="geometry-obtuse-angle"></div>
-                        <p class="geometry-angle-range">90° < θ < 180°</p>
-                    </div>
+        <!-- Progress Section -->
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressText">0%</span></span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
                 </div>
-            </section>
-            
-            <section id="geometry-triangles">
-                <h2 class="geometry-section-title"><i class="fas fa-play"></i> Triangles</h2>
-                
-                <div class="geometry-classification-section">
-                    <h3 class="geometry-subsection-title">Types of Triangles</h3>
-                    <div class="geometry-triangle-grid">
-                        <div class="geometry-triangle-card">
-                            <h4 class="geometry-triangle-type">Equilateral</h4>
-                            <div class="geometry-equilateral"></div>
-                            <p>All sides equal</p>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content" id="lessonContent">
+            <!-- Introduction Section -->
+            <section id="concept-1" class="concept-section active">
+                <h2 class="geometry-title"><i class="fas fa-shapes"></i> Introduction to Geometry</h2>
+                <div class="concept-content">
+                    <p>Geometry is the branch of mathematics that studies the properties and relationships of points, lines, surfaces, and solids.</p>
+                    
+                    <div class="geometry-history-box">
+                        <h3 class="geometry-subtitle"><i class="fas fa-history"></i> Historical Context</h3>
+                        <p class="geometry-text">Euclid established formal geometry in "Elements". Ancient Egyptians used geometry for land surveying.</p>
+                    </div>
+
+                    <h3 class="geometry-subtitle"><i class="fas fa-lightbulb"></i> Key Branches</h3>
+                    <div class="geometry-branch-grid">
+                        <div class="geometry-branch-card">
+                            <h4 class="geometry-card-title">Euclidean</h4>
+                            <p class="geometry-card-text">Plane geometry with points and lines</p>
                         </div>
-                        <div class="geometry-triangle-card">
-                            <h4 class="geometry-triangle-type">Isosceles</h4>
-                            <div class="geometry-isosceles"></div>
-                            <p>Two sides equal</p>
+                        <div class="geometry-branch-card">
+                            <h4 class="geometry-card-title">Analytic</h4>
+                            <p class="geometry-card-text">Coordinates and algebraic equations</p>
                         </div>
-                        <div class="geometry-triangle-card">
-                            <h4 class="geometry-triangle-type">Scalene</h4>
-                            <div class="geometry-scalene"></div>
-                            <p>No sides equal</p>
+                        <div class="geometry-branch-card">
+                            <h4 class="geometry-card-title">Differential</h4>
+                            <p class="geometry-card-text">Curves and surfaces using calculus</p>
                         </div>
                     </div>
-                </div>
-                
-                <h3 class="geometry-subsection-title">Triangle Formulas</h3>
-                <div class="geometry-area-grid">
-                    <div class="geometry-area-card">
-                        <h4 class="geometry-area-method">Area</h4>
-                        <p class="geometry-formula">A = ½ × base × height</p>
-                    </div>
-                    <div class="geometry-area-card">
-                        <h4 class="geometry-area-method">Pythagorean</h4>
-                        <p class="geometry-formula">a² + b² = c²</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="geometry-quadrilaterals">
-                <h2 class="geometry-section-title"><i class="fas fa-border-style"></i> Quadrilaterals</h2>
-                
-                <div class="geometry-quad-grid">
-                    <div class="geometry-quad-card">
-                        <h3 class="geometry-quad-name">Square</h3>
-                        <div class="geometry-square-visual"></div>
-                        <p>All sides equal</p>
-                        <p>All angles 90°</p>
-                    </div>
-                    
-                    <div class="geometry-quad-card">
-                        <h3 class="geometry-quad-name">Rectangle</h3>
-                        <div class="geometry-rectangle-visual"></div>
-                        <p>Opposite sides equal</p>
-                        <p>All angles 90°</p>
-                    </div>
-                </div>
-            </section>
 
-            <section id="circles">
-                <h2><i class="fas fa-circle"></i> Circles</h2>
-                
-                <div class="circle-diagram">
-                    <div class="circle-visual">
-                        <div class="center">O</div>
-                        <div class="radius">r</div>
-                    </div>
-                    
-                    <div class="circle-terms">
-                        <h3>Key Terms</h3>
-                        <ul>
-                            <li><strong>Radius</strong>: Distance from center to edge</li>
-                            <li><strong>Diameter</strong>: Longest chord (d = 2r)</li>
-                            <li><strong>Circumference</strong>: C = 2πr</li>
-                            <li><strong>Area</strong>: A = πr²</li>
+                    <div class="geometry-applications">
+                        <h3 class="geometry-subtitle"><i class="fas fa-ruler-combined"></i> Real-World Applications</h3>
+                        <ul class="geometry-list">
+                            <li><i class="fas fa-robot"></i> Robotics: Path planning</li>
+                            <li><i class="fas fa-building"></i> Architecture: Structural design</li>
+                            <li><i class="fas fa-gamepad"></i> Game Development: 3D modeling</li>
                         </ul>
                     </div>
                 </div>
-            </section>
-            
-            <section id="geometry-solids">
-                <h2><i class="fas fa-cube"></i> 3D Shapes</h2>
-                
-                <div class="solid-grid">
-                    <div class="solid-card">
-                        <h3>Cube</h3>
-                        <div class="cube-visual"></div>
-                        <p>Volume: V = s³</p>
-                    </div>
-                    
-                    <div class="solid-card">
-                        <h3>Sphere</h3>
-                        <div class="sphere-visual"></div>
-                        <p>Volume: V = ⁴⁄₃πr³</p>
+
+                <div class="understanding-check">
+                    <h4>Is this introduction to geometry clear?</h4>
+                    <p>Let me know if you need further explanation before we continue.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="1">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="1">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
                     </div>
                 </div>
-            </section>      
 
-        <section id="geometry-exercises">
-            <h2><i class="fas fa-pencil-alt"></i> Geometry Exercises</h2>
-        
-            <div class="geometry-exercise-section">
-                <h3>Basic Problems</h3>
-                <ol>
-                    <li>Find the area of a triangle with base 8cm and height 5cm.</li>
-                    <li>Calculate the circumference of a circle with radius 7m.</li>
-                    <li>Find the volume of a cube with edge length 4in.</li>
-                    <li>Determine the surface area of a square with side length 6cm.</li>
-                    <li>Find the perimeter of a rectangle with length 10m and width 4m.</li>
-                </ol>
-            </div>
-        
-            <div class="geometry-exercise-section">
-                <h3>Angle Calculations</h3>
-                <ol start="6">
-                    <li>Two angles are complementary. One is 35°. Find the other.</li>
-                    <li>In a triangle, angles are in ratio 2:3:4. Find each angle.</li>
-                    <li>Find all angles formed when parallel lines are cut by a transversal.</li>
-                    <li>Find the missing angle in a quadrilateral where three angles are 90°, 120°, and 75°.</li>
-                    <li>Two angles are supplementary. One is 55°. Find the other.</li>
-                </ol>
-            </div>
-        
-            <div class="geometry-exercise-section">
-                <h3>Pythagorean Theorem</h3>
-                <ol start="11">
-                    <li>Right triangle has legs 5 and 12. Find hypotenuse.</li>
-                    <li>Hypotenuse is 13, one leg is 5. Find the other leg.</li>
-                    <li>Determine if triangle with sides 7, 24, 25 is right.</li>
-                    <li>Find the hypotenuse of a right triangle with legs 8m and 15m.</li>
-                    <li>If one leg of a right triangle is 9 and the hypotenuse is 15, find the length of the other leg.</li>
-                </ol>
-            </div>
-        
-            <div class="geometry-exercise-section">
-                <h3>Area and Volume</h3>
-                <ol start="16">
-                    <li>Find the area of a trapezoid with bases 6 and 10, height 4.</li>
-                    <li>Calculate the surface area of a cylinder with r=3, h=7.</li>
-                    <li>Find the volume of a sphere with diameter 10cm.</li>
-                    <li>Calculate the volume of a cone with radius 5cm and height 12cm.</li>
-                    <li>Find the surface area of a rectangular prism with length 8m, width 4m, and height 3m.</li>
-                </ol>
-            </div>
-        
-            <div class="geometry-exercise-section">
-                <h3>Advanced Geometry</h3>
-                <ol start="21">
-                    <li>Find the length of the diagonal of a square with side length 6cm.</li>
-                    <li>Determine the area of a sector of a circle with a radius of 4m and central angle of 60°.</li>
-                    <li>Find the volume of a pyramid with a square base of side 8m and height 10m.</li>
-                    <li>Determine the perimeter of an ellipse with semi-major axis 10cm and semi-minor axis 5cm (use approximation formula).</li>
-                    <li>Find the area of a rhombus with diagonals 12cm and 16cm.</li>
-                </ol>
-            </div>
-        
-            <div class="geometry-exercise-section">
-                <h3>Proofs</h3>
-                <ol start="26">
-                    <li>Prove the sum of angles in a triangle is 180°.</li>
-                    <li>Prove that opposite angles of a parallelogram are equal.</li>
-                    <li>Prove the inscribed angle theorem.</li>
-                    <li>Prove that the sum of the exterior angles of any polygon is 360°.</li>
-                    <li>Prove that the diagonals of a rectangle are equal in length.</li>
-                </ol>
-            </div>
-        </section>
-        
+                <div class="further-explanation" id="explanation-1">
+                    <h4>Let me explain geometry differently:</h4>
+                    <p>Geometry is all around us! It's the mathematics of shapes, sizes, and spatial relationships.</p>
+                    <p>Think about these everyday examples:</p>
+                    <ul class="geometry-list">
+                        <li>The rectangular screen you're looking at right now</li>
+                        <li>The circular wheels on a car</li>
+                        <li>The triangular roof of a house</li>
+                        <li>The spherical shape of a basketball</li>
+                    </ul>
+                    <p>Geometry helps us understand, measure, and work with these shapes in precise ways.</p>
+                    <button class="continue-btn" data-concept="1">Continue to next concept</button>
+                </div>
+            </section>
 
-        <section id="geometry-quiz">
-            <h2><i class="fas fa-question-circle"></i> Geometry Quiz</h2>
-            <form id="quiz-form">
-                <!-- Question 1 -->
+            <!-- Fundamentals Section -->
+            <section id="concept-2" class="concept-section">
+                <h2 class="geometry-title"><i class="fas fa-drafting-compass"></i> Fundamental Concepts</h2>
+                <div class="concept-content">
+                    <p>Geometry begins with three basic undefined terms: points, lines, and planes. These form the foundation for all other geometric concepts.</p>
+                    
+                    <div class="geometry-fundamentals-grid">
+                        <div class="geometry-concept-card">
+                            <h3 class="geometry-concept-title">Points</h3>
+                            <div class="geometry-point-visual"></div>
+                            <p class="geometry-concept-desc">A point has no size, only position. It is represented by a dot and named with a capital letter.</p>
+                        </div>
+                        
+                        <div class="geometry-concept-card">
+                            <h3 class="geometry-concept-title">Lines</h3>
+                            <div class="geometry-line-visual"></div>
+                            <p class="geometry-concept-desc">A line extends infinitely in both directions. It has length but no width.</p>
+                        </div>
+                        
+                        <div class="geometry-concept-card">
+                            <h3 class="geometry-concept-title">Planes</h3>
+                            <div class="geometry-plane-visual"></div>
+                            <p class="geometry-concept-desc">A plane is a flat surface that extends infinitely in all directions. It has length and width but no thickness.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand points, lines, and planes?</h4>
+                    <p>These are the building blocks of geometry.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="2">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="2">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-2">
+                    <h4>Let me explain these concepts differently:</h4>
+                    <p>Think of geometry's basic elements like this:</p>
+                    <ul class="geometry-list">
+                        <li><strong>Point:</strong> Like a dot on a piece of paper. It shows a specific location but has no size.</li>
+                        <li><strong>Line:</strong> Like a perfectly straight road that goes on forever in both directions.</li>
+                        <li><strong>Plane:</strong> Like an infinite, perfectly flat tabletop that extends forever in all directions.</li>
+                    </ul>
+                    <p>All other geometric shapes are built from these three basic elements. For example, two points determine a line, and three non-collinear points determine a plane.</p>
+                    <button class="continue-btn" data-concept="2">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Angles Section -->
+            <section id="concept-3" class="concept-section">
+                <h2 class="geometry-title"><i class="fas fa-angle-right"></i> Angles</h2>
+                <div class="concept-content">
+                    <p>An angle is formed by two rays that share a common endpoint called the vertex. Angles are measured in degrees.</p>
+                    
+                    <div class="geometry-angle-types">
+                        <div class="geometry-angle-card">
+                            <h3 class="geometry-angle-name">Acute</h3>
+                            <div class="geometry-acute-angle"></div>
+                            <p class="geometry-angle-range">0° < θ < 90°</p>
+                            <p>Sharp angle, less than a right angle</p>
+                        </div>
+                        <div class="geometry-angle-card">
+                            <h3 class="geometry-angle-name">Right</h3>
+                            <div class="geometry-right-angle"></div>
+                            <p class="geometry-angle-range">θ = 90°</p>
+                            <p>Forms a perfect L-shape</p>
+                        </div>
+                        <div class="geometry-angle-card">
+                            <h3 class="geometry-angle-name">Obtuse</h3>
+                            <div class="geometry-obtuse-angle"></div>
+                            <p class="geometry-angle-range">90° < θ < 180°</p>
+                            <p>Wider than a right angle</p>
+                        </div>
+                    </div>
+
+                    <h3 class="geometry-subtitle">Angle Relationships</h3>
+                    <ul class="geometry-list">
+                        <li><strong>Complementary angles:</strong> Two angles that add up to 90°</li>
+                        <li><strong>Supplementary angles:</strong> Two angles that add up to 180°</li>
+                        <li><strong>Vertical angles:</strong> Angles opposite each other when two lines cross (they are equal)</li>
+                        <li><strong>Adjacent angles:</strong> Angles that share a common side and vertex</li>
+                    </ul>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand angles and their types?</h4>
+                    <p>Angles are fundamental to understanding geometric relationships.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="3">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="3">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-3">
+                    <h4>Let me explain angles differently:</h4>
+                    <p>Think of angles as measures of "turn" or rotation:</p>
+                    <ul class="geometry-list">
+                        <li><strong>Acute angle:</strong> A small turn, like when you slightly open a door</li>
+                        <li><strong>Right angle:</strong> A quarter turn, like the corner of a book</li>
+                        <li><strong>Obtuse angle:</strong> A wide turn, more than a quarter but less than a half turn</li>
+                        <li><strong>Straight angle:</strong> A half turn (180°), like a straight line</li>
+                    </ul>
+                    <p>Angles help us describe how lines and shapes relate to each other. They're essential for understanding triangles, which we'll cover next.</p>
+                    <button class="continue-btn" data-concept="3">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Triangles Section -->
+            <section id="concept-4" class="concept-section">
+                <h2 class="geometry-title"><i class="fas fa-play"></i> Triangles</h2>
+                <div class="concept-content">
+                    <p>A triangle is a polygon with three sides and three angles. The sum of the interior angles of any triangle is always 180°.</p>
+                    
+                    <div class="geometry-classification-section">
+                        <h3 class="geometry-subtitle">Types of Triangles by Sides</h3>
+                        <div class="geometry-triangle-grid">
+                            <div class="geometry-triangle-card">
+                                <h4 class="geometry-triangle-type">Equilateral</h4>
+                                <div class="geometry-equilateral"></div>
+                                <p>All sides equal, all angles 60°</p>
+                            </div>
+                            <div class="geometry-triangle-card">
+                                <h4 class="geometry-triangle-type">Isosceles</h4>
+                                <div class="geometry-isosceles"></div>
+                                <p>Two sides equal, two angles equal</p>
+                            </div>
+                            <div class="geometry-triangle-card">
+                                <h4 class="geometry-triangle-type">Scalene</h4>
+                                <div class="geometry-scalene"></div>
+                                <p>No sides equal, no angles equal</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="geometry-subtitle">Triangle Formulas</h3>
+                    <div class="geometry-area-grid">
+                        <div class="geometry-area-card">
+                            <h4 class="geometry-area-method">Area</h4>
+                            <p class="geometry-formula">A = ½ × base × height</p>
+                        </div>
+                        <div class="geometry-area-card">
+                            <h4 class="geometry-area-method">Pythagorean Theorem</h4>
+                            <p class="geometry-formula">a² + b² = c²</p>
+                            <p>(for right triangles only)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand triangles and their properties?</h4>
+                    <p>Triangles are the simplest polygons and have many important properties.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="4">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="4">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-4">
+                    <h4>Let me explain triangles differently:</h4>
+                    <p>Triangles are the strongest geometric shape, which is why they're used so often in construction (think of roof trusses and bridges).</p>
+                    <p>Key things to remember about triangles:</p>
+                    <ul class="geometry-list">
+                        <li>The angles always add up to 180° - this is true for every triangle</li>
+                        <li>The longest side is always opposite the largest angle</li>
+                        <li>In a right triangle, the Pythagorean theorem helps us find missing side lengths</li>
+                        <li>The area is always half of base times height, regardless of the triangle type</li>
+                    </ul>
+                    <p>Triangles are fundamental building blocks for more complex geometric shapes.</p>
+                    <button class="continue-btn" data-concept="4">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Quadrilaterals Section -->
+            <section id="concept-5" class="concept-section">
+                <h2 class="geometry-title"><i class="fas fa-border-style"></i> Quadrilaterals</h2>
+                <div class="concept-content">
+                    <p>A quadrilateral is a polygon with four sides. The sum of the interior angles of any quadrilateral is 360°.</p>
+                    
+                    <div class="geometry-quad-grid">
+                        <div class="geometry-quad-card">
+                            <h3 class="geometry-quad-name">Square</h3>
+                            <div class="geometry-square-visual"></div>
+                            <p>All sides equal</p>
+                            <p>All angles 90°</p>
+                            <p class="geometry-formula">Area = side²</p>
+                        </div>
+                        
+                        <div class="geometry-quad-card">
+                            <h3 class="geometry-quad-name">Rectangle</h3>
+                            <div class="geometry-rectangle-visual"></div>
+                            <p>Opposite sides equal</p>
+                            <p>All angles 90°</p>
+                            <p class="geometry-formula">Area = length × width</p>
+                        </div>
+                    </div>
+
+                    <h3 class="geometry-subtitle">Other Important Quadrilaterals</h3>
+                    <ul class="geometry-list">
+                        <li><strong>Parallelogram:</strong> Opposite sides parallel and equal</li>
+                        <li><strong>Rhombus:</strong> All sides equal, opposite angles equal</li>
+                        <li><strong>Trapezoid:</strong> Only one pair of parallel sides</li>
+                        <li><strong>Kite:</strong> Two pairs of adjacent sides equal</li>
+                    </ul>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand quadrilaterals and their properties?</h4>
+                    <p>Quadrilaterals are common in everyday objects and architecture.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="5">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="5">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-5">
+                    <h4>Let me explain quadrilaterals differently:</h4>
+                    <p>Quadrilaterals are four-sided shapes that you see everywhere:</p>
+                    <ul class="geometry-list">
+                        <li><strong>Squares:</strong> Chessboards, tiles, windows</li>
+                        <li><strong>Rectangles:</strong> Doors, books, smartphones</li>
+                        <li><strong>Parallelograms:</strong> Certain types of tables, erasers</li>
+                        <li><strong>Trapezoids:</strong> Handbags, certain types of tables</li>
+                    </ul>
+                    <p>All quadrilaterals share the property that their interior angles add up to 360°. This is because you can divide any quadrilateral into two triangles, and each triangle has 180°.</p>
+                    <button class="continue-btn" data-concept="5">Continue to Quiz</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <h3><i class="fas fa-question-circle"></i> Geometry Quiz</h3>
+                
                 <div class="quiz-question">
                     <p>1. How many degrees in a straight angle?</p>
-                    <label><input type="radio" name="q1" value="A"> 90°</label>
-                    <label><input type="radio" name="q1" value="B"> 180°</label>
-                    <label><input type="radio" name="q1" value="C"> 360°</label>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="90">90°</div>
+                        <div class="quiz-option" data-value="180">180°</div>
+                        <div class="quiz-option" data-value="360">360°</div>
+                    </div>
                 </div>
         
-                <!-- Question 2 -->
                 <div class="quiz-question">
                     <p>2. What is the area of a 3×4 rectangle?</p>
-                    <label><input type="radio" name="q2" value="A"> 7</label>
-                    <label><input type="radio" name="q2" value="B"> 12</label>
-                    <label><input type="radio" name="q2" value="C"> 14</label>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="7">7</div>
+                        <div class="quiz-option" data-value="12">12</div>
+                        <div class="quiz-option" data-value="14">14</div>
+                    </div>
                 </div>
         
-                <!-- Question 3 -->
                 <div class="quiz-question">
                     <p>3. In a right triangle with legs 6 and 8, the hypotenuse is:</p>
-                    <label><input type="radio" name="q3" value="A"> 10</label>
-                    <label><input type="radio" name="q3" value="B"> 14</label>
-                    <label><input type="radio" name="q3" value="C"> 100</label>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="10">10</div>
+                        <div class="quiz-option" data-value="14">14</div>
+                        <div class="quiz-option" data-value="100">100</div>
+                    </div>
                 </div>
         
-                <!-- Question 4 -->
                 <div class="quiz-question">
                     <p>4. How many sides does a hexagon have?</p>
-                    <label><input type="radio" name="q4" value="A"> 5</label>
-                    <label><input type="radio" name="q4" value="B"> 6</label>
-                    <label><input type="radio" name="q4" value="C"> 7</label>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="5">5</div>
+                        <div class="quiz-option" data-value="6">6</div>
+                        <div class="quiz-option" data-value="7">7</div>
+                    </div>
                 </div>
         
-                <!-- Question 5 -->
                 <div class="quiz-question">
                     <p>5. What is the circumference of a circle with diameter 10?</p>
-                    <label><input type="radio" name="q5" value="A"> 10π</label>
-                    <label><input type="radio" name="q5" value="B"> 20π</label>
-                    <label><input type="radio" name="q5" value="C"> 25π</label>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="10π">10π</div>
+                        <div class="quiz-option" data-value="20π">20π</div>
+                        <div class="quiz-option" data-value="25π">25π</div>
+                    </div>
                 </div>
-        
-                <!-- Question 6 -->
-                <div class="quiz-question">
-                    <p>6. Which quadrilateral has exactly one pair of parallel sides?</p>
-                    <label><input type="radio" name="q6" value="A"> Parallelogram</label>
-                    <label><input type="radio" name="q6" value="B"> Rhombus</label>
-                    <label><input type="radio" name="q6" value="C"> Trapezoid</label>
-                </div>
-        
-                <!-- Question 7 -->
-                <div class="quiz-question">
-                    <p>7. The sum of angles in a pentagon is:</p>
-                    <label><input type="radio" name="q7" value="A"> 360°</label>
-                    <label><input type="radio" name="q7" value="B"> 540°</label>
-                    <label><input type="radio" name="q7" value="C"> 720°</label>
-                </div>
-        
-                <!-- Question 8 -->
-                <div class="quiz-question">
-                    <p>8. What is the volume of a cube with edge length 5?</p>
-                    <label><input type="radio" name="q8" value="A"> 15</label>
-                    <label><input type="radio" name="q8" value="B"> 25</label>
-                    <label><input type="radio" name="q8" value="C"> 125</label>
-                </div>
-        
-                <!-- Question 9 -->
-                <div class="quiz-question">
-                    <p>9. What is the area of a circle with radius 7?</p>
-                    <label><input type="radio" name="q9" value="A"> 49π</label>
-                    <label><input type="radio" name="q9" value="B"> 14π</label>
-                    <label><input type="radio" name="q9" value="C"> 28π</label>
-                </div>
-        
-                <!-- Question 10 -->
-                <div class="quiz-question">
-                    <p>10. The sum of the interior angles of a quadrilateral is:</p>
-                    <label><input type="radio" name="q10" value="A"> 180°</label>
-                    <label><input type="radio" name="q10" value="B"> 360°</label>
-                    <label><input type="radio" name="q10" value="C"> 540°</label>
-                </div>
-        
-                <!-- Question 11 -->
-                <div class="quiz-question">
-                    <p>11. The perimeter of a rectangle is 24m. If the length is 8m, what is the width?</p>
-                    <label><input type="radio" name="q11" value="A"> 4m</label>
-                    <label><input type="radio" name="q11" value="B"> 5m</label>
-                    <label><input type="radio" name="q11" value="C"> 6m</label>
-                </div>
-        
-                <!-- Question 12 -->
-                <div class="quiz-question">
-                    <p>12. What is the area of a triangle with base 10 and height 5?</p>
-                    <label><input type="radio" name="q12" value="A"> 25</label>
-                    <label><input type="radio" name="q12" value="B"> 50</label>
-                    <label><input type="radio" name="q12" value="C"> 100</label>
-                </div>
-        
-                <!-- Question 13 -->
-                <div class="quiz-question">
-                    <p>13. How many faces does a pyramid with a square base have?</p>
-                    <label><input type="radio" name="q13" value="A"> 5</label>
-                    <label><input type="radio" name="q13" value="B"> 6</label>
-                    <label><input type="radio" name="q13" value="C"> 8</label>
-                </div>
-        
-                <!-- Question 14 -->
-                <div class="quiz-question">
-                    <p>14. What is the volume of a cone with radius 3 and height 9?</p>
-                    <label><input type="radio" name="q14" value="A"> 81π</label>
-                    <label><input type="radio" name="q14" value="B"> 27π</label>
-                    <label><input type="radio" name="q14" value="C"> 36π</label>
-                </div>
-        
-                <!-- Question 15 -->
-                <div class="quiz-question">
-                    <p>15. What is the surface area of a sphere with radius 6?</p>
-                    <label><input type="radio" name="q15" value="A"> 144π</label>
-                    <label><input type="radio" name="q15" value="B"> 72π</label>
-                    <label><input type="radio" name="q15" value="C"> 36π</label>
-                </div>
-        
-                <!-- Question 16 -->
-                <div class="quiz-question">
-                    <p>16. What is the area of a trapezoid with bases 5 and 10, and height 4?</p>
-                    <label><input type="radio" name="q16" value="A"> 30</label>
-                    <label><input type="radio" name="q16" value="B"> 25</label>
-                    <label><input type="radio" name="q16" value="C"> 20</label>
-                </div>
-        
-                <!-- Question 17 -->
-                <div class="quiz-question">
-                    <p>17. The sum of the interior angles of a polygon with 6 sides is:</p>
-                    <label><input type="radio" name="q17" value="A"> 720°</label>
-                    <label><input type="radio" name="q17" value="B"> 900°</label>
-                    <label><input type="radio" name="q17" value="C"> 1080°</label>
-                </div>
-        
-                <!-- Question 18 -->
-                <div class="quiz-question">
-                    <p>18. What is the area of a rhombus with diagonals 8 and 6?</p>
-                    <label><input type="radio" name="q18" value="A"> 24</label>
-                    <label><input type="radio" name="q18" value="B"> 18</label>
-                    <label><input type="radio" name="q18" value="C"> 12</label>
-                </div>
-        
-                <!-- Question 19 -->
-                <div class="quiz-question">
-                    <p>19. The sum of angles in a triangle is:</p>
-                    <label><input type="radio" name="q19" value="A"> 180°</label>
-                    <label><input type="radio" name="q19" value="B"> 90°</label>
-                    <label><input type="radio" name="q19" value="C"> 360°</label>
-                </div>
-        
-                <!-- Question 20 -->
-                <div class="quiz-question">
-                    <p>20. What is the sum of 3/8 + 1/2?</p>
-                    <label><input type="radio" name="q20" value="A"> 7/8</label>
-                    <label><input type="radio" name="q20" value="B"> 5/8</label>
-                    <label><input type="radio" name="q20" value="C"> 1</label>
-                </div>
-        
-                <button type="geometry-submit">Submit</button>
-            </form>
-        
-            <div id="quiz-results"></div>
-        </section>
-        
-        <script>
-            // Answer Key for the Geometry Quiz (20 questions)
-            const geometryAnswerKey = {
-                q1: "B", q2: "B", q3: "A", q4: "B", q5: "B",
-                q6: "C", q7: "B", q8: "C", q9: "A", q10: "B",
-                q11: "A", q12: "B", q13: "A", q14: "B", q15: "A",
-                q16: "A", q17: "A", q18: "A", q19: "A", q20: "A"
-            };
-        
-            // Wait for DOM to be fully loaded
-            document.addEventListener('DOMContentLoaded', function() {
-                const quizForm = document.getElementById('quiz-form');
-                const resultDiv = document.getElementById('quiz-results');
                 
-                // Debugging: Check if elements exist
-                if (!quizForm) {
-                    console.error('Quiz form not found! Check the ID "quiz-form"');
-                    return;
-                }
-                if (!resultDiv) {
-                    console.error('Result div not found! Check the ID "quiz-results"');
-                    return;
-                }
-        
-                // Add submit event listener
-                quizForm.addEventListener('submit', function(event) {
-                    // Prevent default form submission
-                    event.preventDefault();
-                    console.log('Form submission intercepted'); // Debugging
-                    
-                    let score = 0;
-                    const totalQuestions = Object.keys(geometryAnswerKey).length;
-                    const unanswered = [];
-                    
-                    // Check each answer
-                    for (let i = 1; i <= totalQuestions; i++) {
-                        const questionName = `q${i}`;
-                        const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
-                        
-                        if (!selectedAnswer) {
-                            unanswered.push(i);
-                            continue;
-                        }
-                        
-                        if (selectedAnswer.value === geometryAnswerKey[questionName]) {
-                            score++;
-                        }
-                    }
-                    
-                    // Calculate percentage
-                    const percentage = (score / totalQuestions * 100).toFixed(1);
-                    
-                    // Create feedback message
-                    let feedbackMessage;
-                    if (unanswered.length > 0) {
-                        feedbackMessage = `<p><i class="fas fa-exclamation-circle"></i> You didn't answer questions: ${unanswered.join(', ')}</p>`;
-                    } else if (percentage >= 80) {
-                        feedbackMessage = '<p><i class="fas fa-check-circle"></i> Excellent! You have mastered geometry.</p>';
-                    } else if (percentage >= 50) {
-                        feedbackMessage = '<p><i class="fas fa-thumbs-up"></i> Good job! Review your missed questions.</p>';
-                    } else {
-                        feedbackMessage = '<p><i class="fas fa-book"></i> Keep practicing! Geometry takes time to master.</p>';
-                    }
-                    
-                    // Display results
-                    resultDiv.innerHTML = `
-                        <div class="quiz-result-box">
-                            <h3>Your Score: ${score}/${totalQuestions} (${percentage}%)</h3>
-                            <div class="feedback">${feedbackMessage}</div>
-                            <button class="retry-btn">Try Again</button>
-                        </div>
-                    `;
-                    
-                    // Add retry button functionality
-                    resultDiv.querySelector('.retry-btn').addEventListener('click', function() {
-                        quizForm.reset();
-                        resultDiv.innerHTML = '';
-                    });
-                    
-                    // Scroll to results
-                    resultDiv.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        </script>
-        
-        
-        <section id="geometry-videos" class="geometry-section">
-            <h2 class="geometry-heading"><i class="fas fa-video"></i> Geometry Video Tutorials</h2>
-            
-            <div class="geometry-encouragement">
-                <p><i class="fas fa-lightbulb"></i> Visual learning helps! These curated videos explain key geometry concepts with clear examples and demonstrations.</p>
-            </div>
-        
-            <div class="geometry-video-grid">
-                <div class="geometry-video-card">
-                    <div class="geometry-video-container">
-                        <iframe src="https://www.youtube.com/watch?v=lxbkx5rewqg" 
-                               frameborder="0" 
-                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                               allowfullscreen></iframe>
-                    </div>
-                    <h3 class="geometry-video-title">Geometry Fundamentals</h3>
-                    <p class="geometry-video-description">Learn about points, lines, planes, and basic constructions.</p>
-                    <div class="geometry-video-duration"><i class="fas fa-clock"></i> 8:25</div>
+                <button class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Results</h3>
+                    <p>Your score: <span id="score">0</span>/5 (<span id="percentage">0%</span>)</p>
+                    <p id="feedback">Keep practicing!</p>
+                    <button class="continue-btn" id="restartQuiz">Try Again</button>
                 </div>
-        
-                <div class="geometry-video-card">
-                    <div class="geometry-video-container">
-                        <iframe src=" https://www.youtube.com/watch?v=kMHJOZRETxo" 
-                               frameborder="0" 
-                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                               allowfullscreen></iframe>
-                    </div>
-                    <h3 class="geometry-video-title">Triangle Properties</h3>
-                    <p class="geometry-video-description">Explore different types of triangles and their properties.</p>
-                    <div class="geometry-video-duration"><i class="fas fa-clock"></i> 10:30</div>
-                </div>
-        
-                <div class="geometry-video-card">
-                    <div class="geometry-video-container">
-                        <iframe src=" https://www.youtube.com/watch?v=z9XMYCmyybY" 
-                               frameborder="0" 
-                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                               allowfullscreen></iframe>
-                    </div>
-                    <h3 class="geometry-video-title">Circle Theorems</h3>
-                    <p class="geometry-video-description">Visual explanations of key circle theorems and proofs.</p>
-                    <div class="geometry-video-duration"><i class="fas fa-clock"></i> 9:12</div>
-                </div>
-            </div>
-        </section>        
-        <section id="forum" class="forum-section">
-    <div class="forum-header">
-        <h2><i class="fas fa-comments"></i> Discussion Forum</h2>
-        <p>Have questions or want to discuss this topic? Fill the form, copy your message, and join the WhatsApp group to post it!</p>
+            </section>
+        </div>
     </div>
 
-    <form id="forum-form" class="forum-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="userName" class="form-label">Your Name</label>
-                <input type="text" id="userName" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label for="topic" class="form-label">Topic</label>
-                <select id="topic" class="form-select" required>
-                    <option value="" disabled selected>Select topic</option>
-                    <option value="Geometry Fundamentals">Geometry Fundamentals</option>
-                    <option value="Triangle Properties">Triangle Properties</option>
-                    <option value="Circle Theorems">Circle Theorems</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="userPost" class="form-label">Your Question</label>
-            <textarea id="userPost" class="form-textarea" required></textarea>
-        </div>
-        <button type="button" class="form-submit" onclick="copyForumMessage()">Copy & Join Group</button>
-    </form>
-</section>
+    <script>
+        // DOM Elements
+        const startLessonBtn = document.getElementById('startLessonBtn');
+        const lessonContent = document.getElementById('lessonContent');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizSection = document.getElementById('quizSection');
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        const restartQuizBtn = document.getElementById('restartQuiz');
 
-<script>
-function copyForumMessage() {
-    const name = document.getElementById('userName').value.trim();
-    const topic = document.getElementById('topic').value;
-    const question = document.getElementById('userPost').value.trim();
+        // Quiz Answers
+        const quizAnswers = ['180', '12', '10', '6', '20π'];
 
-    if (!name || !topic || !question) {
-        alert("Please fill out all fields.");
-        return;
-    }
+        // Current concept tracking
+        let currentConcept = 1;
+        const totalConcepts = 5;
 
-    const message = `👤 Name: ${name}\n📘 Topic: ${topic}\n❓ Question:\n${question}`;
-    
-    navigator.clipboard.writeText(message).then(() => {
-        alert("✅ Your question has been copied. Please paste it in the WhatsApp group.");
-        window.open("https://chat.whatsapp.com/LPoXBwl6Y9ZDkyYPcHvKbx?mode=ac_c", "_blank");
-    }).catch(err => {
-        alert("❌ Failed to copy text: " + err);
-    });
-}
-</script>
+        // Start Lesson Button Functionality
+        startLessonBtn.addEventListener('click', function() {
+            lessonContent.classList.add('active');
+            progressSection.style.display = 'flex';
+            this.style.display = 'none';
+            updateProgress();
+            nextBtn.disabled = false;
+        });
 
-            
-            <div class="forum-posts-container">
-                <h3>Recent Discussions</h3>
-                <div id="forum-posts">
-                    <!-- Dynamic posts will appear here -->
-                </div>
-            </div>
-        </section>
-        
-        <script src="geometryapp.js"></script>
-        <script src="geometryscript.js"></script>
-        <script>
-            // Escape HTML to prevent XSS
-            function escapeHTML(str) {
-                return str.replace(/[&<>"']/g, function (match) {
-                    const escapeChars = {
-                        '&': '&amp;',
-                        '<': '&lt;',
-                        '>': '&gt;',
-                        '"': '&quot;',
-                        "'": '&#039;'
-                    };
-                    return escapeChars[match];
-                });
-            }
-        
-            document.addEventListener('DOMContentLoaded', function () {
-                const forumKey = 'forumPosts';
-        
-                function loadForumPosts() {
-                    const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
-                    const forumPostsDiv = document.getElementById('forum-posts');
-                    forumPostsDiv.innerHTML = '';
-        
-                    // Show latest posts first
-                    const reversedPosts = [...forumPosts].reverse();
-        
-                    reversedPosts.forEach((post, index) => {
-                        const postDiv = document.createElement('div');
-                        postDiv.classList.add('forum-post');
-        
-                        postDiv.innerHTML = `
-                            <div class="post-header">
-                                <h4>${escapeHTML(post.userName)}</h4>
-                                <span class="post-time">${new Date(post.timestamp).toLocaleString()}</span>
-                            </div>
-                            <div class="post-content">${escapeHTML(post.userPost)}</div>
-                            ${index === 0 ? '<div class="new-post-indicator">New</div>' : ''}
-                        `;
-        
-                        forumPostsDiv.appendChild(postDiv);
-                    });
+        // Update Progress
+        function updateProgress() {
+            const progress = ((currentConcept - 1) / totalConcepts) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', function() {
+            if (currentConcept > 1) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept--;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                nextBtn.disabled = false;
+                
+                if (currentConcept === 1) {
+                    prevBtn.disabled = true;
                 }
-        
-                document.getElementById('forum-form').addEventListener('submit', function (event) {
-                    event.preventDefault();
-        
-                    const userNameInput = document.getElementById('userName');
-                    const userPostInput = document.getElementById('userPost');
-        
-                    const userName = userNameInput.value.trim();
-                    const userPost = userPostInput.value.trim();
-        
-                    if (!userName || !userPost) {
-                        alert('Please fill in all fields');
-                        return;
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentConcept < totalConcepts) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept++;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                prevBtn.disabled = false;
+                
+                if (currentConcept === totalConcepts) {
+                    nextBtn.disabled = true;
+                }
+            }
+        });
+
+        // Understanding Check Buttons
+        document.querySelectorAll('.check-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                
+                if (this.classList.contains('yes-btn')) {
+                    // User understands, move to next concept
+                    if (conceptNum < totalConcepts) {
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        currentConcept = parseInt(conceptNum) + 1;
+                        document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                        updateProgress();
+                        prevBtn.disabled = false;
+                        
+                        if (currentConcept === totalConcepts) {
+                            nextBtn.disabled = true;
+                        }
+                    } else {
+                        // Last concept, show quiz
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        quizSection.classList.add('active');
                     }
-        
-                    const forumPosts = JSON.parse(localStorage.getItem(forumKey)) || [];
-        
-                    const newPost = {
-                        userName,
-                        userPost,
-                        timestamp: new Date().toISOString()
-                    };
-        
-                    forumPosts.push(newPost);
-                    localStorage.setItem(forumKey, JSON.stringify(forumPosts));
-        
-                    // Clear form fields
-                    userNameInput.value = '';
-                    userPostInput.value = '';
-        
-                    // Reload posts
-                    loadForumPosts();
-        
-                    // Smooth scroll to posts section
-                    document.getElementById('forum-posts').scrollIntoView({ behavior: 'smooth' });
-                });
-        
-                // Initial load
-                loadForumPosts();
+                } else {
+                    // User needs more explanation
+                    explanation.classList.add('active');
+                }
             });
-        </script>
-    </body>
+        });
+
+        // Continue Buttons in Further Explanations
+        document.querySelectorAll('.continue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                explanation.classList.remove('active');
+                
+                if (conceptNum < totalConcepts) {
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    currentConcept = parseInt(conceptNum) + 1;
+                    document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
+                    
+                    if (currentConcept === totalConcepts) {
+                        nextBtn.disabled = true;
+                    }
+                } else {
+                    // Last concept, show quiz
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    quizSection.classList.add('active');
+                }
+            });
+        });
+
+        // Quiz Functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this question
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        // Submit Quiz
+        submitQuizBtn.addEventListener('click', function() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                if (selectedOption && selectedOption.getAttribute('data-value') === quizAnswers[index]) {
+                    score++;
+                    selectedOption.style.backgroundColor = 'var(--success-color)';
+                } else if (selectedOption) {
+                    selectedOption.style.backgroundColor = '#d32f2f';
+                }
+            });
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            let feedback = '';
+            if (percentage >= 80) {
+                feedback = 'Excellent work! You have a strong understanding of geometry.';
+            } else if (percentage >= 60) {
+                feedback = 'Good job! Review the questions you missed to improve.';
+            } else {
+                feedback = 'Keep practicing! Review the concepts and try again.';
+            }
+            
+            document.getElementById('feedback').textContent = feedback;
+            quizResult.classList.add('active');
+            
+            // Scroll to results
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Restart Quiz
+        restartQuizBtn.addEventListener('click', function() {
+            // Reset quiz
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.backgroundColor = '';
+            });
+            
+            quizResult.classList.remove('active');
+            
+            // Go back to first concept
+            quizSection.classList.remove('active');
+            document.querySelectorAll('.concept-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            currentConcept = 1;
+            document.getElementById(`concept-${currentConcept}`).classList.add('active');
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+        });
+    </script>
+</body>
 </html>
-        
