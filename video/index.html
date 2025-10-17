@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGBOYA - Video Lessons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for Theming - Deep Blue Theme */
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        .dark-mode {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.5);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'inter','Roboto','Open Sans',sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: var(--card-bg);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo h2 {
+            color: var(--text-color);
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Hamburger menu - Positioned on the left */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 101;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Navigation Panel */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: var(--nav-width);
+            height: 100%;
+            background: var(--card-bg);
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--primary-color);
+        }
+
+        .mobile-nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-nav-logo h2 {
+            color: var(--text-color);
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .close-nav {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-nav:hover {
+            transform: scale(1.2);
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .mobile-nav-item {
+            margin: 0;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .mobile-nav-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-logout-btn {
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-logout-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--success-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        /* Video Section Styles */
+        .video-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 10, 50, 0.4);
+            border-color: var(--accent-color);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-category {
+            display: inline-block;
+            padding: 5px 10px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .video-title {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* Video Modal Styles */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .video-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: scale(1.2);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                width: 85%;
+                max-width: 300px;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .video-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+            
+            .nav-container {
+                padding: 0 15px;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div id="app-container">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                
+                <div class="nav-logo">
+                    <svg width="40" height="40" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="var(--primary-color)" />
+                        <path d="M20,15 L30,15 L35,25 L30,35 L20,35 L15,25 Z" fill="#fff" />
+                        <text x="25" y="28" font-size="10" text-anchor="middle" fill="var(--primary-color)">I</text>
+                    </svg>
+                    <h2>IGBOYA</h2>
+                </div>
+                
+                <div class="nav-user">
+                    <span id="user-name">User</span>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+        <div id="mobile-nav" class="mobile-nav">
+            <div class="mobile-nav-header">
+                <div class="mobile-nav-logo">
+                    <svg width="40" height="40" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="var(--primary-color)" />
+                        <path d="M20,15 L30,15 L35,25 L30,35 L20,35 L15,25 Z" fill="#fff" />
+                        <text x="25" y="28" font-size="10" text-anchor="middle" fill="var(--primary-color)">I</text>
+                    </svg>
+                    <h2>IGBOYA</h2>
+                </div>
+                <button id="close-nav" class="close-nav">&times;</button>
+            </div>
+            <ul class="mobile-nav-menu">
+                <li class="mobile-nav-item">
+                    <a href="../index.html" class="mobile-nav-link">Home</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../index.html#topics" class="mobile-nav-link">Topics</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../index.html#community" class="mobile-nav-link">Community</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../index.html#resources" class="mobile-nav-link">Resources</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../index.html#profile" class="mobile-nav-link">Profile</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../video/index.html" class="mobile-nav-link active">Video Lessons</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../worksheet/index.html" class="mobile-nav-link">Practice Worksheets</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="../formulas/index.html" class="mobile-nav-link">Formula Sheets</a>
+                </li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <span id="mobile-user-name">User</span>
+                <button id="mobile-logout-btn" class="mobile-logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="content-section active">
+                <h2 class="section-title">Video Lessons</h2>
+                <p class="section-subtitle">Watch and learn from our comprehensive collection of mathematics video tutorials</p>
+                
+                <div class="video-filters">
+                    <button class="filter-btn active" data-filter="all">All Videos</button>
+                    <button class="filter-btn" data-filter="algebra">Algebra</button>
+                    <button class="filter-btn" data-filter="geometry">Geometry</button>
+                    <button class="filter-btn" data-filter="calculus">Calculus</button>
+                    <button class="filter-btn" data-filter="trigonometry">Trigonometry</button>
+                </div>
+                
+                <div class="videos-grid">
+                    <!-- Video 1 -->
+                    <div class="video-card" data-category="algebra">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/NtP4Hzo03nQ/maxresdefault.jpg" alt="Introduction to Algebra">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Algebra</span>
+                            <h3 class="video-title">Introduction to Algebra: Variables and Expressions</h3>
+                            <p class="video-description">Learn the basics of algebra including variables, expressions, and simple equations.</p>
+                            <div class="video-meta">
+                                <span>Duration: 15:30</span>
+                                <span>Level: Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="video-card" data-category="geometry">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/IaoZhhx_I9s/maxresdefault.jpg" alt="Geometry Basics">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Geometry</span>
+                            <h3 class="video-title">Geometry Basics: Points, Lines, and Angles</h3>
+                            <p class="video-description">Understand the fundamental concepts of geometry including points, lines, and different types of angles.</p>
+                            <div class="video-meta">
+                                <span>Duration: 18:45</span>
+                                <span>Level: Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 3 -->
+                    <div class="video-card" data-category="calculus">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/5yfh5cf4-0w/maxresdefault.jpg" alt="Introduction to Calculus">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Calculus</span>
+                            <h3 class="video-title">Introduction to Calculus: Limits and Derivatives</h3>
+                            <p class="video-description">Explore the foundational concepts of calculus including limits, derivatives, and their applications.</p>
+                            <div class="video-meta">
+                                <span>Duration: 22:10</span>
+                                <span>Level: Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 4 -->
+                    <div class="video-card" data-category="trigonometry">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/HfACrKJ_Y2w/maxresdefault.jpg" alt="Trigonometry Basics">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Trigonometry</span>
+                            <h3 class="video-title">Trigonometry Basics: Sine, Cosine, and Tangent</h3>
+                            <p class="video-description">Learn about trigonometric functions and how to apply them to solve problems involving triangles.</p>
+                            <div class="video-meta">
+                                <span>Duration: 16:20</span>
+                                <span>Level: Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 5 -->
+                    <div class="video-card" data-category="algebra">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/9NcPymk2VjU/maxresdefault.jpg" alt="Quadratic Equations">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Algebra</span>
+                            <h3 class="video-title">Solving Quadratic Equations: Methods and Examples</h3>
+                            <p class="video-description">Master different methods for solving quadratic equations including factoring, completing the square, and using the quadratic formula.</p>
+                            <div class="video-meta">
+                                <span>Duration: 20:15</span>
+                                <span>Level: Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 6 -->
+                    <div class="video-card" data-category="geometry">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/cC0fZ_lkFpQ/maxresdefault.jpg" alt="Pythagorean Theorem">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Geometry</span>
+                            <h3 class="video-title">The Pythagorean Theorem: Proof and Applications</h3>
+                            <p class="video-description">Understand the Pythagorean theorem, its proof, and how to apply it to solve real-world problems.</p>
+                            <div class="video-meta">
+                                <span>Duration: 14:35</span>
+                                <span>Level: Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 7 -->
+                    <div class="video-card" data-category="calculus">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/5qJQF9cR9vU/maxresdefault.jpg" alt="Integration Basics">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Calculus</span>
+                            <h3 class="video-title">Introduction to Integration: The Antiderivative</h3>
+                            <p class="video-description">Learn the concept of integration as the reverse process of differentiation and its fundamental applications.</p>
+                            <div class="video-meta">
+                                <span>Duration: 19:50</span>
+                                <span>Level: Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 8 -->
+                    <div class="video-card" data-category="trigonometry">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/YJuMkZLtPvI/maxresdefault.jpg" alt="Trigonometric Identities">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Trigonometry</span>
+                            <h3 class="video-title">Trigonometric Identities: Simplifying Expressions</h3>
+                            <p class="video-description">Explore various trigonometric identities and learn how to use them to simplify complex trigonometric expressions.</p>
+                            <div class="video-meta">
+                                <span>Duration: 17:25</span>
+                                <span>Level: Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 9 -->
+                    <div class="video-card" data-category="algebra">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/3Z0-bOer_6s/maxresdefault.jpg" alt="Systems of Equations">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Algebra</span>
+                            <h3 class="video-title">Solving Systems of Linear Equations</h3>
+                            <p class="video-description">Learn different methods for solving systems of linear equations including substitution, elimination, and graphing.</p>
+                            <div class="video-meta">
+                                <span>Duration: 21:40</span>
+                                <span>Level: Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 10 -->
+                    <div class="video-card" data-category="geometry">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/2f-q_d4M9Ic/maxresdefault.jpg" alt="Circle Geometry">
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-category">Geometry</span>
+                            <h3 class="video-title">Circle Geometry: Properties and Theorems</h3>
+                            <p class="video-description">Explore the properties of circles, important theorems, and how to solve problems involving circles.</p>
+                            <div class="video-meta">
+                                <span>Duration: 23:15</span>
+                                <span>Level: Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-video-title">Video Title</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="video-container">
+                <iframe id="video-player" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+        const closeNav = document.getElementById('close-nav');
+        
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            mobileNavOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeNav.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        mobileNavOverlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Video Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                videoCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Video Modal
+        const videoModal = document.getElementById('video-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const videoPlayer = document.getElementById('video-player');
+        const modalVideoTitle = document.getElementById('modal-video-title');
+        
+        // YouTube video IDs for each video card
+        const videoIds = [
+            'NtP4Hzo03nQ', // Algebra: Introduction
+            'IaoZhhx_I9s', // Geometry: Basics
+            '5yfh5cf4-0w', // Calculus: Introduction
+            'HfACrKJ_Y2w', // Trigonometry: Basics
+            '9NcPymk2VjU', // Algebra: Quadratic Equations
+            'cC0fZ_lkFpQ', // Geometry: Pythagorean Theorem
+            '5qJQF9cR9vU', // Calculus: Integration
+            'YJuMkZLtPvI', // Trigonometry: Identities
+            '3Z0-bOer_6s', // Algebra: Systems of Equations
+            '2f-q_d4M9Ic'  // Geometry: Circle Geometry
+        ];
+        
+        // Add click event to video cards
+        videoCards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                const videoId = videoIds[index];
+                const videoTitle = card.querySelector('.video-title').textContent;
+                
+                // Set video source
+                videoPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                modalVideoTitle.textContent = videoTitle;
+                
+                // Show modal
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            videoPlayer.src = ''; // Stop video
+            document.body.style.overflow = '';
+        });
+        
+        // Close modal when clicking outside
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                videoPlayer.src = ''; // Stop video
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+        
+        function logout() {
+            // Redirect to login page or perform logout logic
+            window.location.href = '../index.html';
+        }
+        
+        logoutBtn.addEventListener('click', logout);
+        mobileLogoutBtn.addEventListener('click', logout);
+    </script>
+</body>
+</html>

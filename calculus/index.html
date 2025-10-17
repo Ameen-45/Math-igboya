@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus - Interactive Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .calculus-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calculus-nav {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .calculus-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .calculus-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .calculus-title {
+            color: var(--text-color);
+            font-size: 2.2rem;
+        }
+
+        .calculus-icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Objectives Section */
+        .objectives-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .objectives-container h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .objectives-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .objectives-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .start-lesson-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .start-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .concept-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .concept-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calculus-heading {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .calculus-subheading {
+            color: var(--text-light);
+            margin: 15px 0 10px;
+        }
+
+        .concept-content {
+            margin-bottom: 20px;
+        }
+
+        .calculus-encouragement {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .calculus-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .calculus-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .calculus-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Understanding Check */
+        .understanding-check {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .understanding-check h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .yes-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Further Explanation */
+        .further-explanation {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .further-explanation.active {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .further-explanation h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .continue-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .continue-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .quiz-section h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .quiz-question p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+        }
+
+        .submit-quiz {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .submit-quiz:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        /* Quiz Explanation */
+        .quiz-explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            display: none;
+        }
+
+        .quiz-explanation.active {
+            display: block;
+        }
+
+        .explanation-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .explanation-item.correct {
+            border-left-color: var(--success-color);
+        }
+
+        .explanation-item.incorrect {
+            border-left-color: #d32f2f;
+        }
+
+        .back-to-topics {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .back-to-topics:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .calculus-container {
+                padding: 10px;
+            }
+            
+            .concept-section {
+                padding: 15px;
+            }
+            
+            .objectives-container {
+                padding: 20px;
+            }
+            
+            .check-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .progress-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+            }
+            
+            .calculus-nav {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculus-container">
+        <!-- Top Navigation -->
+        <div class="calculus-nav">
+            <a href="../index.html" class="calculus-btn"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            <h1 class="calculus-title"><i class="fas fa-infinity calculus-icon"></i> Calculus</h1>
+        </div>
+
+        <!-- Objectives Section -->
+        <div class="objectives-container">
+            <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Understand the concept of limits and continuity</li>
+                <li>Master differentiation rules and techniques</li>
+                <li>Learn integration methods and the Fundamental Theorem of Calculus</li>
+                <li>Apply calculus to solve real-world problems</li>
+                <li>Explore infinite series and their convergence</li>
+                <li>Develop problem-solving skills with advanced calculus techniques</li>
+            </ul>
+            <button class="start-lesson-btn" id="startLessonBtn">
+                <i class="fas fa-play"></i> Start Lesson
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressText">0%</span></span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content" id="lessonContent">
+            <!-- Introduction Section -->
+            <section id="concept-1" class="concept-section active">
+                <h2 class="calculus-heading"><i class="fas fa-calculator calculus-icon"></i> Introduction to Calculus</h2>
+                <div class="concept-content">
+                    <p>Calculus is a branch of mathematics focused on rates of change and accumulation of quantities. It provides powerful tools for modeling and analyzing dynamic systems in mathematics, science, and engineering.</p>
+                    
+                    <div class="calculus-encouragement">
+                        <p><i class="fas fa-brain calculus-icon"></i> Don't be intimidated! Calculus might seem challenging at first, but it's incredibly rewarding once you grasp the fundamental concepts.</p>
+                    </div>
+
+                    <h3 class="calculus-subheading"><i class="fas fa-lightbulb calculus-icon"></i> Key Branches</h3>
+                    <ul class="calculus-list">
+                        <li><strong>Differential Calculus:</strong> Study of rates of change and slopes of curves</li>
+                        <li><strong>Integral Calculus:</strong> Study of accumulation and areas under curves</li>
+                        <li><strong>Multivariable Calculus:</strong> Extension to functions of multiple variables</li>
+                        <li><strong>Vector Calculus:</strong> Calculus applied to vector fields</li>
+                    </ul>
+
+                    <div class="calculus-encouragement">
+                        <h3 class="calculus-subheading"><i class="fas fa-gem calculus-icon"></i> The Fundamental Theorem of Calculus</h3>
+                        <p>Connects differential and integral calculus:</p>
+                        <div class="calculus-formula">
+                            ∫<sub>a</sub><sup>b</sup> f'(x) dx = f(b) - f(a)
+                        </div>
+                        <p>This remarkable theorem shows that differentiation and integration are inverse processes.</p>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Is this introduction to calculus clear?</h4>
+                    <p>Let me know if you need further explanation before we continue.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="1">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="1">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-1">
+                    <h4>Let me explain calculus differently:</h4>
+                    <p>Think of calculus as the mathematics of change. While algebra deals with static relationships, calculus helps us understand how things change over time or space.</p>
+                    <p>For example, if you're driving a car:</p>
+                    <ul class="calculus-list">
+                        <li>Your position at any time is a function</li>
+                        <li>Your speed is the derivative (rate of change) of position</li>
+                        <li>Your acceleration is the derivative of speed</li>
+                        <li>The total distance traveled is the integral of speed</li>
+                    </ul>
+                    <p>Calculus gives us the tools to analyze all these relationships mathematically.</p>
+                    <button class="continue-btn" data-concept="1">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Limits Section -->
+            <section id="concept-2" class="concept-section">
+                <h2 class="calculus-heading"><i class="fas fa-infinity calculus-icon"></i> Limits and Continuity</h2>
+                <div class="concept-content">
+                    <p>Limits are the foundation of calculus. They describe the behavior of a function as the input approaches a certain value.</p>
+                    
+                    <div class="calculus-encouragement">
+                        <p><i class="fas fa-hand-holding-heart calculus-icon"></i> Limits are the foundation of calculus! Mastering this concept will make everything else much easier to understand.</p>
+                    </div>
+
+                    <h3 class="calculus-subheading">Definition of Limit</h3>
+                    <p>The limit of f(x) as x approaches a is L if we can make f(x) arbitrarily close to L by taking x sufficiently close to a.</p>
+                    <div class="calculus-formula">lim<sub>x→a</sub> f(x) = L</div>
+
+                    <h3 class="calculus-subheading">Continuity</h3>
+                    <p>A function f is continuous at a point a if:</p>
+                    <ol class="calculus-list">
+                        <li>f(a) is defined</li>
+                        <li>lim<sub>x→a</sub> f(x) exists</li>
+                        <li>lim<sub>x→a</sub> f(x) = f(a)</li>
+                    </ol>
+
+                    <h3 class="calculus-subheading">Important Special Limits</h3>
+                    <ul class="calculus-list">
+                        <li>lim<sub>x→0</sub> (sin x)/x = 1</li>
+                        <li>lim<sub>x→∞</sub> (1 + 1/x)<sup>x</sup> = e</li>
+                        <li>lim<sub>x→0</sub> (e<sup>x</sup> - 1)/x = 1</li>
+                    </ul>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand limits and continuity?</h4>
+                    <p>This is a fundamental concept that underpins all of calculus.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="2">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="2">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-2">
+                    <h4>Let me explain limits differently:</h4>
+                    <p>Think of a limit as predicting where a function is heading, not necessarily where it is.</p>
+                    <p>For example, consider f(x) = (x² - 1)/(x - 1). If we try to plug in x=1, we get 0/0 which is undefined. But if we factor the numerator:</p>
+                    <div class="calculus-formula">(x² - 1)/(x - 1) = (x-1)(x+1)/(x-1) = x+1 (for x≠1)</div>
+                    <p>As x gets closer and closer to 1, f(x) gets closer and closer to 2. So we say:</p>
+                    <div class="calculus-formula">lim<sub>x→1</sub> (x² - 1)/(x - 1) = 2</div>
+                    <p>Even though f(1) is undefined, the limit tells us what value the function is approaching.</p>
+                    <button class="continue-btn" data-concept="2">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Derivatives Section -->
+            <section id="concept-3" class="concept-section">
+                <h2 class="calculus-heading"><i class="fas fa-chart-line calculus-icon"></i> Derivatives</h2>
+                <div class="concept-content">
+                    <p>Derivatives measure how a function changes as its input changes. They represent instantaneous rates of change.</p>
+                    
+                    <div class="calculus-encouragement">
+                        <p><i class="fas fa-rocket calculus-icon"></i> Derivatives unlock the power to understand change! This concept has countless applications in physics, economics, and beyond.</p>
+                    </div>
+
+                    <h3 class="calculus-subheading">Definition</h3>
+                    <p>The derivative measures instantaneous rate of change:</p>
+                    <div class="calculus-formula">f'(x) = lim<sub>h→0</sub> [f(x+h) - f(x)] / h</div>
+                    <p>Geometrically, this represents the slope of the tangent line at point x.</p>
+
+                    <h3 class="calculus-subheading">Common Derivatives</h3>
+                    <ul class="calculus-list">
+                        <li>d/dx (x<sup>n</sup>) = nx<sup>n-1</sup></li>
+                        <li>d/dx (sin x) = cos x</li>
+                        <li>d/dx (cos x) = -sin x</li>
+                        <li>d/dx (e<sup>x</sup>) = e<sup>x</sup></li>
+                        <li>d/dx (ln x) = 1/x</li>
+                    </ul>
+
+                    <h3 class="calculus-subheading">Differentiation Rules</h3>
+                    <ul class="calculus-list">
+                        <li><strong>Sum Rule:</strong> (f+g)' = f' + g'</li>
+                        <li><strong>Product Rule:</strong> (fg)' = f'g + fg'</li>
+                        <li><strong>Quotient Rule:</strong> (f/g)' = (f'g - fg')/g<sup>2</sup></li>
+                        <li><strong>Chain Rule:</strong> (f(g(x)))' = f'(g(x))·g'(x)</li>
+                    </ul>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand derivatives?</h4>
+                    <p>Derivatives are one of the two main pillars of calculus.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="3">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="3">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-3">
+                    <h4>Let me explain derivatives differently:</h4>
+                    <p>Imagine you're driving a car. Your position changes over time. The derivative of your position function gives your speed - how fast your position is changing.</p>
+                    <p>If we take the derivative of speed, we get acceleration - how fast your speed is changing.</p>
+                    <p>Mathematically, if s(t) represents your position at time t:</p>
+                    <ul class="calculus-list">
+                        <li>Velocity: v(t) = ds/dt (derivative of position)</li>
+                        <li>Acceleration: a(t) = dv/dt (derivative of velocity)</li>
+                    </ul>
+                    <p>This is why derivatives are so powerful - they let us analyze rates of change in any situation.</p>
+                    <button class="continue-btn" data-concept="3">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Integrals Section -->
+            <section id="concept-4" class="concept-section">
+                <h2 class="calculus-heading"><i class="fas fa-calculator"></i> Integrals</h2>
+                <div class="concept-content">
+                    <p>Integration is the reverse process of differentiation. While derivatives measure rates of change, integrals measure accumulation.</p>
+                    
+                    <div class="calculus-encouragement">
+                        <p><i class="fas fa-puzzle-piece"></i> Integration is like mathematical detective work - finding the original function from its rate of change. You've got this!</p>
+                    </div>
+
+                    <h3 class="calculus-subheading">Definition</h3>
+                    <p>The integral represents the accumulation of quantities and the area under a curve.</p>
+                    <div class="calculus-formula">∫ f(x) dx = F(x) + C</div>
+                    <p>where F'(x) = f(x). The +C represents the constant of integration.</p>
+
+                    <h3 class="calculus-subheading">Common Integrals</h3>
+                    <ul class="calculus-list">
+                        <li>∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C (n ≠ -1)</li>
+                        <li>∫ sin x dx = -cos x + C</li>
+                        <li>∫ cos x dx = sin x + C</li>
+                        <li>∫ e<sup>x</sup> dx = e<sup>x</sup> + C</li>
+                        <li>∫ 1/x dx = ln|x| + C</li>
+                    </ul>
+
+                    <h3 class="calculus-subheading">Integration Techniques</h3>
+                    <ul class="calculus-list">
+                        <li><strong>Substitution:</strong> Reverse chain rule</li>
+                        <li><strong>Integration by parts:</strong> ∫ u dv = uv - ∫ v du</li>
+                        <li><strong>Partial fractions:</strong> Decompose rational functions</li>
+                        <li><strong>Trigonometric integrals:</strong> Powers of sin/cos</li>
+                    </ul>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand integrals?</h4>
+                    <p>Integration is the second main pillar of calculus.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="4">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="4">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-4">
+                    <h4>Let me explain integrals differently:</h4>
+                    <p>Think of integration as "adding up" small pieces to find a total.</p>
+                    <p>If derivatives are about instantaneous rates (like speed at a moment), integrals are about accumulation over time (like total distance traveled).</p>
+                    <p>For example, if you know your speed at every moment during a trip, the integral of speed gives you the total distance traveled.</p>
+                    <p>Geometrically, the definite integral ∫<sub>a</sub><sup>b</sup> f(x) dx gives the area under the curve y=f(x) between x=a and x=b.</p>
+                    <p>This connection between accumulation and area is what makes integrals so powerful for solving real-world problems.</p>
+                    <button class="continue-btn" data-concept="4">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Fundamental Theorem Section -->
+            <section id="concept-5" class="concept-section">
+                <h2 class="calculus-heading"><i class="fas fa-link"></i> Fundamental Theorem of Calculus</h2>
+                <div class="concept-content">
+                    <p>The Fundamental Theorem of Calculus (FTC) connects differentiation and integration, showing they are inverse operations.</p>
+                    
+                    <div class="calculus-encouragement">
+                        <p><i class="fas fa-star"></i> This is the crown jewel of calculus! The FTC connects the two main concepts in a beautiful way.</p>
+                    </div>
+
+                    <h3 class="calculus-subheading">First Fundamental Theorem</h3>
+                    <p>Connects differentiation and integration:</p>
+                    <div class="calculus-formula">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) - F(a)</div>
+                    <p>where F is any antiderivative of f. This allows us to evaluate definite integrals without Riemann sums.</p>
+
+                    <h3 class="calculus-subheading">Second Fundamental Theorem</h3>
+                    <p>Shows that differentiation reverses integration:</p>
+                    <div class="calculus-formula">d/dx ∫<sub>a</sub><sup>x</sub> f(t) dt = f(x)</div>
+                    <p>This explains why antiderivatives work for evaluating definite integrals.</p>
+
+                    <h3 class="calculus-subheading">FTC Applications</h3>
+                    <ul class="calculus-list">
+                        <li>Evaluating definite integrals easily</li>
+                        <li>Finding average value of functions: (1/(b-a))∫<sub>a</sub><sup>b</sup> f(x)dx</li>
+                        <li>Net change theorem: ∫ rate of change = net change</li>
+                        <li>Accumulation functions</li>
+                    </ul>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand the Fundamental Theorem of Calculus?</h4>
+                    <p>This is a crucial concept that ties everything together.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="5">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="5">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-5">
+                    <h4>Let me explain the FTC differently:</h4>
+                    <p>The Fundamental Theorem of Calculus is like a mathematical "undo" button.</p>
+                    <p>If differentiation is like taking something apart to see how it works, integration is like putting it back together.</p>
+                    <p>The FTC tells us that these two processes are inverses of each other:</p>
+                    <ul class="calculus-list">
+                        <li>If you differentiate then integrate, you get back (almost) the original function</li>
+                        <li>If you integrate then differentiate, you get back exactly the original function</li>
+                    </ul>
+                    <p>This is why we can use antiderivatives to calculate areas - the FTC guarantees it will work!</p>
+                    <button class="continue-btn" data-concept="5">Continue to Quiz</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <h3><i class="fas fa-question-circle"></i> Calculus Quiz</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What is the derivative of f(x) = e<sup>2x</sup>?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="2e^2x">2e<sup>2x</sup></div>
+                        <div class="quiz-option" data-value="e^2x">e<sup>2x</sup></div>
+                        <div class="quiz-option" data-value="2e^x">2e<sup>x</sup></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>2. What does ∫<sub>a</sub><sup>b</sup> f'(x) dx equal?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="f(b)-f(a)">f(b) - f(a)</div>
+                        <div class="quiz-option" data-value="f'(b)-f'(a)">f'(b) - f'(a)</div>
+                        <div class="quiz-option" data-value="f(b)+f(a)">f(b) + f(a)</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>3. What is lim<sub>x→0</sub> sin(x)/x?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="0">0</div>
+                        <div class="quiz-option" data-value="1">1</div>
+                        <div class="quiz-option" data-value="∞">∞</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>4. What is the derivative of ln(x)?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="1/x">1/x</div>
+                        <div class="quiz-option" data-value="e^x">e<sup>x</sup></div>
+                        <div class="quiz-option" data-value="x">x</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>5. What is the integral of 1/x dx?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="ln|x|+C">ln|x| + C</div>
+                        <div class="quiz-option" data-value="x^-2+C">x⁻² + C</div>
+                        <div class="quiz-option" data-value="e^x+C">e<sup>x</sup> + C</div>
+                    </div>
+                </div>
+                
+                <button class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Results</h3>
+                    <p>Your score: <span id="score">0</span>/5 (<span id="percentage">0%</span>)</p>
+                    <p id="feedback">Keep practicing!</p>
+                    <button class="back-to-topics" id="backToTopics">Back to Topics</button>
+                    <button class="continue-btn" id="restartQuiz">Try Again</button>
+                </div>
+
+                <div class="quiz-explanation" id="quizExplanation">
+                    <h4>Quiz Explanations</h4>
+                    <div class="explanation-item" id="explanation-q1">
+                        <p><strong>Question 1:</strong> The derivative of e<sup>2x</sup> is 2e<sup>2x</sup> by the chain rule.</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q2">
+                        <p><strong>Question 2:</strong> ∫<sub>a</sub><sup>b</sup> f'(x) dx = f(b) - f(a) by the Fundamental Theorem of Calculus.</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q3">
+                        <p><strong>Question 3:</strong> lim<sub>x→0</sub> sin(x)/x = 1 is a fundamental trigonometric limit.</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q4">
+                        <p><strong>Question 4:</strong> The derivative of ln(x) is 1/x.</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q5">
+                        <p><strong>Question 5:</strong> ∫ 1/x dx = ln|x| + C is a standard integral result.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const startLessonBtn = document.getElementById('startLessonBtn');
+        const lessonContent = document.getElementById('lessonContent');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizSection = document.getElementById('quizSection');
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        const quizExplanation = document.getElementById('quizExplanation');
+        const restartQuizBtn = document.getElementById('restartQuiz');
+        const backToTopicsBtn = document.getElementById('backToTopics');
+
+        // Quiz Answers and Explanations
+        const quizAnswers = ['2e^2x', 'f(b)-f(a)', '1', '1/x', 'ln|x|+C'];
+        const questionExplanations = [
+            "The derivative of e<sup>2x</sup> is 2e<sup>2x</sup> by the chain rule. Remember: d/dx[e<sup>u</sup>] = e<sup>u</sup> · du/dx",
+            "This is the Fundamental Theorem of Calculus: ∫<sub>a</sub><sup>b</sup> f'(x) dx = f(b) - f(a). It connects differentiation and integration.",
+            "lim<sub>x→0</sub> sin(x)/x = 1 is a fundamental limit. You can verify this using L'Hôpital's rule or the unit circle definition.",
+            "The derivative of ln(x) is 1/x. This is a basic derivative rule that follows from the definition of natural log.",
+            "∫ 1/x dx = ln|x| + C. Remember the absolute value to handle negative x values, and +C for the constant of integration."
+        ];
+
+        // Current concept tracking
+        let currentConcept = 1;
+        const totalConcepts = 5;
+
+        // Start Lesson Button Functionality
+        startLessonBtn.addEventListener('click', function() {
+            lessonContent.classList.add('active');
+            progressSection.style.display = 'flex';
+            this.style.display = 'none';
+            updateProgress();
+            nextBtn.disabled = false;
+        });
+
+        // Update Progress
+        function updateProgress() {
+            const progress = ((currentConcept - 1) / totalConcepts) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', function() {
+            if (currentConcept > 1) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept--;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                nextBtn.disabled = false;
+                
+                if (currentConcept === 1) {
+                    prevBtn.disabled = true;
+                }
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentConcept < totalConcepts) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept++;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                prevBtn.disabled = false;
+                
+                if (currentConcept === totalConcepts) {
+                    nextBtn.disabled = true;
+                }
+            }
+        });
+
+        // Understanding Check Buttons
+        document.querySelectorAll('.check-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                
+                if (this.classList.contains('yes-btn')) {
+                    // User understands, move to next concept
+                    if (conceptNum < totalConcepts) {
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        currentConcept = parseInt(conceptNum) + 1;
+                        document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                        updateProgress();
+                        prevBtn.disabled = false;
+                        
+                        if (currentConcept === totalConcepts) {
+                            nextBtn.disabled = true;
+                        }
+                    } else {
+                        // Last concept, show quiz
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        quizSection.classList.add('active');
+                    }
+                } else {
+                    // User needs more explanation
+                    explanation.classList.add('active');
+                }
+            });
+        });
+
+        // Continue Buttons in Further Explanations
+        document.querySelectorAll('.continue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                explanation.classList.remove('active');
+                
+                if (conceptNum < totalConcepts) {
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    currentConcept = parseInt(conceptNum) + 1;
+                    document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
+                    
+                    if (currentConcept === totalConcepts) {
+                        nextBtn.disabled = true;
+                    }
+                } else {
+                    // Last concept, show quiz
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    quizSection.classList.add('active');
+                }
+            });
+        });
+
+        // Quiz Functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this question
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        // Submit Quiz
+        submitQuizBtn.addEventListener('click', function() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            // Reset all explanations
+            document.querySelectorAll('.explanation-item').forEach(item => {
+                item.classList.remove('correct', 'incorrect');
+            });
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                const explanation = document.getElementById(`explanation-q${index + 1}`);
+                
+                if (selectedOption && selectedOption.getAttribute('data-value') === quizAnswers[index]) {
+                    score++;
+                    selectedOption.style.backgroundColor = 'var(--success-color)';
+                    explanation.classList.add('correct');
+                } else if (selectedOption) {
+                    selectedOption.style.backgroundColor = '#d32f2f';
+                    explanation.classList.add('incorrect');
+                    
+                    // Highlight correct answer
+                    const correctOption = question.querySelector(`[data-value="${quizAnswers[index]}"]`);
+                    if (correctOption) {
+                        correctOption.style.backgroundColor = 'var(--success-color)';
+                    }
+                } else {
+                    // No answer selected, show correct answer
+                    const correctOption = question.querySelector(`[data-value="${quizAnswers[index]}"]`);
+                    if (correctOption) {
+                        correctOption.style.backgroundColor = 'var(--success-color)';
+                    }
+                    explanation.classList.add('incorrect');
+                }
+            });
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            let feedback = '';
+            if (percentage >= 80) {
+                feedback = 'Excellent work! You have a strong understanding of calculus.';
+            } else if (percentage >= 60) {
+                feedback = 'Good job! Review the explanations below to improve.';
+            } else {
+                feedback = 'Keep practicing! Review the explanations and try again.';
+            }
+            
+            document.getElementById('feedback').textContent = feedback;
+            quizResult.classList.add('active');
+            quizExplanation.classList.add('active');
+            
+            // Scroll to results
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Back to Topics Button
+        backToTopicsBtn.addEventListener('click', function() {
+            window.location.href = '../index.html#topics';
+        });
+
+        // Restart Quiz
+        restartQuizBtn.addEventListener('click', function() {
+            // Reset quiz
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.backgroundColor = '';
+            });
+            
+            quizResult.classList.remove('active');
+            quizExplanation.classList.remove('active');
+            
+            // Go back to first concept
+            quizSection.classList.remove('active');
+            document.querySelectorAll('.concept-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            currentConcept = 1;
+            document.getElementById(`concept-${currentConcept}`).classList.add('active');
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+        });
+    </script>
+</body>
+</html>

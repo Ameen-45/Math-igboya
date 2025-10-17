@@ -144,7 +144,7 @@
                 <div class="hero-banner">
                     <h1>Master Mathematics with IGBOYA</h1>
                     <p>Interactive lessons, practice problems, and community support to help you excel in math</p>
-                    <button class="cta-button">Start Learning</button>
+                    <button class="cta-button" onclick="showSection('topics')">Start Learning</button>
                 </div>
                 <div class="features">
                     <div class="feature-card">
@@ -169,7 +169,7 @@
                 <h2 class="section-title">Mathematics Topics</h2>
                 <p class="section-subtitle">Explore our comprehensive mathematics curriculum</p>
                 <div class="topics-grid">
-                    <a href="algebra.html" class="topic-card">
+                    <a href="algebra/index.html" class="topic-card">
                         <div class="topic-icon">𝑥𝑦</div>
                         <h3>Algebra</h3>
                         <p>Equations, functions, polynomials, and more</p>
@@ -180,7 +180,7 @@
                             <span>65% Complete</span>
                         </div>
                     </a>
-                    <a href="geometry.html" class="topic-card">
+                    <a href="geometry/index.html" class="topic-card">
                         <div class="topic-icon">△□</div>
                         <h3>Geometry</h3>
                         <p>Shapes, angles, theorems, and proofs</p>
@@ -191,7 +191,7 @@
                             <span>40% Complete</span>
                         </div>
                     </a>
-                    <a href="calculus.html" class="topic-card">
+                    <a href="calculus/index.html" class="topic-card">
                         <div class="topic-icon">∫</div>
                         <h3>Calculus</h3>
                         <p>Derivatives, integrals, and limits</p>
@@ -202,18 +202,7 @@
                             <span>20% Complete</span>
                         </div>
                     </a>
-                    <a href="matrices.html" class="topic-card">
-                        <div class="topic-icon">[ ]</div>
-                        <h3>Matrices</h3>
-                        <p>Matrix operations, determinants, and applications</p>
-                        <div class="topic-progress">
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 30%"></div>
-                            </div>
-                            <span>30% Complete</span>
-                        </div>
-                    </a>
-                    <a href="trigonometry.html" class="topic-card">
+                    <a href="trigonometry/index.html" class="topic-card">
                         <div class="topic-icon">θ</div>
                         <h3>Trigonometry</h3>
                         <p>Triangles, identities, and trigonometric functions</p>
@@ -224,7 +213,7 @@
                             <span>50% Complete</span>
                         </div>
                     </a>
-                    <a href="statistics.html" class="topic-card">
+                    <a href="statistics/index.html" class="topic-card">
                         <div class="topic-icon">📈</div>
                         <h3>Statistics</h3>
                         <p>Data analysis, probability, and distributions</p>
@@ -233,6 +222,17 @@
                                 <div class="progress" style="width: 25%"></div>
                             </div>
                             <span>25% Complete</span>
+                        </div>
+                    </a>
+                    <a href="#resources" class="topic-card" onclick="showSection('resources')">
+                        <div class="topic-icon">[ ]</div>
+                        <h3>Learning Resources</h3>
+                        <p>Kindly Check the resources Page to learn more</p>
+                        <div class="topic-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 30%"></div>
+                            </div>
+                            <span>30% Complete</span>
                         </div>
                     </a>
                 </div>
@@ -257,14 +257,7 @@
                             <p>Posted by: GeometryFan • 3 days ago</p>
                         </div>
                         <button class="view-all-btn" onclick="redirectToGroup()">View All Discussions</button>
-                             <script>
-                            function redirectToGroup() {
-                                // Insert your WhatsApp group link here
-                                const groupLink = "https://chat.whatsapp.com/XXXXXXXXXXXXX"; 
-                                window.location.href = groupLink;
-                            }
-                            </script>
-                          </div>
+                    </div>
                     <div class="community-stats">
                         <div class="stat-card">
                             <h4>1,245</h4>
@@ -286,24 +279,28 @@
                 <h2 class="section-title">Learning Resources</h2>
                 <p class="section-subtitle">Supplement your learning with our comprehensive resources</p>
                 <div class="resources-grid">
+                    
                     <div class="resource-card">
                         <div class="resource-icon">🎥</div>
                         <h3>Video Lessons</h3>
                         <p>Watch detailed explanations of mathematical concepts.</p>
-                        <button class="resource-btn">Explore Videos</button>
+                        <button class="resource-btn" onclick="window.location.href='video/index.html'">Explore Videos</button>
                     </div>
+
                     <div class="resource-card">
                         <div class="resource-icon">📝</div>
                         <h3>Practice Worksheets</h3>
                         <p>Download worksheets to practice your skills.</p>
-                        <button class="resource-btn">Download</button>
+                        <button class="resource-btn" onclick="window.location.href='worksheet/index.html'">Download</button>
                     </div>
+
                     <div class="resource-card">
                         <div class="resource-icon">📋</div>
                         <h3>Formula Sheets</h3>
                         <p>Quick reference guides for important formulas.</p>
-                        <button class="resource-btn">View Formulas</button>
+                        <button class="resource-btn" onclick="window.location.href='formulas/index.html'">View Formulas</button>
                     </div>
+
                 </div>
             </section>
 
@@ -357,5 +354,55 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Navigation functions
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update mobile nav links
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile nav if open
+            document.getElementById('mobile-nav').classList.remove('active');
+            document.getElementById('mobile-nav-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function redirectToGroup() {
+            // Insert your WhatsApp group link here
+            const groupLink = "https://chat.whatsapp.com/XXXXXXXXXXXXX"; 
+            window.open(groupLink, '_blank');
+        }
+
+        // Initialize navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile nav link clicks
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('href').substring(1);
+                        showSection(sectionId);
+                    }
+                });
+            });
+
+            // CTA button functionality
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                showSection('topics');
+            });
+        });
+    </script>
 </body>
 </html>

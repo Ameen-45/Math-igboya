@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra - Interactive Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .top-nav {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .algebra-title {
+            color: var(--text-color);
+            font-size: 2.2rem;
+        }
+
+        .algebra-icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .btn-red {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-red:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Objectives Section */
+        .objectives-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .objectives-container h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .objectives-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .objectives-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .start-lesson-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .start-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .concept-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .concept-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .concept-section h2 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .concept-section h3 {
+            color: var(--text-light);
+            margin: 15px 0 10px;
+        }
+
+        .concept-content {
+            margin-bottom: 20px;
+        }
+
+        .example-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .equation {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Understanding Check */
+        .understanding-check {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .understanding-check h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .yes-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Further Explanation */
+        .further-explanation {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .further-explanation.active {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .further-explanation h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .continue-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .continue-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .quiz-section h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .quiz-question p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+        }
+
+        .submit-quiz {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .submit-quiz:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        /* Quiz Explanation */
+        .quiz-explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            display: none;
+        }
+
+        .quiz-explanation.active {
+            display: block;
+        }
+
+        .explanation-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .explanation-item.correct {
+            border-left-color: var(--success-color);
+        }
+
+        .explanation-item.incorrect {
+            border-left-color: #d32f2f;
+        }
+
+        .back-to-topics {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        .back-to-topics:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 10px;
+            }
+            
+            .concept-section {
+                padding: 15px;
+            }
+            
+            .objectives-container {
+                padding: 20px;
+            }
+            
+            .check-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .progress-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+            }
+            
+            .top-nav {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <a href="../index.html#topics" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            <h1 class="algebra-title"><i class="fas fa-square-root-alt algebra-icon"></i> Algebra</h1>
+        </div>
+
+        <!-- Objectives Section -->
+        <div class="objectives-container">
+            <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Understand variables and how they represent unknown values</li>
+                <li>Solve linear equations with one variable</li>
+                <li>Simplify algebraic expressions by combining like terms</li>
+                <li>Factor quadratic expressions</li>
+                <li>Solve systems of linear equations</li>
+                <li>Apply algebraic concepts to real-world problems</li>
+            </ul>
+            <button class="start-lesson-btn" id="startLessonBtn">
+                <i class="fas fa-play"></i> Start Lesson
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressText">0%</span></span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content" id="lessonContent">
+            <!-- Introduction Section -->
+            <section id="concept-1" class="concept-section active">
+                <h2><i class="fas fa-square-root-alt"></i> Introduction to Algebra</h2>
+                <div class="concept-content">
+                    <p>Algebra is the branch of mathematics that uses symbols and letters to represent numbers and quantities in formulas and equations. It provides the foundation for advanced mathematical concepts and real-world problem solving.</p>
+                    
+                    <div class="example-box">
+                        <h3>Algebraic Equation Example</h3>
+                        <div class="equation">2x + 5 = 15</div>
+                        <p>This is a simple linear equation with one variable (x). The goal is to find the value of x that makes this equation true.</p>
+                    </div>
+
+                    <p>Think of algebra as a language that helps us describe relationships between numbers and solve problems where some information is missing. Instead of just working with known numbers, we use variables (like x, y, z) to represent unknown values.</p>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Is this concept clear to you?</h4>
+                    <p>Let me know if you need further explanation before we continue.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="1">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="1">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-1">
+                    <h4>Let me explain this differently:</h4>
+                    <p>Imagine you're trying to figure out how many apples you can buy with $15 if each apple costs $2. You might write: 2 × (number of apples) = 15. In algebra, we'd write this as 2x = 15, where x represents the number of apples.</p>
+                    <p>Algebra gives us tools to solve for x in situations like this. It's essentially a way to find unknown values when we know how they relate to other values.</p>
+                    <button class="continue-btn" data-concept="1">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Variables Section -->
+            <section id="concept-2" class="concept-section">
+                <h2><i class="fas fa-font"></i> Understanding Variables</h2>
+                <div class="concept-content">
+                    <p>Variables are symbols (usually letters) that represent unknown values or values that can change. They allow us to write general rules and formulas that work for many different numbers.</p>
+                    
+                    <div class="example-box">
+                        <h3>Examples of Variables:</h3>
+                        <ul>
+                            <li><strong>x</strong> in the equation: 2x + 3 = 7</li>
+                            <li><strong>y</strong> in the expression: 3y - 5</li>
+                            <li><strong>a</strong> and <strong>b</strong> in the formula: a² + b² = c² (Pythagorean theorem)</li>
+                        </ul>
+                    </div>
+
+                    <p>Variables are like placeholders. They stand in for numbers we don't know yet or for numbers that could be different in different situations. This makes our mathematical expressions more flexible and powerful.</p>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand what variables are?</h4>
+                    <p>Variables are fundamental to algebra, so make sure this makes sense.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="2">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="2">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-2">
+                    <h4>Let me explain variables differently:</h4>
+                    <p>Think of a variable like an empty box that can hold different numbers. When we write "x + 5 = 10", we're saying: "Some number (in the x-box) plus 5 equals 10. What number is in the x-box?"</p>
+                    <p>Variables allow us to write rules that work for many situations. For example, the formula for the area of a rectangle is A = l × w, where A, l, and w are variables that can represent different values for area, length, and width.</p>
+                    <button class="continue-btn" data-concept="2">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Equations Section -->
+            <section id="concept-3" class="concept-section">
+                <h2><i class="fas fa-equals"></i> Solving Equations</h2>
+                <div class="concept-content">
+                    <p>An equation is a mathematical statement that shows two expressions are equal. Solving an equation means finding the value of the variable that makes the equation true.</p>
+                    
+                    <div class="example-box">
+                        <h3>Steps to Solve Linear Equations:</h3>
+                        <ol>
+                            <li><strong>Simplify</strong> both sides of the equation if needed (combine like terms)</li>
+                            <li>Use <strong>inverse operations</strong> to isolate the variable</li>
+                            <li><strong>Check</strong> your solution by substituting back into the original equation</li>
+                        </ol>
+                    </div>
+
+                    <div class="example-box">
+                        <h3>Example: Solve 3x - 7 = 14</h3>
+                        <p>Step 1: Add 7 to both sides: 3x = 21</p>
+                        <p>Step 2: Divide both sides by 3: x = 7</p>
+                        <p>Step 3: Check: 3(7) - 7 = 21 - 7 = 14 ✓</p>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand how to solve equations?</h4>
+                    <p>This is a key skill in algebra. Make sure the steps make sense.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="3">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="3">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-3">
+                    <h4>Let me explain equation solving differently:</h4>
+                    <p>Solving an equation is like balancing a scale. Whatever you do to one side, you must do to the other to keep it balanced.</p>
+                    <p>If you have x + 5 = 10, imagine a scale with x+5 on one side and 10 on the other. To find x, you need to "remove" the 5 from the left side. But to keep the scale balanced, you must also remove 5 from the right side: x + 5 - 5 = 10 - 5, which gives x = 5.</p>
+                    <p>The key is to perform the opposite operation to "undo" what's been done to the variable.</p>
+                    <button class="continue-btn" data-concept="3">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Expressions Section -->
+            <section id="concept-4" class="concept-section">
+                <h2><i class="fas fa-calculator"></i> Simplifying Expressions</h2>
+                <div class="concept-content">
+                    <p>Algebraic expressions are combinations of variables, numbers, and operations. Simplifying expressions makes them easier to work with by combining like terms and applying mathematical properties.</p>
+                    
+                    <div class="example-box">
+                        <h3>Key Concepts:</h3>
+                        <ul>
+                            <li><strong>Like Terms:</strong> Terms that have the same variables raised to the same powers (e.g., 3x and 5x are like terms)</li>
+                            <li><strong>Distributive Property:</strong> a(b + c) = ab + ac</li>
+                            <li><strong>Combining Like Terms:</strong> Add or subtract coefficients of like terms</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h3>Example: Simplify 3(2x - 5) + 4x</h3>
+                        <p>Step 1: Apply distributive property: 3×2x - 3×5 + 4x = 6x - 15 + 4x</p>
+                        <p>Step 2: Combine like terms: (6x + 4x) - 15 = 10x - 15</p>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand how to simplify expressions?</h4>
+                    <p>This skill will make solving equations much easier.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="4">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="4">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-4">
+                    <h4>Let me explain expression simplification differently:</h4>
+                    <p>Simplifying expressions is like organizing your closet. You group similar items together to make everything neater and easier to find.</p>
+                    <p>If you have 3 apples + 2 oranges + 4 apples, you'd naturally group the apples together: (3 apples + 4 apples) + 2 oranges = 7 apples + 2 oranges.</p>
+                    <p>In algebra, 3x + 2y + 4x becomes (3x + 4x) + 2y = 7x + 2y. We can only combine terms with exactly the same variables.</p>
+                    <button class="continue-btn" data-concept="4">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Word Problems Section -->
+            <section id="concept-5" class="concept-section">
+                <h2><i class="fas fa-question-circle"></i> Algebraic Word Problems</h2>
+                <div class="concept-content">
+                    <p>Algebra is particularly useful for solving real-world problems. The key is to translate the word problem into an algebraic equation that represents the situation.</p>
+                    
+                    <div class="example-box">
+                        <h3>Problem-Solving Strategy:</h3>
+                        <ol>
+                            <li>Read the problem carefully and identify what you're being asked to find</li>
+                            <li>Define variables to represent unknown quantities</li>
+                            <li>Write an equation that represents the situation</li>
+                            <li>Solve the equation</li>
+                            <li>Check that your answer makes sense in the context of the problem</li>
+                        </ol>
+                    </div>
+
+                    <div class="example-box">
+                        <h3>Example: The sum of three consecutive integers is 72. Find the integers.</h3>
+                        <p>Step 1: We're looking for three consecutive integers</p>
+                        <p>Step 2: Let x = first integer, then x+1 = second, x+2 = third</p>
+                        <p>Step 3: x + (x+1) + (x+2) = 72</p>
+                        <p>Step 4: 3x + 3 = 72 → 3x = 69 → x = 23</p>
+                        <p>Step 5: The integers are 23, 24, and 25. Check: 23+24+25=72 ✓</p>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand how to approach word problems?</h4>
+                    <p>This is where algebra becomes really practical.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="5">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="5">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-5">
+                    <h4>Let me explain word problems differently:</h4>
+                    <p>Word problems are like puzzles. The words give you clues about the mathematical relationships.</p>
+                    <p>Key words to look for:</p>
+                    <ul>
+                        <li>"Sum" or "total" usually means addition</li>
+                        <li>"Difference" usually means subtraction</li>
+                        <li>"Product" usually means multiplication</li>
+                        <li>"Is" or "equals" means =</li>
+                    </ul>
+                    <p>The trick is to translate the English sentence into a mathematical sentence. For example, "5 more than a number is 12" becomes x + 5 = 12.</p>
+                    <button class="continue-btn" data-concept="5">Continue to Quiz</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <h3><i class="fas fa-question-circle"></i> Algebra Quiz</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What is the value of x in the equation 2x + 3 = 7?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="2">2</div>
+                        <div class="quiz-option" data-value="3">3</div>
+                        <div class="quiz-option" data-value="4">4</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>2. Simplify the expression: 3(x + 2) - 2x</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="x + 6">x + 6</div>
+                        <div class="quiz-option" data-value="5x + 6">5x + 6</div>
+                        <div class="quiz-option" data-value="x + 2">x + 2</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>3. If y = 4, what is the value of 2y - 5?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="3">3</div>
+                        <div class="quiz-option" data-value="5">5</div>
+                        <div class="quiz-option" data-value="7">7</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>4. Solve for x: 5x - 8 = 3x + 4</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="x = 2">x = 2</div>
+                        <div class="quiz-option" data-value="x = 4">x = 4</div>
+                        <div class="quiz-option" data-value="x = 6">x = 6</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>5. The sum of a number and 7 is 15. What is the number?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="8">8</div>
+                        <div class="quiz-option" data-value="9">9</div>
+                        <div class="quiz-option" data-value="10">10</div>
+                    </div>
+                </div>
+                
+                <button class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Results</h3>
+                    <p>Your score: <span id="score">0</span>/5 (<span id="percentage">0%</span>)</p>
+                    <p id="feedback">Keep practicing!</p>
+                    <button class="back-to-topics" id="backToTopics">Back to Topics</button>
+                    <button class="continue-btn" id="restartQuiz">Try Again</button>
+                </div>
+
+                <div class="quiz-explanation" id="quizExplanation">
+                    <h4>Quiz Explanations</h4>
+                    <div class="explanation-item" id="explanation-q1">
+                        <p><strong>Question 1:</strong> 2x + 3 = 7 → 2x = 4 → x = 2</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q2">
+                        <p><strong>Question 2:</strong> 3(x + 2) - 2x = 3x + 6 - 2x = x + 6</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q3">
+                        <p><strong>Question 3:</strong> 2(4) - 5 = 8 - 5 = 3</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q4">
+                        <p><strong>Question 4:</strong> 5x - 8 = 3x + 4 → 2x = 12 → x = 6</p>
+                    </div>
+                    <div class="explanation-item" id="explanation-q5">
+                        <p><strong>Question 5:</strong> x + 7 = 15 → x = 8</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const startLessonBtn = document.getElementById('startLessonBtn');
+        const lessonContent = document.getElementById('lessonContent');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizSection = document.getElementById('quizSection');
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        const quizExplanation = document.getElementById('quizExplanation');
+        const restartQuizBtn = document.getElementById('restartQuiz');
+        const backToTopicsBtn = document.getElementById('backToTopics');
+
+        // Quiz Answers and Explanations
+        const quizAnswers = ['2', 'x + 6', '3', 'x = 6', '8'];
+        const questionExplanations = [
+            "2x + 3 = 7 → Subtract 3 from both sides: 2x = 4 → Divide both sides by 2: x = 2",
+            "3(x + 2) - 2x = 3x + 6 - 2x = (3x - 2x) + 6 = x + 6. Use distributive property first, then combine like terms.",
+            "Substitute y = 4 into the expression: 2(4) - 5 = 8 - 5 = 3",
+            "5x - 8 = 3x + 4 → Subtract 3x from both sides: 2x - 8 = 4 → Add 8 to both sides: 2x = 12 → Divide by 2: x = 6",
+            "Let the number be x. Then x + 7 = 15 → Subtract 7 from both sides: x = 8"
+        ];
+
+        // Current concept tracking
+        let currentConcept = 1;
+        const totalConcepts = 5;
+
+        // Start Lesson Button Functionality
+        startLessonBtn.addEventListener('click', function() {
+            lessonContent.classList.add('active');
+            progressSection.style.display = 'flex';
+            this.style.display = 'none';
+            updateProgress();
+            nextBtn.disabled = false;
+        });
+
+        // Update Progress
+        function updateProgress() {
+            const progress = ((currentConcept - 1) / totalConcepts) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', function() {
+            if (currentConcept > 1) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept--;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                nextBtn.disabled = false;
+                
+                if (currentConcept === 1) {
+                    prevBtn.disabled = true;
+                }
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentConcept < totalConcepts) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept++;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                prevBtn.disabled = false;
+                
+                if (currentConcept === totalConcepts) {
+                    nextBtn.disabled = true;
+                }
+            }
+        });
+
+        // Understanding Check Buttons
+        document.querySelectorAll('.check-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                
+                if (this.classList.contains('yes-btn')) {
+                    // User understands, move to next concept
+                    if (conceptNum < totalConcepts) {
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        currentConcept = parseInt(conceptNum) + 1;
+                        document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                        updateProgress();
+                        prevBtn.disabled = false;
+                        
+                        if (currentConcept === totalConcepts) {
+                            nextBtn.disabled = true;
+                        }
+                    } else {
+                        // Last concept, show quiz
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        quizSection.classList.add('active');
+                    }
+                } else {
+                    // User needs more explanation
+                    explanation.classList.add('active');
+                }
+            });
+        });
+
+        // Continue Buttons in Further Explanations
+        document.querySelectorAll('.continue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                explanation.classList.remove('active');
+                
+                if (conceptNum < totalConcepts) {
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    currentConcept = parseInt(conceptNum) + 1;
+                    document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
+                    
+                    if (currentConcept === totalConcepts) {
+                        nextBtn.disabled = true;
+                    }
+                } else {
+                    // Last concept, show quiz
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    quizSection.classList.add('active');
+                }
+            });
+        });
+
+        // Quiz Functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this question
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        // Submit Quiz
+        submitQuizBtn.addEventListener('click', function() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            // Reset all explanations
+            document.querySelectorAll('.explanation-item').forEach(item => {
+                item.classList.remove('correct', 'incorrect');
+            });
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                const explanation = document.getElementById(`explanation-q${index + 1}`);
+                
+                if (selectedOption && selectedOption.getAttribute('data-value') === quizAnswers[index]) {
+                    score++;
+                    selectedOption.style.backgroundColor = 'var(--success-color)';
+                    explanation.classList.add('correct');
+                } else if (selectedOption) {
+                    selectedOption.style.backgroundColor = '#d32f2f';
+                    explanation.classList.add('incorrect');
+                    
+                    // Highlight correct answer
+                    const correctOption = question.querySelector(`[data-value="${quizAnswers[index]}"]`);
+                    if (correctOption) {
+                        correctOption.style.backgroundColor = 'var(--success-color)';
+                    }
+                } else {
+                    // No answer selected, show correct answer
+                    const correctOption = question.querySelector(`[data-value="${quizAnswers[index]}"]`);
+                    if (correctOption) {
+                        correctOption.style.backgroundColor = 'var(--success-color)';
+                    }
+                    explanation.classList.add('incorrect');
+                }
+            });
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            let feedback = '';
+            if (percentage >= 80) {
+                feedback = 'Excellent work! You have a strong understanding of algebra.';
+            } else if (percentage >= 60) {
+                feedback = 'Good job! Review the explanations below to improve.';
+            } else {
+                feedback = 'Keep practicing! Review the explanations and try again.';
+            }
+            
+            document.getElementById('feedback').textContent = feedback;
+            quizResult.classList.add('active');
+            quizExplanation.classList.add('active');
+            
+            // Scroll to results
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Back to Topics Button
+        backToTopicsBtn.addEventListener('click', function() {
+            window.location.href = '../index.html#topics';
+        });
+
+        // Restart Quiz
+        restartQuizBtn.addEventListener('click', function() {
+            // Reset quiz
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.backgroundColor = '';
+            });
+            
+            quizResult.classList.remove('active');
+            quizExplanation.classList.remove('active');
+            
+            // Go back to first concept
+            quizSection.classList.remove('active');
+            document.querySelectorAll('.concept-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            currentConcept = 1;
+            document.getElementById(`concept-${currentConcept}`).classList.add('active');
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+        });
+    </script>
+</body>
+</html>
