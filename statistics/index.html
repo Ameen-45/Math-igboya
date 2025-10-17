@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - Interactive Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .side-nav {
+            margin-bottom: 30px;
+        }
+
+        .btn-red {
+            display: inline-block;
+            background-color: #0d47a1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-red:hover {
+            background-color: #0d47a1;
+        }
+
+        /* Objectives Section */
+        .objectives-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .objectives-container h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .objectives-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .objectives-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .start-lesson-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .start-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .concept-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .concept-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--text-light);
+            margin: 15px 0 10px;
+        }
+
+        .concept-content {
+            margin-bottom: 20px;
+        }
+
+        .concept-grid, .statistics-data-types, .statistics-measure-types, 
+        .statistics-dispersion-types, .statistics-probability-types,
+        .statistics-distribution-types, .statistics-inference-types,
+        .statistics-regression-types, .statistics-application-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card, .statistics-type-card, .statistics-app-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .concept-card:hover, .statistics-type-card:hover, .statistics-app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .concept-card h4, .statistics-type-card h3, .statistics-app-card h3 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .statistics-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Understanding Check */
+        .understanding-check {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .understanding-check h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .yes-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Further Explanation */
+        .further-explanation {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .further-explanation.active {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .further-explanation h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .continue-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .continue-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .quiz-section h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .quiz-question p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+        }
+
+        .submit-quiz {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .submit-quiz:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 10px;
+            }
+            
+            .concept-section {
+                padding: 15px;
+            }
+            
+            .objectives-container {
+                padding: 20px;
+            }
+            
+            .check-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .progress-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+            }
+            
+            .concept-grid, .statistics-data-types, .statistics-measure-types, 
+            .statistics-dispersion-types, .statistics-probability-types,
+            .statistics-distribution-types, .statistics-inference-types,
+            .statistics-regression-types, .statistics-application-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="side-nav-content">
+                <a href="../index.html" class="btn-red"><i class="fas fa-arrow-left"></i> Back to Topics</a>
+            </div>
+        </nav>
+
+        <!-- Objectives Section -->
+        <div class="objectives-container">
+            <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Understand the fundamental concepts of statistics and data analysis</li>
+                <li>Differentiate between descriptive and inferential statistics</li>
+                <li>Calculate and interpret measures of central tendency and dispersion</li>
+                <li>Apply probability concepts to solve real-world problems</li>
+                <li>Understand and apply statistical distributions</li>
+                <li>Perform hypothesis testing and interpret results</li>
+                <li>Use correlation and regression analysis</li>
+            </ul>
+            <button class="start-lesson-btn" id="startLessonBtn">
+                <i class="fas fa-play"></i> Start Lesson
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressText">0%</span></span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content" id="lessonContent">
+            <!-- Introduction Section -->
+            <section id="concept-1" class="concept-section active">
+                <h1><i class="fas fa-chart-pie"></i> Introduction to Statistics</h1>
+                <div class="concept-content">
+                    <p>Statistics is the science of collecting, analyzing, interpreting, presenting, and organizing data. It enables us to make informed decisions in the face of uncertainty. It plays a crucial role in various fields, such as economics, social sciences, medicine, and engineering, by allowing us to draw meaningful conclusions from data.</p>
+                    
+                    <p>By understanding and applying statistical methods, one can assess risks, forecast trends, and even uncover hidden patterns within large datasets. Whether predicting stock market behavior, analyzing medical test results, or studying population demographics, statistics provides the tools to make data-driven decisions.</p>
+            
+                    <div class="history-box">
+                        <h3><i class="fas fa-history"></i> Historical Context</h3>
+                        <p>Modern statistics originated in the 18th century with work by mathematicians like Carl Friedrich Gauss and Pierre-Simon Laplace, who developed key methods for analyzing data. In the early 20th century, the contributions of Ronald Fisher, Karl Pearson, and others helped establish foundational statistical techniques still used today.</p>
+                    </div>
+            
+                    <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h4>Descriptive</h4>
+                            <p>Descriptive statistics is the process of summarizing and describing data in a meaningful way. It includes measures such as the mean, median, mode, variance, and standard deviation, which help to understand the central tendency and spread of the data.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Inferential</h4>
+                            <p>Inferential statistics is used to draw conclusions about a population based on a sample. Techniques like hypothesis testing, confidence intervals, and regression analysis allow statisticians to make predictions and assess the likelihood of certain outcomes.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Probability</h4>
+                            <p>Probability is a mathematical framework that quantifies uncertainty. It provides a way to model random events and predict the likelihood of their occurrence based on known information.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Bayesian</h4>
+                            <p>Bayesian statistics is a probabilistic approach that updates the probability for a hypothesis based on new evidence or data. This approach is particularly useful in dynamic environments where knowledge is continually updated.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Is this introduction to statistics clear?</h4>
+                    <p>Let me know if you need further explanation before we continue.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="1">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="1">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-1">
+                    <h4>Let me explain statistics differently:</h4>
+                    <p>Think of statistics as the science of learning from data. It's like being a detective who uses evidence (data) to solve mysteries (answer questions).</p>
+                    <p>For example:</p>
+                    <ul>
+                        <li>If you want to know if a new medicine works, you'd collect data from patients and use statistics to analyze the results</li>
+                        <li>If you want to predict election results, you'd survey a sample of voters and use statistics to estimate the outcome</li>
+                        <li>If you want to understand customer preferences, you'd analyze sales data using statistical methods</li>
+                    </ul>
+                    <p>Statistics helps us make sense of the world by turning raw data into meaningful insights.</p>
+                    <button class="continue-btn" data-concept="1">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Data Types Section -->
+            <section id="concept-2" class="concept-section">
+                <h2><i class="fas fa-database"></i> Data Types & Collection</h2>
+                <div class="concept-content">
+                    <p>Understanding data types is fundamental to statistics because different types of data require different analytical approaches. Data can be broadly classified into qualitative and quantitative categories.</p>
+            
+                    <div class="statistics-data-types">
+                        <div class="statistics-type-card">
+                            <h3>Qualitative (Categorical)</h3>
+                            <p>Qualitative data, also known as categorical data, refers to non-numeric data that can be used to categorize or label variables. It describes qualities or characteristics of the subjects being measured.</p>
+                            <ul>
+                                <li>Non-numerical descriptions</li>
+                                <li>Examples: Colors, brands, yes/no responses, types of fruits</li>
+                                <li>Subtypes:
+                                    <ul>
+                                        <li><strong>Nominal</strong> (no order: categories without any intrinsic ranking)</li>
+                                        <li><strong>Ordinal</strong> (ordered: categories with a defined order)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                
+                        <div class="statistics-type-card">
+                            <h3>Quantitative (Numerical)</h3>
+                            <p>Quantitative data represents measurable quantities that can be expressed numerically. This type of data is often used for statistical analysis where the aim is to measure the magnitude or amount of something.</p>
+                            <ul>
+                                <li>Measurable numerical values</li>
+                                <li>Examples: Height, temperature, sales, income, age</li>
+                                <li>Subtypes:
+                                    <ul>
+                                        <li><strong>Discrete</strong> (countable: data that can only take certain distinct values)</li>
+                                        <li><strong>Continuous</strong> (measurable: data that can take any value within a range)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand the different types of data?</h4>
+                    <p>Correctly identifying data types is essential for choosing the right statistical methods.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="2">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="2">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-2">
+                    <h4>Let me explain data types differently:</h4>
+                    <p>Think of data types like different kinds of information we encounter every day:</p>
+                    <ul>
+                        <li><strong>Qualitative/Categorical:</strong> Like answers to "what kind" questions
+                            <ul>
+                                <li>What's your favorite color? (Blue, Red, Green) - Nominal</li>
+                                <li>How would you rate our service? (Poor, Fair, Good, Excellent) - Ordinal</li>
+                            </ul>
+                        </li>
+                        <li><strong>Quantitative/Numerical:</strong> Like answers to "how much" or "how many" questions
+                            <ul>
+                                <li>How many siblings do you have? (0, 1, 2, 3...) - Discrete</li>
+                                <li>What's your height in centimeters? (165.2, 172.8, 180.5...) - Continuous</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>The type of data determines what statistical tests and visualizations are appropriate.</p>
+                    <button class="continue-btn" data-concept="2">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Central Tendency Section -->
+            <section id="concept-3" class="concept-section">
+                <h2><i class="fas fa-chart-bar"></i> Central Tendency</h2>
+                <div class="concept-content">
+                    <p>Measures of central tendency describe the center or typical value of a dataset. They help us understand what a "typical" value looks like in our data.</p>
+            
+                    <div class="statistics-measure-types">
+                        <div class="statistics-type-card">
+                            <h3>Mean</h3>
+                            <p class="statistics-formula">μ = (Σx)/N</p>
+                            <p>Average value of dataset</p>
+                            <p>Example: Mean of 4,7,2,9,7,5,7 is 5.86</p>
+                            <p><strong>Best for:</strong> Normally distributed data without outliers</p>
+                        </div>
+                
+                        <div class="statistics-type-card">
+                            <h3>Median</h3>
+                            <p>Middle value in ordered data</p>
+                            <p>Example: Median of 2,4,5,7,7,7,9 is 7</p>
+                            <p><strong>Best for:</strong> Skewed distributions or data with outliers</p>
+                        </div>
+                
+                        <div class="statistics-type-card">
+                            <h3>Mode</h3>
+                            <p>Most frequent value</p>
+                            <p>Example: Mode of dataset is 7</p>
+                            <p><strong>Best for:</strong> Categorical data or identifying most common values</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand measures of central tendency?</h4>
+                    <p>These measures help us summarize datasets with a single representative value.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="3">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="3">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-3">
+                    <h4>Let me explain central tendency differently:</h4>
+                    <p>Think of measures of central tendency as different ways to find the "middle" or "typical" value in a dataset:</p>
+                    <ul>
+                        <li><strong>Mean:</strong> The mathematical average - like when you split the total equally among everyone</li>
+                        <li><strong>Median:</strong> The exact middle value - like the person standing in the center of a line</li>
+                        <li><strong>Mode:</strong> The most popular value - like the most common shoe size in a group</li>
+                    </ul>
+                    <p><strong>Example:</strong> In a neighborhood with houses valued at $100K, $150K, $200K, $250K, and $2,000K:</p>
+                    <ul>
+                        <li>Mean: $540K (affected by the outlier)</li>
+                        <li>Median: $200K (true middle value)</li>
+                        <li>Mode: No mode (all values are unique)</li>
+                    </ul>
+                    <p>The median gives a better sense of "typical" here because it's not skewed by the outlier.</p>
+                    <button class="continue-btn" data-concept="3">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Probability Section -->
+            <section id="concept-4" class="concept-section">
+                <h2><i class="fas fa-dice"></i> Probability</h2>
+                <div class="concept-content">
+                    <p>Probability is the mathematics of uncertainty. It quantifies how likely events are to occur, which is fundamental to statistical inference and decision-making.</p>
+            
+                    <div class="statistics-probability-types">
+                        <div class="statistics-type-card">
+                            <h3>Basic Rules</h3>
+                            <p class="statistics-formula">P(E) = (# favorable) / (# possible)</p>
+                            <ul>
+                                <li>Addition: P(A∪B) = P(A) + P(B) - P(A∩B)</li>
+                                <li>Multiplication: P(A∩B) = P(A) × P(B|A)</li>
+                                <li>Complement: P(A') = 1 - P(A)</li>
+                            </ul>
+                            <p>Example: If P(A) = 0.5 and P(B) = 0.4, and A and B are mutually exclusive, P(A∪B) = 0.5 + 0.4 = 0.9</p>
+                        </div>
+                
+                        <div class="statistics-type-card">
+                            <h3>Distributions</h3>
+                            <ul>
+                                <li>Discrete: Binomial, Poisson</li>
+                                <li>Continuous: Normal, Uniform</li>
+                                <li>Parameters: Mean, variance, shape</li>
+                            </ul>
+                            <p>Example: In a binomial distribution with n = 5 and p = 0.4, P(X = 2) can be calculated using the binomial formula.</p>
+                        </div>
+                
+                        <div class="statistics-type-card">
+                            <h3>Conditional Probability</h3>
+                            <p class="statistics-formula">P(A|B) = P(A∩B) / P(B)</p>
+                            <p>Probability of A given B has occurred.</p>
+                            <p>Example: If P(A∩B) = 0.2 and P(B) = 0.4, then P(A|B) = 0.2 / 0.4 = 0.5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand probability concepts?</h4>
+                    <p>Probability forms the foundation for statistical inference and hypothesis testing.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="4">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="4">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-4">
+                    <h4>Let me explain probability differently:</h4>
+                    <p>Probability is about quantifying uncertainty. Think of it as answering "how likely" questions:</p>
+                    <ul>
+                        <li><strong>Simple probability:</strong> What's the chance of rolling a 6 on a fair die? (1/6 ≈ 16.7%)</li>
+                        <li><strong>Compound probability:</strong> What's the chance of rolling two 6s in a row? (1/6 × 1/6 = 1/36 ≈ 2.8%)</li>
+                        <li><strong>Conditional probability:</strong> If I know someone has a fever, what's the probability they have the flu? (Higher than the general population)</li>
+                    </ul>
+                    <p><strong>Key principles:</strong></p>
+                    <ul>
+                        <li>Probability ranges from 0 (impossible) to 1 (certain)</li>
+                        <li>The sum of probabilities of all possible outcomes is 1</li>
+                        <li>Independent events don't affect each other's probabilities</li>
+                    </ul>
+                    <p>Probability helps us make predictions and assess risks in uncertain situations.</p>
+                    <button class="continue-btn" data-concept="4">Continue to Quiz</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <h3><i class="fas fa-question-circle"></i> Statistics Quiz</h3>
+                
+                <div class="quiz-question">
+                    <p>1. Which measure is most affected by outliers?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">Mean</div>
+                        <div class="quiz-option" data-value="B">Median</div>
+                        <div class="quiz-option" data-value="C">Mode</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>2. For normal distribution, what % is within 1σ of μ?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">68%</div>
+                        <div class="quiz-option" data-value="B">95%</div>
+                        <div class="quiz-option" data-value="C">99.7%</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>3. If P(A)=0.4, P(B)=0.5, and A, B are independent, P(A∩B)=?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">0.2</div>
+                        <div class="quiz-option" data-value="B">0.9</div>
+                        <div class="quiz-option" data-value="C">0.1</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>4. In regression, what does R² represent?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">Correlation coefficient</div>
+                        <div class="quiz-option" data-value="B">Proportion of variance explained</div>
+                        <div class="quiz-option" data-value="C">Significance level</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>5. The probability of drawing a red card from a standard deck of cards is?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">1/4</div>
+                        <div class="quiz-option" data-value="B">1/2</div>
+                        <div class="quiz-option" data-value="C">1/3</div>
+                    </div>
+                </div>
+                
+                <button class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Results</h3>
+                    <p>Your score: <span id="score">0</span>/5 (<span id="percentage">0%</span>)</p>
+                    <p id="feedback">Keep practicing!</p>
+                    <button class="continue-btn" id="restartQuiz">Try Again</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const startLessonBtn = document.getElementById('startLessonBtn');
+        const lessonContent = document.getElementById('lessonContent');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizSection = document.getElementById('quizSection');
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        const restartQuizBtn = document.getElementById('restartQuiz');
+
+        // Quiz Answers
+        const quizAnswers = ['A', 'A', 'A', 'B', 'B'];
+
+        // Current concept tracking
+        let currentConcept = 1;
+        const totalConcepts = 4;
+
+        // Start Lesson Button Functionality
+        startLessonBtn.addEventListener('click', function() {
+            lessonContent.classList.add('active');
+            progressSection.style.display = 'flex';
+            this.style.display = 'none';
+            updateProgress();
+            nextBtn.disabled = false;
+        });
+
+        // Update Progress
+        function updateProgress() {
+            const progress = ((currentConcept - 1) / totalConcepts) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', function() {
+            if (currentConcept > 1) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept--;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                nextBtn.disabled = false;
+                
+                if (currentConcept === 1) {
+                    prevBtn.disabled = true;
+                }
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentConcept < totalConcepts) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept++;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                prevBtn.disabled = false;
+                
+                if (currentConcept === totalConcepts) {
+                    nextBtn.disabled = true;
+                }
+            }
+        });
+
+        // Understanding Check Buttons
+        document.querySelectorAll('.check-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                
+                if (this.classList.contains('yes-btn')) {
+                    // User understands, move to next concept
+                    if (conceptNum < totalConcepts) {
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        currentConcept = parseInt(conceptNum) + 1;
+                        document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                        updateProgress();
+                        prevBtn.disabled = false;
+                        
+                        if (currentConcept === totalConcepts) {
+                            nextBtn.disabled = true;
+                        }
+                    } else {
+                        // Last concept, show quiz
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        quizSection.classList.add('active');
+                    }
+                } else {
+                    // User needs more explanation
+                    explanation.classList.add('active');
+                }
+            });
+        });
+
+        // Continue Buttons in Further Explanations
+        document.querySelectorAll('.continue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                explanation.classList.remove('active');
+                
+                if (conceptNum < totalConcepts) {
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    currentConcept = parseInt(conceptNum) + 1;
+                    document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
+                    
+                    if (currentConcept === totalConcepts) {
+                        nextBtn.disabled = true;
+                    }
+                } else {
+                    // Last concept, show quiz
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    quizSection.classList.add('active');
+                }
+            });
+        });
+
+        // Quiz Functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this question
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        // Submit Quiz
+        submitQuizBtn.addEventListener('click', function() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                if (selectedOption && selectedOption.getAttribute('data-value') === quizAnswers[index]) {
+                    score++;
+                    selectedOption.style.backgroundColor = 'var(--success-color)';
+                } else if (selectedOption) {
+                    selectedOption.style.backgroundColor = '#d32f2f';
+                }
+            });
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            let feedback = '';
+            if (percentage >= 80) {
+                feedback = 'Excellent work! You have a strong understanding of statistics.';
+            } else if (percentage >= 60) {
+                feedback = 'Good job! Review the questions you missed to improve.';
+            } else {
+                feedback = 'Keep practicing! Review the concepts and try again.';
+            }
+            
+            document.getElementById('feedback').textContent = feedback;
+            quizResult.classList.add('active');
+            
+            // Scroll to results
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Restart Quiz
+        restartQuizBtn.addEventListener('click', function() {
+            // Reset quiz
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.backgroundColor = '';
+            });
+            
+            quizResult.classList.remove('active');
+            
+            // Go back to first concept
+            quizSection.classList.remove('active');
+            document.querySelectorAll('.concept-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            currentConcept = 1;
+            document.getElementById(`concept-${currentConcept}`).classList.add('active');
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+        });
+    </script>
+</body>
+</html>

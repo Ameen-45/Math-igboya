@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometry - Interactive Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #1565c0;
+            --success-color: #0277bd;
+            --text-color: #e3f2fd;
+            --text-light: #bbdefb;
+            --bg-color: #0a0f2d;
+            --card-bg: #121c4d;
+            --border-color: #1e2a6d;
+            --shadow: 0 10px 25px rgba(0, 10, 50, 0.3);
+            --transition: all 0.3s ease;
+            --nav-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .side-nav {
+            margin-bottom: 30px;
+        }
+
+        .btn-red {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-red:hover {
+            background-color: #1a237e;
+        }
+
+        /* Objectives Section */
+        .objectives-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .objectives-container h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .objectives-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .objectives-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .start-lesson-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .start-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .concept-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .concept-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--text-light);
+            margin: 15px 0 10px;
+        }
+
+        .concept-content {
+            margin-bottom: 20px;
+        }
+
+        .concept-grid, .function-grid, .reciprocal-grid, .trigonometry-special-triangles,
+        .trigonometry-identity-grid, .applications-grid, .unit-circle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card, .function-card, .reciprocal-card, .trigonometry-triangle-card,
+        .trigonometry-identity-card, .application-card, .unit-circle-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .concept-card:hover, .function-card:hover, .reciprocal-card:hover, 
+        .trigonometry-triangle-card:hover, .trigonometry-identity-card:hover,
+        .application-card:hover, .unit-circle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .concept-card h4, .function-card h3, .reciprocal-card h4, 
+        .trigonometry-triangle-card h4, .trigonometry-identity-card h4,
+        .application-card h3, .unit-circle-card h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Triangle Diagram */
+        .trigonometry-triangle-diagram {
+            position: relative;
+            height: 150px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid var(--accent-color);
+            opacity: 0.7;
+        }
+
+        .opposite, .adjacent, .hypotenuse, .theta {
+            position: absolute;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .opposite {
+            right: 45%;
+            top: 30%;
+        }
+
+        .adjacent {
+            bottom: 10%;
+            left: 45%;
+        }
+
+        .hypotenuse {
+            top: 45%;
+            left: 55%;
+        }
+
+        .theta {
+            bottom: 65%;
+            left: 55%;
+        }
+
+        /* Unit Circle */
+        .unit-circle-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .unit-circle {
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .unit-circle-center {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--text-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .unit-circle-line {
+            position: absolute;
+            background: var(--accent-color);
+            height: 2px;
+            width: 100px;
+            top: 50%;
+            left: 50%;
+            transform-origin: left center;
+        }
+
+        .unit-circle-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--success-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .unit-circle-coords {
+            position: absolute;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Understanding Check */
+        .understanding-check {
+            background-color: rgba(21, 101, 192, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .understanding-check h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .yes-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Further Explanation */
+        .further-explanation {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .further-explanation.active {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .further-explanation h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .continue-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .continue-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .quiz-section h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .quiz-question p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+        }
+
+        .submit-quiz {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .submit-quiz:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        .quiz-explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            display: none;
+        }
+
+        .quiz-explanation.active {
+            display: block;
+        }
+
+        .explanation-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .explanation-item:last-child {
+            border-bottom: none;
+        }
+
+        .explanation-question {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .explanation-answer {
+            margin-bottom: 5px;
+        }
+
+        .explanation-detail {
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 10px;
+            }
+            
+            .concept-section {
+                padding: 15px;
+            }
+            
+            .objectives-container {
+                padding: 20px;
+            }
+            
+            .check-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .progress-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+            }
+            
+            .concept-grid, .function-grid, .reciprocal-grid, .trigonometry-special-triangles,
+            .trigonometry-identity-grid, .applications-grid, .unit-circle-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .triangle {
+                border-left: 40px solid transparent;
+                border-right: 40px solid transparent;
+                border-bottom: 70px solid var(--accent-color);
+            }
+            
+            .unit-circle {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="side-nav-content">
+                <a href="#top" class="btn-red"><i class="fas fa-arrow-up"></i> Back to Top</a>
+            </div>
+        </nav>
+
+        <!-- Objectives Section -->
+        <div class="objectives-container">
+            <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Understand the fundamental concepts of trigonometry and triangle relationships</li>
+                <li>Master the three primary trigonometric functions: sine, cosine, and tangent</li>
+                <li>Learn to use the unit circle for angle measurement and function values</li>
+                <li>Apply trigonometric identities to simplify expressions</li>
+                <li>Solve real-world problems using trigonometric principles</li>
+                <li>Understand the applications of trigonometry in various fields</li>
+            </ul>
+            <button class="start-lesson-btn" id="startLessonBtn">
+                <i class="fas fa-play"></i> Start Lesson
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressText">0%</span></span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" disabled>
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content" id="lessonContent">
+            <!-- Introduction Section -->
+            <section id="concept-1" class="concept-section active">
+                <h1><i class="fas fa-triangle"></i> Introduction to Trigonometry</h1>
+                <div class="concept-content">
+                    <p>Trigonometry is a branch of mathematics that studies relationships between the angles and sides of triangles. Derived from Greek words "trigonon" (triangle) and "metron" (measure), it is fundamental in STEM fields and beyond.</p>
+                    
+                    <div class="history-box">
+                        <h3><i class="fas fa-history"></i> Historical Context</h3>
+                        <p>First developed by ancient Greek, Indian, and Arab mathematicians for astronomy and navigation. Hipparchus (c. 190-120 BCE) created the first trigonometric tables.</p>
+                    </div>
+            
+                    <h3><i class="fas fa-lightbulb"></i> Key Concepts</h3>
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h4>Right Triangles</h4>
+                            <p>The foundation of basic trigonometry with one 90° angle. These triangles allow us to define the basic trigonometric ratios.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Angle Measurement</h4>
+                            <p>Degrees (°) and radians (rad) - π rad = 180°. Radians are often preferred in advanced mathematics.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Periodicity</h4>
+                            <p>Trig functions repeat every 360° (2π rad). This periodic nature makes them useful for modeling cyclic phenomena.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Triangular Solving</h4>
+                            <p>Find missing sides/angles using ratios. This is the practical application of trigonometric principles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Is this introduction to trigonometry clear?</h4>
+                    <p>Let me know if you need further explanation before we continue.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="1">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="1">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-1">
+                    <h4>Let me explain trigonometry differently:</h4>
+                    <p>Think of trigonometry as the mathematics of triangles. It's like having a special set of tools that helps us measure things we can't directly access.</p>
+                    <p>For example:</p>
+                    <ul>
+                        <li>If you want to know how tall a tree is without climbing it, you can use trigonometry</li>
+                        <li>If you need to calculate how far away a ship is from shore, trigonometry provides the method</li>
+                        <li>If you're designing a ramp and need to know the angle, trigonometry gives you the answer</li>
+                    </ul>
+                    <p>At its heart, trigonometry is about relationships - specifically, the relationships between angles and side lengths in triangles.</p>
+                    <button class="continue-btn" data-concept="1">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Trigonometric Functions Section -->
+            <section id="concept-2" class="concept-section">
+                <h2><i class="fas fa-superscript"></i> Core Trigonometric Functions</h2>
+                <div class="concept-content">
+                    <p>The three primary trigonometric functions - sine, cosine, and tangent - form the foundation of trigonometry. They relate angles to side ratios in right triangles.</p>
+                    
+                    <div class="function-grid">
+                        <div class="function-card">
+                            <h3>Sine (sin)</h3>
+                            <p class="formula">sin(θ) = Opposite / Hypotenuse</p>
+                            <div class="trigonometry-triangle-diagram">
+                                <div class="triangle"></div>
+                                <span class="opposite">Opposite</span>
+                                <span class="hypotenuse">Hypotenuse</span>
+                                <span class="theta">θ</span>
+                            </div>
+                            <p>Represents the vertical component in the unit circle. The sine of an angle is the ratio of the length of the side opposite the angle to the length of the hypotenuse.</p>
+                        </div>
+                        
+                        <div class="function-card">
+                            <h3>Cosine (cos)</h3>
+                            <p class="formula">cos(θ) = Adjacent / Hypotenuse</p>
+                            <div class="trigonometry-triangle-diagram">
+                                <div class="triangle"></div>
+                                <span class="adjacent">Adjacent</span>
+                                <span class="hypotenuse">Hypotenuse</span>
+                                <span class="theta">θ</span>
+                            </div>
+                            <p>Represents the horizontal component in the unit circle. The cosine of an angle is the ratio of the length of the adjacent side to the length of the hypotenuse.</p>
+                        </div>
+                        
+                        <div class="function-card">
+                            <h3>Tangent (tan)</h3>
+                            <p class="formula">tan(θ) = Opposite / Adjacent</p>
+                            <div class="trigonometry-triangle-diagram">
+                                <div class="triangle"></div>
+                                <span class="opposite">Opposite</span>
+                                <span class="adjacent">Adjacent</span>
+                                <span class="theta">θ</span>
+                            </div>
+                            <p>Represents the slope of the terminal side in the unit circle. The tangent of an angle is the ratio of the sine to the cosine of that angle.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Reciprocal Functions</h3>
+                    <div class="reciprocal-grid">
+                        <div class="reciprocal-card">
+                            <h4>Cosecant (csc)</h4>
+                            <p class="formula">csc(θ) = 1/sin(θ)</p>
+                            <p>The reciprocal of sine</p>
+                        </div>
+                        <div class="reciprocal-card">
+                            <h4>Secant (sec)</h4>
+                            <p class="formula">sec(θ) = 1/cos(θ)</p>
+                            <p>The reciprocal of cosine</p>
+                        </div>
+                        <div class="reciprocal-card">
+                            <h4>Cotangent (cot)</h4>
+                            <p class="formula">cot(θ) = 1/tan(θ)</p>
+                            <p>The reciprocal of tangent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand the trigonometric functions?</h4>
+                    <p>These functions are the building blocks of all trigonometric concepts.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="2">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="2">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-2">
+                    <h4>Let me explain trigonometric functions differently:</h4>
+                    <p>Think of the trigonometric functions as special calculators that tell you about triangle proportions:</p>
+                    <ul>
+                        <li><strong>Sine (sin):</strong> Answers "how tall is it compared to the diagonal?"</li>
+                        <li><strong>Cosine (cos):</strong> Answers "how wide is it compared to the diagonal?"</li>
+                        <li><strong>Tangent (tan):</strong> Answers "how steep is the slope?"</li>
+                    </ul>
+                    <p><strong>Memory trick:</strong> SOH-CAH-TOA</p>
+                    <ul>
+                        <li><strong>S</strong>ine = <strong>O</strong>pposite / <strong>H</strong>ypotenuse</li>
+                        <li><strong>C</strong>osine = <strong>A</strong>djacent / <strong>H</strong>ypotenuse</li>
+                        <li><strong>T</strong>angent = <strong>O</strong>pposite / <strong>A</strong>djacent</li>
+                    </ul>
+                    <p>These ratios stay constant for a given angle, no matter how big the triangle is. That's what makes trigonometry so powerful!</p>
+                    <button class="continue-btn" data-concept="2">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Trigonometric Ratios Section -->
+            <section id="concept-3" class="concept-section">
+                <h2><i class="fas fa-percentage"></i> Trigonometric Ratios</h2>
+                <div class="concept-content">
+                    <p>Trigonometric ratios for common angles are fundamental to solving trigonometric problems. Memorizing these key values will make your work with trigonometry much easier.</p>
+                    
+                    <div class="trigonometry-ratio-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Angle (θ)</th>
+                                    <th>sin(θ)</th>
+                                    <th>cos(θ)</th>
+                                    <th>tan(θ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0°</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>30° (π/6)</td>
+                                    <td>1/2</td>
+                                    <td>√3/2</td>
+                                    <td>√3/3</td>
+                                </tr>
+                                <tr>
+                                    <td>45° (π/4)</td>
+                                    <td>√2/2</td>
+                                    <td>√2/2</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>60° (π/3)</td>
+                                    <td>√3/2</td>
+                                    <td>1/2</td>
+                                    <td>√3</td>
+                                </tr>
+                                <tr>
+                                    <td>90° (π/2)</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>∞</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <h3>Special Right Triangles</h3>
+                    <div class="trigonometry-special-triangles">
+                        <div class="trigonometry-triangle-card">
+                            <h4>30-60-90 Triangle</h4>
+                            <p>Ratio of sides: 1 : √3 : 2. This is a special right triangle where the angle between the legs is 60°, and the other angle is 30°. The hypotenuse is always twice the length of the shorter leg, and the longer leg is √3 times the shorter leg.</p>
+                            <p class="formula">Side ratios: short leg : long leg : hypotenuse = 1 : √3 : 2</p>
+                        </div>
+                        <div class="trigonometry-triangle-card">
+                            <h4>45-45-90 Triangle</h4>
+                            <p>Ratio of sides: 1 : 1 : √2. This is an isosceles right triangle where both angles are 45°. The two legs are equal in length, and the hypotenuse is √2 times the length of each leg.</p>
+                            <p class="formula">Side ratios: leg : leg : hypotenuse = 1 : 1 : √2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand trigonometric ratios and special triangles?</h4>
+                    <p>These ratios and triangles are essential tools for solving trigonometric problems.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="3">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="3">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-3">
+                    <h4>Let me explain trigonometric ratios differently:</h4>
+                    <p>Think of trigonometric ratios as a "cheat sheet" for common angles. Instead of calculating these values every time, we can memorize them for quick reference.</p>
+                    <p><strong>Memory techniques:</strong></p>
+                    <ul>
+                        <li><strong>0°, 30°, 45°, 60°, 90°</strong> - These are the most common angles</li>
+                        <li><strong>Sine values:</strong> 0, 1/2, √2/2, √3/2, 1 (increasing pattern)</li>
+                        <li><strong>Cosine values:</strong> 1, √3/2, √2/2, 1/2, 0 (decreasing pattern)</li>
+                        <li><strong>Tangent values:</strong> 0, √3/3, 1, √3, undefined (increasing pattern)</li>
+                    </ul>
+                    <p><strong>Special triangles:</strong></p>
+                    <ul>
+                        <li><strong>45-45-90:</strong> Like a square cut diagonally - both legs equal</li>
+                        <li><strong>30-60-90:</strong> Like an equilateral triangle cut in half - sides in ratio 1:√3:2</li>
+                    </ul>
+                    <p>These patterns make it easier to remember the values without memorizing each one individually.</p>
+                    <button class="continue-btn" data-concept="3">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Unit Circle Section -->
+            <section id="concept-4" class="concept-section">
+                <h2><i class="fas fa-circle"></i> The Unit Circle</h2>
+                <div class="concept-content">
+                    <p>The unit circle is a fundamental concept in trigonometry that provides a geometric interpretation of trigonometric functions for all angles, not just those in right triangles.</p>
+                    
+                    <div class="unit-circle-container">
+                        <div class="unit-circle">
+                            <div class="unit-circle-center"></div>
+                            <div class="unit-circle-line" style="transform: rotate(30deg);"></div>
+                            <div class="unit-circle-point" style="transform: translate(-50%, -50%) translate(50px, -25px);"></div>
+                            <div class="unit-circle-coords" style="top: 30%; left: 60%;">(√3/2, 1/2)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="unit-circle-grid">
+                        <div class="unit-circle-card">
+                            <h4>Definition</h4>
+                            <p>A circle with radius 1 centered at the origin (0,0) of the coordinate plane. Any point on the unit circle has coordinates (cosθ, sinθ).</p>
+                            <p class="formula">x² + y² = 1</p>
+                        </div>
+                        <div class="unit-circle-card">
+                            <h4>Quadrant Signs</h4>
+                            <ul>
+                                <li><strong>Q1:</strong> All functions positive</li>
+                                <li><strong>Q2:</strong> Sine positive only</li>
+                                <li><strong>Q3:</strong> Tangent positive only</li>
+                                <li><strong>Q4:</strong> Cosine positive only</li>
+                            </ul>
+                            <p>Remember: "All Students Take Calculus"</p>
+                        </div>
+                        <div class="unit-circle-card">
+                            <h4>Reference Angles</h4>
+                            <p>For any angle, the reference angle is the acute angle between the terminal side and the x-axis. This helps find function values for angles in any quadrant.</p>
+                            <p class="formula">Reference angle = |θ - nearest x-axis|</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand the unit circle?</h4>
+                    <p>The unit circle is essential for understanding trigonometric functions beyond right triangles.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="4">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="4">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-4">
+                    <h4>Let me explain the unit circle differently:</h4>
+                    <p>Think of the unit circle as a "master key" for trigonometry. It shows you the values of sine and cosine for every possible angle.</p>
+                    <p><strong>How it works:</strong></p>
+                    <ul>
+                        <li>Start at the rightmost point (1, 0) - this is 0°</li>
+                        <li>Move counterclockwise around the circle</li>
+                        <li>The x-coordinate of any point is cos(θ)</li>
+                        <li>The y-coordinate of any point is sin(θ)</li>
+                    </ul>
+                    <p><strong>Key points to remember:</strong></p>
+                    <ul>
+                        <li>At 0°: (1, 0) → cos=1, sin=0</li>
+                        <li>At 90°: (0, 1) → cos=0, sin=1</li>
+                        <li>At 180°: (-1, 0) → cos=-1, sin=0</li>
+                        <li>At 270°: (0, -1) → cos=0, sin=-1</li>
+                    </ul>
+                    <p>The unit circle connects geometry (circles) with algebra (coordinates) and trigonometry (functions).</p>
+                    <button class="continue-btn" data-concept="4">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Trigonometric Identities Section -->
+            <section id="concept-5" class="concept-section">
+                <h2><i class="fas fa-equals"></i> Trigonometric Identities</h2>
+                <div class="concept-content">
+                    <p>Trigonometric identities are equations that are true for all values of the variables. They are essential for simplifying expressions and solving trigonometric equations.</p>
+                    
+                    <div class="trigonometry-identity-grid">
+                        <div class="trigonometry-identity-card">
+                            <h4>Pythagorean Identities</h4>
+                            <p class="formula">sin²θ + cos²θ = 1</p>
+                            <p class="formula">1 + tan²θ = sec²θ</p>
+                            <p class="formula">1 + cot²θ = csc²θ</p>
+                            <p>These identities are derived from the Pythagorean theorem and the unit circle equation.</p>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <h4>Angle Sum/Difference</h4>
+                            <p class="formula">sin(A±B) = sinA cosB ± cosA sinB</p>
+                            <p class="formula">cos(A±B) = cosA cosB ∓ sinA sinB</p>
+                            <p class="formula">tan(A±B) = (tanA ± tanB)/(1 ∓ tanA tanB)</p>
+                            <p>These identities allow us to find function values for sums and differences of angles.</p>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <h4>Double Angle</h4>
+                            <p class="formula">sin(2θ) = 2 sinθ cosθ</p>
+                            <p class="formula">cos(2θ) = cos²θ - sin²θ</p>
+                            <p class="formula">tan(2θ) = 2 tanθ/(1 - tan²θ)</p>
+                            <p>Useful for simplifying expressions with double angles and solving equations.</p>
+                        </div>
+                        <div class="trigonometry-identity-card">
+                            <h4>Half Angle</h4>
+                            <p class="formula">sin(θ/2) = ±√[(1 - cosθ)/2]</p>
+                            <p class="formula">cos(θ/2) = ±√[(1 + cosθ)/2]</p>
+                            <p class="formula">tan(θ/2) = ±√[(1 - cosθ)/(1 + cosθ)]</p>
+                            <p>Helpful for finding exact values of functions for half angles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand trigonometric identities?</h4>
+                    <p>These identities are powerful tools for simplifying and solving trigonometric problems.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="5">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="5">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-5">
+                    <h4>Let me explain trigonometric identities differently:</h4>
+                    <p>Think of trigonometric identities as "shortcuts" or "rules" that always work in trigonometry, similar to how multiplication rules always work in arithmetic.</p>
+                    <p><strong>The most important identity:</strong></p>
+                    <p class="formula">sin²θ + cos²θ = 1</p>
+                    <p>This comes directly from the Pythagorean theorem applied to the unit circle. If you think of a right triangle with hypotenuse 1, then:</p>
+                    <ul>
+                        <li>The horizontal side is cosθ</li>
+                        <li>The vertical side is sinθ</li>
+                        <li>By Pythagorean theorem: (cosθ)² + (sinθ)² = 1²</li>
+                    </ul>
+                    <p><strong>Why identities matter:</strong></p>
+                    <ul>
+                        <li>They help simplify complex expressions</li>
+                        <li>They allow you to prove other mathematical relationships</li>
+                        <li>They provide multiple ways to solve the same problem</li>
+                    </ul>
+                    <p>You don't need to memorize all identities at once - focus on the most commonly used ones first.</p>
+                    <button class="continue-btn" data-concept="5">Continue to next concept</button>
+                </div>
+            </section>
+
+            <!-- Applications Section -->
+            <section id="concept-6" class="concept-section">
+                <h2><i class="fas fa-rocket"></i> Applications of Trigonometry</h2>
+                <div class="concept-content">
+                    <p>Trigonometry has countless real-world applications across various fields. Understanding these applications shows the practical importance of trigonometric concepts.</p>
+                    
+                    <div class="applications-grid">
+                        <div class="application-card">
+                            <h3>Engineering & Architecture</h3>
+                            <ul>
+                                <li>Structural analysis and design</li>
+                                <li>Bridge and building construction</li>
+                                <li>Forces calculation in mechanical systems</li>
+                                <li>Slope and angle measurements</li>
+                            </ul>
+                            <p>Example: Calculating the optimal angle for a ramp to meet accessibility standards.</p>
+                        </div>
+                        <div class="application-card">
+                            <h3>Physics & Astronomy</h3>
+                            <ul>
+                                <li>Wave motion and harmonic analysis</li>
+                                <li>Projectile motion calculations</li>
+                                <li>Celestial navigation and star positions</li>
+                                <li>Orbital mechanics</li>
+                            </ul>
+                            <p>Example: Determining the height of a projectile using its angle of launch and distance traveled.</p>
+                        </div>
+                        <div class="application-card">
+                            <h3>Navigation & Surveying</h3>
+                            <ul>
+                                <li>GPS and satellite positioning</li>
+                                <li>Map making and cartography</li>
+                                <li>Land surveying and boundary determination</li>
+                                <li>Marine and aviation navigation</li>
+                            </ul>
+                            <p>Example: Using triangulation to determine the distance to an inaccessible point.</p>
+                        </div>
+                        <div class="application-card">
+                            <h3>Computer Graphics & Gaming</h3>
+                            <ul>
+                                <li>3D modeling and animation</li>
+                                <li>Character movement and rotation</li>
+                                <li>Lighting and shadow calculations</li>
+                                <li>Physics simulations</li>
+                            </ul>
+                            <p>Example: Calculating the trajectory of a character's jump in a video game.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="understanding-check">
+                    <h4>Do you understand the applications of trigonometry?</h4>
+                    <p>These real-world uses demonstrate why trigonometry is such an important mathematical field.</p>
+                    <div class="check-buttons">
+                        <button class="check-btn yes-btn" data-concept="6">
+                            <i class="fas fa-check"></i> Yes, I understand
+                        </button>
+                        <button class="check-btn no-btn" data-concept="6">
+                            <i class="fas fa-times"></i> No, I need more explanation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="further-explanation" id="explanation-6">
+                    <h4>Let me explain trigonometry applications differently:</h4>
+                    <p>Trigonometry is everywhere in our modern world. Here are some everyday examples:</p>
+                    <ul>
+                        <li><strong>Construction:</strong> Making sure buildings are level and structures are stable</li>
+                        <li><strong>Sports:</strong> Calculating the best angle to throw a ball for maximum distance</li>
+                        <li><strong>Music:</strong> Understanding sound waves and harmonics</li>
+                        <li><strong>Medicine:</strong> Medical imaging techniques like CT scans use trigonometric principles</li>
+                        <li><strong>Art:</strong> Creating perspective in drawings and paintings</li>
+                    </ul>
+                    <p><strong>Simple example:</strong> If you're flying a kite and know the length of string you've let out and the angle the string makes with the ground, you can calculate how high the kite is flying using trigonometry.</p>
+                    <p>Trigonometry helps us measure, design, and understand the world around us in precise mathematical terms.</p>
+                    <button class="continue-btn" data-concept="6">Continue to Quiz</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <h3><i class="fas fa-question-circle"></i> Trigonometry Quiz</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What is sin(30°)?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">0.5</div>
+                        <div class="quiz-option" data-value="B">√3/2</div>
+                        <div class="quiz-option" data-value="C">√2/2</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>2. Which identity is correct?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">sin²θ - cos²θ = 1</div>
+                        <div class="quiz-option" data-value="B">sin²θ + cos²θ = 1</div>
+                        <div class="quiz-option" data-value="C">sinθ + cosθ = 1</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>3. In a right triangle, if opposite=3 and adjacent=4, hypotenuse=?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">5</div>
+                        <div class="quiz-option" data-value="B">7</div>
+                        <div class="quiz-option" data-value="C">12</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>4. What is the period of the sine function?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">π</div>
+                        <div class="quiz-option" data-value="B">2π</div>
+                        <div class="quiz-option" data-value="C">π/2</div>
+                    </div>
+                </div>
+        
+                <div class="quiz-question">
+                    <p>5. Which angle has the same sine as 150°?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">30°</div>
+                        <div class="quiz-option" data-value="B">60°</div>
+                        <div class="quiz-option" data-value="C">210°</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <p>6. What is cos(45°)?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">1/2</div>
+                        <div class="quiz-option" data-value="B">√2/2</div>
+                        <div class="quiz-option" data-value="C">√3/2</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <p>7. In which quadrant are both sine and cosine positive?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="A">Quadrant I</div>
+                        <div class="quiz-option" data-value="B">Quadrant II</div>
+                        <div class="quiz-option" data-value="C">Quadrant III</div>
+                    </div>
+                </div>
+                
+                <button class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Results</h3>
+                    <p>Your score: <span id="score">0</span>/7 (<span id="percentage">0%</span>)</p>
+                    <p id="feedback">Keep practicing!</p>
+                    <button class="continue-btn" id="restartQuiz">Try Again</button>
+                    <button class="continue-btn" id="showExplanation">Review Explanations</button>
+                </div>
+
+                <div class="quiz-explanation" id="quizExplanation">
+                    <h3>Quiz Explanations</h3>
+                    <div class="explanation-item">
+                        <div class="explanation-question">1. What is sin(30°)?</div>
+                        <div class="explanation-answer">Correct Answer: 0.5</div>
+                        <div class="explanation-detail">sin(30°) = 1/2 = 0.5. This is one of the standard trigonometric values you should memorize.</div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-question">2. Which identity is correct?</div>
+                        <div class="explanation-answer">Correct Answer: sin²θ + cos²θ = 1</div>
+                        <div class="explanation-detail">This is the fundamental Pythagorean identity in trigonometry. It comes from the Pythagorean theorem applied to the unit circle.</div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-question">3. In a right triangle, if opposite=3 and adjacent=4, hypotenuse=?</div>
+                        <div class="explanation-answer">Correct Answer: 5</div>
+                        <div class="explanation-detail">Using the Pythagorean theorem: hypotenuse² = opposite² + adjacent² = 3² + 4² = 9 + 16 = 25, so hypotenuse = √25 = 5.</div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-question">4. What is the period of the sine function?</div>
+                        <div class="explanation-answer">Correct Answer: 2π</div>
+                        <div class="explanation-detail">The sine function repeats every 360° or 2π radians. This means sin(θ) = sin(θ + 2π) for any angle θ.</div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-question">5. Which angle has the same sine as 150°?</div>
+                        <div class="explanation-answer">Correct Answer: 30°</div>
+                        <div class="explanation-detail">sin(150°) = sin(180° - 150°) = sin(30°) = 0.5. This is because sine is positive in both the first and second quadrants.</div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-question">6. What is cos(45°)?</div>
+                        <div class="explanation-answer">Correct Answer: √2/2</div>
+                        <div class="explanation-detail">cos(45°) = √2/2 ≈ 0.707. In a 45-45-90 triangle, both legs are equal, so cos(45°) = adjacent/hypotenuse = 1/√2 = √2/2.</div>
+                    </div>
+                    <div class="explanation-item">
+                        <div class="explanation-question">7. In which quadrant are both sine and cosine positive?</div>
+                        <div class="explanation-answer">Correct Answer: Quadrant I</div>
+                        <div class="explanation-detail">In Quadrant I (0° to 90°), both x and y coordinates are positive, so both sine (y-coordinate) and cosine (x-coordinate) are positive.</div>
+                    </div>
+                    <button class="continue-btn" id="backToResults">Back to Results</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const startLessonBtn = document.getElementById('startLessonBtn');
+        const lessonContent = document.getElementById('lessonContent');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizSection = document.getElementById('quizSection');
+        const submitQuizBtn = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        const restartQuizBtn = document.getElementById('restartQuiz');
+        const showExplanationBtn = document.getElementById('showExplanation');
+        const quizExplanation = document.getElementById('quizExplanation');
+        const backToResultsBtn = document.getElementById('backToResults');
+
+        // Quiz Answers
+        const quizAnswers = ['A', 'B', 'A', 'B', 'A', 'B', 'A'];
+
+        // Current concept tracking
+        let currentConcept = 1;
+        const totalConcepts = 6;
+
+        // Start Lesson Button Functionality
+        startLessonBtn.addEventListener('click', function() {
+            lessonContent.classList.add('active');
+            progressSection.style.display = 'flex';
+            this.style.display = 'none';
+            updateProgress();
+            nextBtn.disabled = false;
+        });
+
+        // Update Progress
+        function updateProgress() {
+            const progress = ((currentConcept - 1) / totalConcepts) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', function() {
+            if (currentConcept > 1) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept--;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                nextBtn.disabled = false;
+                
+                if (currentConcept === 1) {
+                    prevBtn.disabled = true;
+                }
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentConcept < totalConcepts) {
+                document.getElementById(`concept-${currentConcept}`).classList.remove('active');
+                currentConcept++;
+                document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                updateProgress();
+                prevBtn.disabled = false;
+                
+                if (currentConcept === totalConcepts) {
+                    nextBtn.disabled = true;
+                }
+            }
+        });
+
+        // Understanding Check Buttons
+        document.querySelectorAll('.check-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                
+                if (this.classList.contains('yes-btn')) {
+                    // User understands, move to next concept
+                    if (conceptNum < totalConcepts) {
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        currentConcept = parseInt(conceptNum) + 1;
+                        document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                        updateProgress();
+                        prevBtn.disabled = false;
+                        
+                        if (currentConcept === totalConcepts) {
+                            nextBtn.disabled = true;
+                        }
+                    } else {
+                        // Last concept, show quiz
+                        document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                        quizSection.classList.add('active');
+                    }
+                } else {
+                    // User needs more explanation
+                    explanation.classList.add('active');
+                }
+            });
+        });
+
+        // Continue Buttons in Further Explanations
+        document.querySelectorAll('.continue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const conceptNum = this.getAttribute('data-concept');
+                const explanation = document.getElementById(`explanation-${conceptNum}`);
+                explanation.classList.remove('active');
+                
+                if (conceptNum < totalConcepts) {
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    currentConcept = parseInt(conceptNum) + 1;
+                    document.getElementById(`concept-${currentConcept}`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
+                    
+                    if (currentConcept === totalConcepts) {
+                        nextBtn.disabled = true;
+                    }
+                } else {
+                    // Last concept, show quiz
+                    document.getElementById(`concept-${conceptNum}`).classList.remove('active');
+                    quizSection.classList.add('active');
+                }
+            });
+        });
+
+        // Quiz Functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this question
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        // Submit Quiz
+        submitQuizBtn.addEventListener('click', function() {
+            let score = 0;
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                if (selectedOption && selectedOption.getAttribute('data-value') === quizAnswers[index]) {
+                    score++;
+                    selectedOption.style.backgroundColor = 'var(--success-color)';
+                } else if (selectedOption) {
+                    selectedOption.style.backgroundColor = '#d32f2f';
+                }
+            });
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            let feedback = '';
+            if (percentage >= 85) {
+                feedback = 'Excellent work! You have mastered trigonometry fundamentals.';
+            } else if (percentage >= 70) {
+                feedback = 'Good job! You have a solid understanding of trigonometry.';
+            } else if (percentage >= 60) {
+                feedback = 'Not bad! Review the concepts you missed to improve.';
+            } else {
+                feedback = 'Keep practicing! Review the lessons and try again.';
+            }
+            
+            document.getElementById('feedback').textContent = feedback;
+            quizResult.classList.add('active');
+            
+            // Scroll to results
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Show Quiz Explanations
+        showExplanationBtn.addEventListener('click', function() {
+            quizResult.classList.remove('active');
+            quizExplanation.classList.add('active');
+            quizExplanation.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Back to Results
+        backToResultsBtn.addEventListener('click', function() {
+            quizExplanation.classList.remove('active');
+            quizResult.classList.add('active');
+            quizResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Restart Quiz
+        restartQuizBtn.addEventListener('click', function() {
+            // Reset quiz
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+                option.style.backgroundColor = '';
+            });
+            
+            quizResult.classList.remove('active');
+            quizExplanation.classList.remove('active');
+            
+            // Go back to first concept
+            quizSection.classList.remove('active');
+            document.querySelectorAll('.concept-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            currentConcept = 1;
+            document.getElementById(`concept-${currentConcept}`).classList.add('active');
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+        });
+    </script>
+</body>
+</html>
